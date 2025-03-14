@@ -1,7 +1,12 @@
-# mia_tech_progetto_finale
-### Link utili 
-[Figma top 50 websites](https://www.figma.com/design/Pjobmjrbe6PK6JnRfKjJCK/TOP-50-WEBSITES-(Community)?node-id=0-1&p=f&t=lrB5whQlNVsDKgPH-0)
+# React + Vite
 
-[Breve tutorial figma](https://www.youtube.com/watch?v=luxx_3-A5-w)
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-[Tutorial ecommerce react](https://www.youtube.com/watch?v=ZF73dpgRrWI)
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.

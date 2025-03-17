@@ -2,6 +2,7 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Cart from './pages/Cart'
 import Product from './pages/Product/Product'
+import Navbar from './components/Navbar'
 
 const App = () => {
   return (
@@ -10,6 +11,7 @@ const App = () => {
 
         <Route path='/product' element={<Product/>} />
         <Route path='/cart' element={<Cart />} />
+        <Route path='/' element={<Navbar />} />
 
       </Routes>
     </div>

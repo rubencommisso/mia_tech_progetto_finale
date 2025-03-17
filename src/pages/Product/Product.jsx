@@ -1,5 +1,5 @@
 import "./Product.css";
-import esempio from "../assets/esempio.jpg";
+import esempio from "../../assets/esempio.jpg";
 import { useState } from "react";
 
 const Product = () => {

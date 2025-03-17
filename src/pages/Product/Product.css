@@ -1,0 +1,97 @@
+.container {
+    text-align: left;
+    padding: 2rem;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .subtitle {
+    font-size: 1.25rem;
+  }
+  
+  .phone-container {
+    display: inline-flex;
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+  
+  .span1 {
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    background-color: #f0f0f0;
+    border-right: 0.1rem solid #ccc;
+    font-size: 1rem;
+  }
+  
+  .span1:last-child {
+    border-right: none;
+  }
+  
+  .span1:hover {
+    background-color: #cde3f4;
+    border: 0.1rem solid blue;
+  }
+  
+  .phone-model-container {
+    display: inline-flex;
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+  
+  .imgEsempio {
+    width: 40vw;  
+    height: auto;
+    max-width: 100%; 
+  }
+  
+  .card-component {
+    width: 35vw;  
+    height: auto;
+    max-width: 100%;  
+    padding: 2rem;
+    border: 0.1rem solid #ccc; 
+    border-radius: 0.5rem;
+    background-color: #f0f0f0; 
+    text-align: center;
+    overflow: hidden; 
+    word-wrap: break-word; 
+    cursor: pointer; 
+  }
+
+  .card-component:hover {
+    background-color: #cde3f4; 
+    border: 0.1rem solid blue; 
+  }
+  
+  .ProductCard h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    overflow: hidden;  
+    text-overflow: ellipsis; 
+    white-space: nowrap;  
+  }
+  
+  .ProductCard h2 {
+    font-size: 1.25rem;
+    color: #333;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .span1.active {
+    background-color: #cde3f4;
+    border: 0.1rem solid blue;
+  }
+
+  .card-component.active {
+    background-color: #cde3f4; 
+    border: 0.1rem solid blue; 
+  }
+
+  .containerProduct{
+    display: flex;
+    gap: 2rem;
+  }

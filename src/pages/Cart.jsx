@@ -28,7 +28,7 @@ const Cart = () => {
   };
 
   return (
-    <div className="container mx-auto p-8 m-6">
+    <div className="container mx-auto p-8 m-6  flex flex-col items-center md:flex-col md:items-start md:p-6">
       <h2 className="text-3xl items-center font-bold mb-10">Il tuo Carrello</h2><hr />
       {cart.length === 0 ? (
         <p>Il carrello è vuoto</p>

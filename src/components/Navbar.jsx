@@ -13,9 +13,9 @@ const Navbar = () => {
           className="w-[100vw] h-[100vh] fixed top-0 z-10 bg-black opacity-50"
         ></div>
       )}
-      <nav className="border-y px-3 sticky top-0 bg-white">
-        <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-          <div className="relative flex  items-center justify-between">
+      <nav className="border-y px-3 sticky top-0 bg-white md:h-[60px] md:flex md:items-center">
+        <div className=" px-2 sm:px-6 md:flex-grow ">
+          <div className="relative flex  items-center justify-between md:justify-start">
             <div className="md:hidden">
               <button
                 type="button"
@@ -39,32 +39,32 @@ const Navbar = () => {
                   />
                 </svg>
               </button>
-
-              <div className="hidden md:flex space-x-6">
-                <a
-                  href="#"
-                  className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-                >
-                  Home
-                </a>
-                <a
-                  href="#"
-                  className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-                >
-                  About
-                </a>
-                <a
-                  href="#"
-                  className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-                >
-                  Products
-                </a>
-              </div>
             </div>
-            <div id="logo" className="font-medium text-xl">
+            
+            <div id="logo" className="font-medium text-xl md:w-1/12">
               CRM
             </div>
-            <div className="flex items-center">
+            <div className="hidden md:flex space-x-6 px-11">
+              <a
+                href="#"
+                className="rounded-md px-3 py-2 text-sm hover:text-orange-700 font-semibold"
+              >
+                Home
+              </a>
+              <a
+                href="#"
+                className="rounded-md px-3 py-2 text-sm hover:text-orange-700 font-semibold "
+              >
+                About
+              </a>
+              <a
+                href="#"
+                className="rounded-md px-3 py-2 text-sm hover:text-orange-700 font-semibold "
+              >
+                Products
+              </a>
+            </div>
+            <div className="flex items-center md:flex-grow md:justify-end">
               <button
                 type="button"
                 className="relative p-2 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
@@ -79,7 +79,14 @@ const Navbar = () => {
       </nav>
       {mobileMenuOpen && (
         <div className="fixed top-0 w-[80vw] h-[100vh] md:hidden bg-white pt-2 pb-3 space-y-1 z-20 px-6 transition-all duration-1000">
-          <div className="font-bold text-xl py-3 cursor-pointer inline-block" onClick={() => {setMobileMenuOpen(false)}}>X</div>
+          <div
+            className="font-bold text-xl py-3 cursor-pointer inline-block"
+            onClick={() => {
+              setMobileMenuOpen(false);
+            }}
+          >
+            X
+          </div>
           <div className="flex flex-col h-4/6 justify-around">
             <a
               href="#"

@@ -103,8 +103,119 @@ const Product = () => {
 
       <br />
       <br />
-      <div className="containerProduct">
+      <div className="containerProduct flex flex-wrap">
         {/* Prima card */}
+        <div
+          className={`card-component ${activeCardId === 1 ? "active" : ""}`}
+          onClick={() => handleCardClick(1)}
+        >
+          <span className="ProductCard">
+            <h1>Product 1</h1>
+            <img className="imgEsempio" src={esempio} alt="img" />
+            <h2>308$</h2>
+          </span>
+        </div>
+        <div
+          className={`card-component ${activeCardId === 1 ? "active" : ""}`}
+          onClick={() => handleCardClick(1)}
+        >
+          <span className="ProductCard">
+            <h1>Product 1</h1>
+            <img className="imgEsempio" src={esempio} alt="img" />
+            <h2>308$</h2>
+          </span>
+        </div>
+        <div
+          className={`card-component ${activeCardId === 1 ? "active" : ""}`}
+          onClick={() => handleCardClick(1)}
+        >
+          <span className="ProductCard">
+            <h1>Product 1</h1>
+            <img className="imgEsempio" src={esempio} alt="img" />
+            <h2>308$</h2>
+          </span>
+        </div>
+        <div
+          className={`card-component ${activeCardId === 1 ? "active" : ""}`}
+          onClick={() => handleCardClick(1)}
+        >
+          <span className="ProductCard">
+            <h1>Product 1</h1>
+            <img className="imgEsempio" src={esempio} alt="img" />
+            <h2>308$</h2>
+          </span>
+        </div>
+        <div
+          className={`card-component ${activeCardId === 1 ? "active" : ""}`}
+          onClick={() => handleCardClick(1)}
+        >
+          <span className="ProductCard">
+            <h1>Product 1</h1>
+            <img className="imgEsempio" src={esempio} alt="img" />
+            <h2>308$</h2>
+          </span>
+        </div>
+        <div
+          className={`card-component ${activeCardId === 1 ? "active" : ""}`}
+          onClick={() => handleCardClick(1)}
+        >
+          <span className="ProductCard">
+            <h1>Product 1</h1>
+            <img className="imgEsempio" src={esempio} alt="img" />
+            <h2>308$</h2>
+          </span>
+        </div>
+
+        <div
+          className={`card-component ${activeCardId === 1 ? "active" : ""}`}
+          onClick={() => handleCardClick(1)}
+        >
+          <span className="ProductCard">
+            <h1>Product 1</h1>
+            <img className="imgEsempio" src={esempio} alt="img" />
+            <h2>308$</h2>
+          </span>
+        </div>
+        <div
+          className={`card-component ${activeCardId === 1 ? "active" : ""}`}
+          onClick={() => handleCardClick(1)}
+        >
+          <span className="ProductCard">
+            <h1>Product 1</h1>
+            <img className="imgEsempio" src={esempio} alt="img" />
+            <h2>308$</h2>
+          </span>
+        </div>
+        <div
+          className={`card-component ${activeCardId === 1 ? "active" : ""}`}
+          onClick={() => handleCardClick(1)}
+        >
+          <span className="ProductCard">
+            <h1>Product 1</h1>
+            <img className="imgEsempio" src={esempio} alt="img" />
+            <h2>308$</h2>
+          </span>
+        </div>
+        <div
+          className={`card-component ${activeCardId === 1 ? "active" : ""}`}
+          onClick={() => handleCardClick(1)}
+        >
+          <span className="ProductCard">
+            <h1>Product 1</h1>
+            <img className="imgEsempio" src={esempio} alt="img" />
+            <h2>308$</h2>
+          </span>
+        </div>
+        <div
+          className={`card-component ${activeCardId === 1 ? "active" : ""}`}
+          onClick={() => handleCardClick(1)}
+        >
+          <span className="ProductCard">
+            <h1>Product 1</h1>
+            <img className="imgEsempio" src={esempio} alt="img" />
+            <h2>308$</h2>
+          </span>
+        </div>
         <div
           className={`card-component ${activeCardId === 1 ? "active" : ""}`}
           onClick={() => handleCardClick(1)}

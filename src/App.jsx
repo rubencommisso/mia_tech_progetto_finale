@@ -6,14 +6,12 @@ import Layout from "./components/Layout";
 
 const App = () => {
   return (
-    <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
       <Routes>
         <Route element={<Layout />}> {/* Layout Route */}
           <Route path="/product" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
         </Route>
       </Routes>
-    </div>
   );
 };
 

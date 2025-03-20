@@ -1,8 +1,8 @@
-import Navbar from "./Navbar"
+import Footer from "./Footer"
 
 const Myapp = () => {
   return (
-    <Navbar />
+    <Footer />
   )
 }
 

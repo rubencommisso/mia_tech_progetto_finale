@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const PhoneCaseCustomizer = () => {
+const PhoneCaseCustomizerSamsung = () => {
     const [color, setColor] = useState("#ff0000"); // Colore iniziale rosso
 
     return (
@@ -9,24 +9,18 @@ const PhoneCaseCustomizer = () => {
 
             {/* Mockup della cover */}
             <div
-                className="flex justify-between w-40 h-80 rounded-3xl shadow-xl transition-all duration-300"
+                className="flex justify-between w-40 h-80 rounded-lg shadow-xl transition-all duration-300"
                 style={{ backgroundColor: color }}
             > <div>
-                    <div className="w-12 h-12 bg-black rounded-full mr-auto ml-4 mt-4 flex items-center justify-center">
+                    <div className="w-12 h-12 bg-black rounded-full mr-auto ml-4 mt-3 flex items-center justify-center">
                         <div className="w-6 h-6 bg-gray-700 rounded-full ring-2 ring-blue-100"></div>
                     </div>
-                    <div className="w-12 h-12 bg-black rounded-full mr-auto ml-4 mt-4 flex items-center justify-center">
+                    <div className="w-12 h-12 bg-black rounded-full mr-auto ml-4 mt-1 flex items-center justify-center">
                         <div className="w-6 h-6 bg-gray-700 rounded-full ring-2 ring-blue-100"></div>
                     </div>
-                    {/* Camera cutout */}
-                </div>
-                <div>
-                    <div className="w-12 h-12 bg-black rounded-full ml-auto mr-10 mt-11 flex items-center justify-center">
+                    <div className="w-12 h-12 bg-black rounded-full mr-auto ml-4 mt-1 flex items-center justify-center">
                         <div className="w-6 h-6 bg-gray-700 rounded-full ring-2 ring-blue-100"></div>
-
                     </div>
-
-
                 </div>
             </div>
 
@@ -43,4 +37,4 @@ const PhoneCaseCustomizer = () => {
     );
 };
 
-export default PhoneCaseCustomizer;
+export default PhoneCaseCustomizerSamsung;

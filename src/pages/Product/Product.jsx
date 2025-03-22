@@ -163,36 +163,76 @@ const Product = () => {
           </div>
         )}
 
-        {/* Esempio: cards o altri elementi che vuoi mostrare */}
-        {/* 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-10">
+        {/* Cards */}
+        <div
+          className="
+            grid
+            grid-cols-1        /* 1 colonna su schermi molto piccoli */
+            sm:grid-cols-2     /* 2 colonne >= sm (640px) */
+            md:grid-cols-3     /* 3 colonne >= md (768px) */
+            lg:grid-cols-4     /* 4 colonne >= lg (1024px) */
+            gap-6 mt-10
+          "
+        >
           <div
-            className={\`
-              p-6 border rounded-lg bg-white shadow-md text-center 
+            className={`
+              p-6 border rounded-lg shadow-md text-center 
               cursor-pointer hover:bg-blue-100 
-              \${activeCardId === 1 ? "bg-blue-100 border-blue-500" : ""}
-            \`}
+              ${activeCardId === 1 ? "bg-blue-100 border-blue-500 " : "bg-white hover:bg-blue-100"}
+              w-40 h-60
+              mx-auto
+            `}
             onClick={() => handleCardClick(1)}
           >
-            <h1 className="text-2xl mb-4 truncate">Product 1</h1>
-            <img className="w-full h-auto object-contain" src={esempio} alt="img" />
+            <img
+              className="w-full h-auto object-contain"
+              src={esempio}
+              alt="img"
+            />
+            <h1 className="text-xl mb-4 ">Pellicola pvc</h1>
+            <h2 className="text-xl text-gray-800 truncate mt-2">308$</h2>
+          </div>
+          <div
+            className={`
+              p-6 border rounded-lg shadow-md text-center 
+              cursor-pointer hover:bg-blue-100
+              ${activeCardId === 2 ? "bg-blue-100 border-blue-500" : "bg-white hover:bg-blue-100"}
+              w-40 h-60
+              mx-auto
+            `}
+            onClick={() => handleCardClick(2)}
+          >
+            <img
+              className="w-full h-auto object-contain"
+              src={esempio}
+              alt="img"
+            />
+            <h1 className="text-xl mb-4">Pellicola vetro temprato</h1>
+            <h2 className="text-xl text-gray-800 truncate mt-2">308$</h2>
+          </div>
+          <div
+            className={`
+              p-6 border rounded-lg shadow-md text-center 
+              cursor-pointer hover:bg-blue-100
+              ${activeCardId === 3 ? "bg-blue-100 border-blue-500" : "bg-white hover:bg-blue-100"}
+              w-40 h-60
+              mx-auto
+            `}
+            onClick={() => handleCardClick(3)}
+          >
+            <img
+              className="w-full h-auto object-contain"
+              src={esempio}
+              alt="img"
+            />
+            <h1 className="text-xl mb-4">Pellicola privacy</h1>
             <h2 className="text-xl text-gray-800 truncate mt-2">308$</h2>
           </div>
 
-          <div
-            className={\`
-              p-6 border rounded-lg bg-white shadow-md text-center 
-              cursor-pointer hover:bg-blue-100
-              \${activeCardId === 2 ? "bg-blue-100 border-blue-500" : ""}
-            \`}
-            onClick={() => handleCardClick(2)}
-          >
-            <h1 className="text-2xl mb-4 truncate">Product 2</h1>
-            <img className="w-full h-auto object-contain" src={esempio} alt="img" />
-            <h2 className="text-xl text-gray-800 truncate mt-2">308$</h2>
-          </div>
+          {/* Se hai più card, aggiungile qui */}
+          {/* Ad es. un'altra card (Product 3) */}
+          {/* <div className=" ... "> ... </div> */}
         </div>
-        */}
       </div>
 
       {/* Customizer Components */}
@@ -205,4 +245,6 @@ const Product = () => {
 };
 
 export default Product;
+
+
 

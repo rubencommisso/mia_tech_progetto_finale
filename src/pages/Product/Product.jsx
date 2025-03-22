@@ -8,7 +8,7 @@ const Product = () => {
   const [showSamsung, setShowSamsung] = useState(false);
   const [showCustomApple, setShowCustomApple] = useState(false);
   const [showCustomSamsung, setShowCustomSamsung] = useState(false);
-  const [activeButton, setActiveButton] = useState(null);
+  const [activeButton, setActiveButton] = useState("apple");
   const [activeModel, setActiveModel] = useState(null);
   const [activeCardId, setActiveCardId] = useState(null);
 
@@ -50,19 +50,35 @@ const Product = () => {
 
         {/* Marca Selection */}
         <div className="mt-8">Seleziona la marca:</div>
-        <div className="flex flex-col sm:flex-row rounded-lg overflow-hidden mt-4 bg-white shadow-md">
+        <div className="flex flex-col sm:flex-row rounded-lg bg-white shadow-md mt-4">
           <span
-            className={`cursor-pointer font-semibold px-10 py-3 text-lg ${
-              activeButton === "apple" ? "bg-blue-100 border-blue-500 border" : ""
-            } flex-1 text-center hover:bg-blue-100`}
+            className={`
+              cursor-pointer font-semibold px-10 py-3 text-lg 
+              flex-1 text-center border 
+              ${activeButton === "apple"
+                ? "bg-blue-100 border border-blue-500"
+                : "hover:bg-blue-100"
+              }
+              // Arrotondiamo solo il primo elemento a sinistra
+              rounded-t-lg sm:rounded-l-lg 
+              sm:rounded-tr-none
+            `}
             onClick={() => handleBrandClick("Apple")}
           >
             Apple
           </span>
           <span
-            className={`cursor-pointer font-semibold px-10 py-3 text-lg ${
-              activeButton === "samsung" ? "bg-blue-100 border-blue-500 border" : ""
-            } flex-1 text-center hover:bg-blue-100`}
+            className={`
+              cursor-pointer font-semibold px-10 py-3 text-lg 
+              flex-1 text-center border 
+              ${activeButton === "samsung"
+                ? "bg-blue-100 border border-blue-500"
+                : "hover:bg-blue-100"
+              }
+              // Arrotondiamo solo l'ultimo a destra
+              rounded-b-lg sm:rounded-r-lg 
+              sm:rounded-bl-none
+            `}
             onClick={() => handleBrandClick("Samsung")}
           >
             Samsung
@@ -71,21 +87,35 @@ const Product = () => {
 
         {/* iPhone Models */}
         {showIphone && (
-          <div className="mt-6 bg-gray-100 p-2 rounded-lg border border-gray-300">
+          <div className="mt-6">
             <div className="mb-2 font-medium">Seleziona il tuo modello:</div>
-            <div className="flex flex-col bg-white p-6 sm:flex-row rounded-lg ">
+            <div className="flex flex-col sm:flex-row rounded-lg bg-white shadow-md mt-2">
               <span
-                className={` bg-trasparent cursor-pointer font-semibold px-6 py-3 text-lg ${
-                  activeModel === "iPhone 16" ? "bg-blue-100  border-blue-500" : "bg-gray-100"
-                } flex-1 text-center hover:bg-blue-100`}
+                className={`
+                  cursor-pointer font-semibold px-10 py-3 text-lg 
+                  flex-1 text-center border border-gray
+                  ${activeModel === "iPhone 16"
+                    ? "bg-blue-100 border border-blue-500"
+                    : "hover:bg-blue-100"
+                  }
+                  rounded-t-lg sm:rounded-l-lg
+                  sm:rounded-tr-none
+                `}
                 onClick={() => handleModelClick("iPhone 16")}
               >
                 iPhone 16
               </span>
               <span
-                className={`bg-trasparent cursor-pointer font-semibold px-6 py-3 text-lg ${
-                  activeModel === "iPhone SE" ? "bg-blue-100 rounded-lg border border-blue-500" : "bg-gray-100"
-                } flex-1 text-center hover:bg-blue-100`}
+                className={`
+                  cursor-pointer font-semibold px-10 py-3 text-lg 
+                  flex-1 text-center border border-gray
+                  ${activeModel === "iPhone SE"
+                    ? "bg-blue-100 border border-blue-500"
+                    : "hover:bg-blue-100"
+                  }
+                  rounded-b-lg sm:rounded-r-lg
+                  sm:rounded-bl-none
+                `}
                 onClick={() => handleModelClick("iPhone SE")}
               >
                 iPhone SE
@@ -96,21 +126,35 @@ const Product = () => {
 
         {/* Samsung Models */}
         {showSamsung && (
-          <div className="mt-6 bg-white p-4 rounded-lg shadow-md">
+          <div className="mt-6">
             <div className="mb-2 font-medium">Seleziona il tuo modello:</div>
-            <div className="flex flex-col sm:flex-row">
+            <div className="flex flex-col sm:flex-row rounded-lg bg-white shadow-md mt-2">
               <span
-                className={`cursor-pointer font-semibold px-6 py-3 text-lg ${
-                  activeModel === "Samsung S24" ? "bg-blue-100 border border-blue-500" : "bg-gray-100"
-                } flex-1 text-center hover:bg-blue-100`}
+                className={`
+                  cursor-pointer font-semibold px-10 py-3 text-lg
+                  flex-1 text-center border border-gray
+                  ${activeModel === "Samsung S24"
+                    ? "bg-blue-100 border border-blue-500"
+                    : "hover:bg-blue-100"
+                  }
+                  rounded-t-lg sm:rounded-l-lg
+                  sm:rounded-tr-none
+                `}
                 onClick={() => handleModelClick("Samsung S24")}
               >
                 Samsung S24
               </span>
               <span
-                className={`cursor-pointer font-semibold px-6 py-3 text-lg ${
-                  activeModel === "Samsung S23" ? "bg-blue-100 border border-blue-500" : "bg-gray-100"
-                } flex-1 text-center hover:bg-blue-100`}
+                className={`
+                  cursor-pointer font-semibold px-10 py-3 text-lg
+                  flex-1 text-center border border-gray
+                  ${activeModel === "Samsung S23"
+                    ? "bg-blue-100 border border-blue-500"
+                    : "hover:bg-blue-100"
+                  }
+                  rounded-b-lg sm:rounded-r-lg
+                  sm:rounded-bl-none
+                `}
                 onClick={() => handleModelClick("Samsung S23")}
               >
                 Samsung S23
@@ -119,13 +163,15 @@ const Product = () => {
           </div>
         )}
 
-        {/* Example Cards - Uncomment to enable */}
+        {/* Esempio: cards o altri elementi che vuoi mostrare */}
         {/* 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-10">
           <div
-            className={`p-6 border rounded-lg bg-white shadow-md text-center cursor-pointer hover:bg-blue-100 ${
-              activeCardId === 1 ? "bg-blue-100 border-blue-500" : ""
-            }`}
+            className={\`
+              p-6 border rounded-lg bg-white shadow-md text-center 
+              cursor-pointer hover:bg-blue-100 
+              \${activeCardId === 1 ? "bg-blue-100 border-blue-500" : ""}
+            \`}
             onClick={() => handleCardClick(1)}
           >
             <h1 className="text-2xl mb-4 truncate">Product 1</h1>
@@ -134,9 +180,11 @@ const Product = () => {
           </div>
 
           <div
-            className={`p-6 border rounded-lg bg-white shadow-md text-center cursor-pointer hover:bg-blue-100 ${
-              activeCardId === 2 ? "bg-blue-100 border-blue-500" : ""
-            }`}
+            className={\`
+              p-6 border rounded-lg bg-white shadow-md text-center 
+              cursor-pointer hover:bg-blue-100
+              \${activeCardId === 2 ? "bg-blue-100 border-blue-500" : ""}
+            \`}
             onClick={() => handleCardClick(2)}
           >
             <h1 className="text-2xl mb-4 truncate">Product 2</h1>
@@ -157,3 +205,4 @@ const Product = () => {
 };
 
 export default Product;
+

@@ -1,8 +1,9 @@
 import esempio from "../../assets/esempio.jpg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PhoneCaseCustomizerIphone from "../../components/PhoneCaseCustomizerIphone";
 import PhoneCaseCustomizerSamsung from "../../components/PhoneCaseCustomizerSamsung";
 import Card from "../../components/card"
+import AddButton from "../../components/AddButton";
 
 const Product = () => {
   const [showIphone, setShowIphone] = useState(false);
@@ -12,6 +13,9 @@ const Product = () => {
   const [activeButton, setActiveButton] = useState("apple");
   const [activeModel, setActiveModel] = useState(null);
   const [activeCardId, setActiveCardId] = useState(null);
+  const [selectedColor, setSelectedColor] = useState(null)
+  const [cart, setCart] = useState([]);
+  const [selectedPrice, setSelectedPrice] = useState(null);
 
   const handleBrandClick = (brand) => {
     if (brand === "Apple") {
@@ -44,22 +48,48 @@ const Product = () => {
     {
       id: 1,
       title: "Pellicola pvc super resistente effetto satinato",
-      price: "308$",
+      price: 308,
       image: esempio,
     },
     {
       id: 2,
       title: "Pellicola vetro temprato",
-      price: "308$",
+      price: 308,
       image: esempio,
     },
     {
       id: 3,
       title: "Pellicola vetro temprato",
-      price: "308$",
+      price: 308,
       image: esempio,
     },
   ];
+
+  const handleAddToCart = () => {
+    if (!activeButton || !activeModel || !activeCardId) {
+      alert("Seleziona marca, modello e pellicola.");
+      return;
+    }
+  
+    const item = {
+      brand: activeButton,
+      model: activeModel,
+      pellicola: selectedCard?.title,
+      price: selectedCard?.price,
+      color: selectedColor,
+      coverPrice: selectedPrice,
+      total: totalPrice
+    };
+  
+    setCart((prevCart) => [...prevCart, item]);
+  
+    console.log("🛒 Aggiunto al carrello:", item);
+  };
+
+    const selectedCard = CardProduct.find((c) => c.id === activeCardId);
+    const cardPrice = selectedCard?.price || 0;
+    const coverPrice = selectedPrice || 0;
+    const totalPrice = cardPrice + coverPrice;
 
   return (
     <div className="bg-gray-100 min-h-screen p-4 md:p-8">
@@ -212,8 +242,20 @@ const Product = () => {
 
       {/* Customizer Components */}
       <div className="max-w-5xl mx-auto mt-10">
-        {showIphone && <PhoneCaseCustomizerIphone />}
-        {showSamsung && <PhoneCaseCustomizerSamsung />}
+        {showIphone && <PhoneCaseCustomizerIphone
+         setSelectedColor={setSelectedColor}
+         setSelectedPrice={setSelectedPrice}
+         />}
+        {showSamsung && <PhoneCaseCustomizerSamsung 
+        setSelectedColor={setSelectedColor}
+        setSelectedPrice={setSelectedPrice}
+        />}
+      </div>
+      <div>
+        <AddButton 
+        onClick={handleAddToCart}
+        totalPrice={totalPrice}
+        />
       </div>
     </div>
     </div>

@@ -1,7 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const PhoneCaseCustomizerSamsung = () => {
+const PhoneCaseCustomizerSamsung = ({setSelectedColor, setSelectedPrice}) => {
     const [color, setColor] = useState("#ff0000"); // Colore iniziale rosso
+    const coverPrice = 308;
+
+    const formatPrice = (value) =>
+        new Intl.NumberFormat("it-IT", {
+          style: "currency",
+          currency: "EUR",
+        }).format(value);
+
+    useEffect(() => {
+            setSelectedColor(color);
+            setSelectedPrice(coverPrice);
+          }, [color, coverPrice, setSelectedColor, setSelectedPrice]);
+
+    const handleColorChange = (e) => {
+        const newColor = e.target.value;
+        setColor(newColor);              // aggiorna lo stato locale
+        setSelectedColor(newColor);      // aggiorna anche il parent (Product.jsx)
+      };
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-gray-100 space-y-6">
@@ -28,11 +46,12 @@ const PhoneCaseCustomizerSamsung = () => {
             <input
                 type="color"
                 value={color}
-                onChange={(e) => setColor(e.target.value)}
+                onChange={handleColorChange}
                 className="w-24 h-12 border-2 border-gray-300 rounded-md cursor-pointer"
             />
 
             <p className="text-sm">Colore selezionato: {color}</p>
+            <div>cover price:{formatPrice(coverPrice)}</div>
         </div>
     );
 };

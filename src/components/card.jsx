@@ -1,6 +1,12 @@
 // Card.jsx
 const Card = ({ id, title, price, image, activeCardId, onClick }) => {
     const isActive = activeCardId === id;
+
+    const formatPrice = (value) =>
+      new Intl.NumberFormat("it-IT", {
+        style: "currency",
+        currency: "EUR",
+      }).format(value);
   
     return (
       <div
@@ -32,7 +38,7 @@ const Card = ({ id, title, price, image, activeCardId, onClick }) => {
         {/* Prezzo */}
         <div className="mt-2">
           <h2 className="text-base font-bold text-blue-800">
-            {price}
+            {formatPrice(price)}
           </h2>
         </div>
       </div>

@@ -23,7 +23,7 @@ const Carousell = () => {
   return (
     <div className="flex justify-center items-center mt-8">
       <div
-        className={`relative w-[70vw] h-[80vh] flex justify-center items-center rounded-lg overflow-hidden transition-all duration-500 ${images[currentIndex].bgColor}`}
+        className={`relative w-[40vw] h-[50vh] flex justify-center items-center rounded-lg overflow-hidden transition-all duration-500 ${images[currentIndex].bgColor}`}
       >
     
         <button
@@ -33,7 +33,7 @@ const Carousell = () => {
           &lt;
         </button>
 
-        <div className="text-black text-2xl font-semibold text-center">
+        <div className="text-black text-xl font-semibold text-center">
           <p>{images[currentIndex].text}</p>
         </div>
 

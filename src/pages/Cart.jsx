@@ -45,7 +45,7 @@ const Cart = () => {
   };
 
   return (
-    <div className="container pt-3 mt-1 md:m-40 md:mt-0 md:px-1 md:ml- py-40 lg:py-22 lg:ml-44 flex flex-col items-start md:flex-col md:justify-around">
+    <div className="container pt-3 mt-1 mx-16 md:m-40 md:mt-0 md:px-1 py-40 lg:py-22 lg:ml-44 flex flex-col items-start md:flex-col md:justify-around">
 
       <h2 className="text-2xl font-semibold mb-6  mt-6">Il tuo Carrello</h2>
       <hr className="w-9/12 lg:w-2/4 md:w-1/2 mt-0 font-bold mb-4" />

@@ -70,7 +70,7 @@ const Product = () => {
       alert("Seleziona marca, modello e pellicola.");
       return;
     }
-  
+
     const item = {
       brand: activeButton,
       model: activeModel,
@@ -80,16 +80,16 @@ const Product = () => {
       coverPrice: selectedPrice,
       total: totalPrice
     };
-  
+
     setCart((prevCart) => [...prevCart, item]);
-  
+
     console.log("🛒 Aggiunto al carrello:", item);
   };
 
-    const selectedCard = CardProduct.find((c) => c.id === activeCardId);
-    const cardPrice = selectedCard?.price || 0;
-    const coverPrice = selectedPrice || 0;
-    const totalPrice = cardPrice + coverPrice;
+  const selectedCard = CardProduct.find((c) => c.id === activeCardId);
+  const cardPrice = selectedCard?.price || 0;
+  const coverPrice = selectedPrice || 0;
+  const totalPrice = cardPrice + coverPrice;
 
   return (
     <div className="bg-gray-100 min-h-screen p-4 md:p-8">
@@ -226,7 +226,7 @@ const Product = () => {
             gap-6 mt-10
           "
         >
-          {CardProduct.map((product)=>(
+          {CardProduct.map((product) => (
             <Card
               key={product.id}
               id={product.id}
@@ -238,26 +238,26 @@ const Product = () => {
 
             />
           ))}
-      </div>
+        </div>
 
-      {/* Customizer Components */}
-      <div className="max-w-5xl mx-auto mt-10">
-        {showIphone && <PhoneCaseCustomizerIphone
-         setSelectedColor={setSelectedColor}
-         setSelectedPrice={setSelectedPrice}
-         />}
-        {showSamsung && <PhoneCaseCustomizerSamsung 
-        setSelectedColor={setSelectedColor}
-        setSelectedPrice={setSelectedPrice}
-        />}
+        {/* Customizer Components */}
+        <div className="max-w-5xl mx-auto mt-10">
+          {showIphone && <PhoneCaseCustomizerIphone
+            setSelectedColor={setSelectedColor}
+            setSelectedPrice={setSelectedPrice}
+          />}
+          {showSamsung && <PhoneCaseCustomizerSamsung
+            setSelectedColor={setSelectedColor}
+            setSelectedPrice={setSelectedPrice}
+          />}
+        </div>
+        <div>
+          <AddButton
+            onClick={handleAddToCart}
+            totalPrice={totalPrice}
+          />
+        </div>
       </div>
-      <div>
-        <AddButton 
-        onClick={handleAddToCart}
-        totalPrice={totalPrice}
-        />
-      </div>
-    </div>
     </div>
   );
 };

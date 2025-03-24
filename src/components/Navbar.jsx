@@ -18,7 +18,7 @@ const Navbar = () => {
           className="w-[100vw] h-[100vh] fixed top-0 z-10 bg-black opacity-50"
         ></div>
       )}
-      <nav className="border-b px-3 sticky top-0 bg-white md:h-[80px] md:flex md:items-center max-w-7xl mx-auto"> 
+      <nav className="border-b px-3 sticky top-0 bg-white md:h-[80px] md:flex md:items-center max-w-7xl mx-auto z-[5]"> 
         <div className="px-2 sm:px-6 md:flex-grow">
           <div className="relative flex items-center justify-between md:justify-start">
             <div className="md:hidden">

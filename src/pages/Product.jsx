@@ -1,9 +1,9 @@
-import esempio from "../../assets/esempio.jpg";
+import esempio from "../assets/esempio.jpg";
 import { useState, useEffect } from "react";
-import PhoneCaseCustomizerIphone from "../../components/PhoneCaseCustomizerIphone";
-import PhoneCaseCustomizerSamsung from "../../components/PhoneCaseCustomizerSamsung";
-import Card from "../../components/card"
-import AddButton from "../../components/AddButton";
+import PhoneCaseCustomizerIphone from "../components/PhoneCaseCustomizerIphone";
+import PhoneCaseCustomizerSamsung from "../components/PhoneCaseCustomizerSamsung";
+import Card from "../components/card"
+import AddButton from "../components/AddButton";
 
 const Product = () => {
   const [showIphone, setShowIphone] = useState(false);

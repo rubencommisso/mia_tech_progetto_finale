@@ -82,14 +82,10 @@ const Cart = () => {
   const continueShopping = () => {};
 
   return (
-<<<<<<< HEAD
-    <div className="container pt-3 mt-1 mx-16 md:m-40 md:mt-0 md:px-1 py-40 lg:py-22 lg:ml-44 flex flex-col items-start md:flex-col md:justify-around">
-=======
     <div className="flex justify-around">
       <div className="flex flex-col mx-4">
         <h2 className="text-2xl font-semibold mb-6  mt-6">Il tuo Carrello</h2>
         <hr className="w-full lg:w-2/4 md:w-1/2 mt-0 font-bold mb-4" />
->>>>>>> b487b7f6fbaeae8ccbc166082c09aba4f5ee2b20
 
         {cart.length === 0 ? (
           <p>Il carrello è vuoto</p>

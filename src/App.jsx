@@ -3,7 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import Cart from "./pages/Cart";
 import Product from "./pages/Product/Product";
 import Layout from "./components/Layout";
-import EcoProduct from "./pages/EcoProduct";
+import AboutUs from './pages/AboutUs';
+import Sustainability from './pages/Sustainability';
 
 
 const App = () => {
@@ -12,7 +13,9 @@ const App = () => {
         <Route element={<Layout />}> {/* Layout Route */}
           <Route path="/product" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/ecoproduct"  element={<EcoProduct />} />  
+          <Route path="/sustainability"  element={<Sustainability />} />  
+          <Route path="/about-us"  element={<AboutUs />} />  
+          <Route path="/sustainability/:productId" element={<Sustainability />} />
         </Route>
       </Routes>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,  useEffect } from 'react';
 
 const CarousellHomepage = () => {
   const images = [
@@ -13,6 +13,15 @@ const CarousellHomepage = () => {
   const nextImage = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length)
   }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextImage();
+    }, 4000); // Ogni 3 secondi cambia immagine
+
+    return () => clearInterval(interval); // Pulizia dell'interval
+  }, []);
+
 
   const prevImage = () => {
     setCurrentIndex(

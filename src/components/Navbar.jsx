@@ -91,6 +91,12 @@ const Navbar = () => {
                     >
                       Sustainability
                     </a>
+                    <a
+                      href="/contact-us"
+                      className="block px-4 py-2 text-sm text-black hover:bg-orange-100"
+                    >
+                      Contact us
+                    </a>
                   </div>
                 )}
               </div>
@@ -155,6 +161,12 @@ const Navbar = () => {
                     className="block px-4 py-2 text-sm text-black hover:bg-orange-100"
                   >
                     Sustainability
+                  </a>
+                  <a
+                    href="/contact-us"
+                    className="block px-4 py-2 text-sm text-black hover:bg-orange-100"
+                  >
+                    Contact
                   </a>
                 </div>
               )}

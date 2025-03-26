@@ -166,7 +166,7 @@ const Navbar = () => {
                     href="/contact-us"
                     className="block px-4 py-2 text-sm text-black hover:bg-orange-100"
                   >
-                    Contact
+                    Contact us
                   </a>
                 </div>
               )}

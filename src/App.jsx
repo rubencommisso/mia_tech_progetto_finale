@@ -5,6 +5,7 @@ import Product from "./pages/Product/Product";
 import Layout from "./components/Layout";
 import AboutUs from './pages/AboutUs';
 import Sustainability from './pages/Sustainability';
+import ContactPage from './pages/Contact'
 
 
 
@@ -17,7 +18,7 @@ const App = () => {
           <Route path="/sustainability"  element={<Sustainability />} />  
           <Route path="/about-us"  element={<AboutUs />} />  
           <Route path="/sustainability/:productId" element={<Sustainability />} />
-          
+          <Route path="/contact-us"  element={<ContactPage />} /> 
         </Route>
       </Routes>
   );

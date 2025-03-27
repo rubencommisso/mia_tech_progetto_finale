@@ -7,6 +7,7 @@ import AboutUs from './pages/AboutUs';
 import Sustainability from './pages/Sustainability';
 
 
+
 const App = () => {
   return (
       <Routes>
@@ -16,6 +17,7 @@ const App = () => {
           <Route path="/sustainability"  element={<Sustainability />} />  
           <Route path="/about-us"  element={<AboutUs />} />  
           <Route path="/sustainability/:productId" element={<Sustainability />} />
+          
         </Route>
       </Routes>
   );

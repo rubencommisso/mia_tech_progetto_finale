@@ -1,76 +1,54 @@
-import React, { useState,  useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import coverColorate from '../assets/coverColorate.jpeg';
+import pellicole from '../assets/pellicole.jpeg';
+import ringPhone from '../assets/ringPhone.jpeg';
+import kitPulizia from '../assets/kitPulizia.jpeg';
 
 const CarousellHomepage = () => {
   const images = [
-    { id: 1, text: 'Immagine 1', bgColor: 'bg-gray-200' },
-    { id: 2, text: 'Immagine 2', bgColor: 'bg-gray-300' },
-    { id: 3, text: 'Immagine 3', bgColor: 'bg-gray-400' },
-    { id: 4, text: 'Immagine 4', bgColor: 'bg-gray-500' },
-  ]
+    { id: 1, text: 'Immagine 1', image: coverColorate },
+    { id: 2, text: 'Immagine 2', image: pellicole },
+    { id: 3, text: 'Immagine 3', image: ringPhone },
+    { id: 4, text: 'Immagine 4', image: kitPulizia },
+  ];
 
-  const [currentIndex, setCurrentIndex] = useState(0)
-
-  const nextImage = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length)
-  }
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      nextImage();
-    }, 4000); // Ogni 3 secondi cambia immagine
-
-    return () => clearInterval(interval); // Pulizia dell'interval
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 2000);
+    return () => clearInterval(interval);
   }, []);
 
 
-  const prevImage = () => {
-    setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + images.length) % images.length
-    )
-  }
-
   return (
-    <div className="flex justify-center items-center mt-8">
-      <div
-        className={`relative w-[90vw] h-[90vh] flex justify-center items-center rounded-lg overflow-hidden transition-all duration-500 ${images[currentIndex].bgColor}`}
-      >
+    // Stesso "container" dei div sottostanti: w-[90vw] max-w-screen-xl mx-auto
+    <div className="w-[80vw] max-w-screen-xl mx-auto mt-8">
+      {/* 1) Carosello con rapporto 16/10 (o quello che preferisci) */}
+      <div className="relative w-full aspect-video rounded-lg overflow-hidden">
 
-<div className="absolute top-10 text-center">
-    <h1 className="text-4xl font-bold text-black">Titolo principale</h1>
-    <h2 className="text-2xl text-black mt-2">Sottotitolo descrittivo</h2>
-  </div>
+        <img
+          src={images[currentIndex].image}
+          alt={images[currentIndex].text}
+          className="absolute inset-0 w-full h-full object-cover transition-all duration-500"
+        />
 
-    
-       {/*  <button
-          onClick={prevImage}
-          className="absolute left-4 text-black bg-white p-2 rounded-full"
-        >
-          &lt;
-        </button>
-
-        <div className="text-black text-xl font-semibold text-center">
-          <p>{images[currentIndex].text}</p>
-        </div>
-
-        <button
-          onClick={nextImage}
-          className="absolute right-4 text-black bg-white p-2 rounded-full"
-        >
-          &gt;
-        </button> */}
-
-        <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-2">
+{/*         <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-2">
           {images.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
-              className={`w-4 h-4 rounded-full ${index === currentIndex ? 'bg-black' : 'bg-white'}`}
+              className={`w-4 h-4 rounded-full ${
+                index === currentIndex ? 'bg-black' : 'bg-white'
+              }`}
             ></button>
           ))}
-        </div>
+        </div> */}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CarousellHomepage
+export default CarousellHomepage;
+

@@ -4,83 +4,86 @@ import CarousellHomepage from "../components/carousellHomepage";
 import { useNavigate } from "react-router-dom";
 
 const Homepage = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const goToCoverPage = () => {
-        navigate("/cover");
-    };
+  const goToCoverPage = () => {
+    navigate("/cover");
+  };
+  const goToFilmPage = () => {
+    navigate("/film");
+  };
+  const goToRingPage = () => {
+    navigate("/ring");
+  };
+  const goToCleanPage = () => {
+    navigate("/clean");
+  };
 
-    const goToFilmPage = () => {
-        navigate("/film");
-    };
+  return (
+    <>
+      {/* Qui forziamo larghezza schermo intero */}
+      <div className="w-screen overflow-hidden bg-white ">
+        <div className="flex animate-marquee w-max">
+          <span className="text-2xl font-bold pt-4">
+            Benvenuto su Phone Customizer – il tuo spazio per rendere unico il tuo smartphone.🚀
+            Scopri il mondo di Phone Customizer: accessori su misura per te e il tuo telefono.🚀
+          </span>
+          <span className="text-2xl font-bold pt-4">
+            Benvenuto su Phone Customizer – il tuo spazio per rendere unico il tuo smartphone.🚀
+            Scopri il mondo di Phone Customizer: accessori su misura per te e il tuo telefono.🚀
+          </span>
+        </div>
+      </div>
 
-    const goToRingPage = () => {
-        navigate("/ring");
-    };
+      {/* L’area con 80vw per il resto della pagina */}
+      <div className="w-[80vw] max-w-screen-xl mx-auto">
+        <CarousellHomepage />
 
-    const goToCleanPage = () => {
-        navigate("/Clean");
-    };
+        <style>
+          {`
+            @keyframes marquee {
+              0% { transform: translateX(0); }
+              100% { transform: translateX(-50%); }
+            }
+            .animate-marquee {
+              animation: marquee 27s linear infinite;
+            }
+            .animate-marquee:hover {
+              animation-play-state: paused;
+            }
+          `}
+        </style>
 
-    return (
-        <>
-            <CarousellHomepage />
-            <div className="w-[90vw] max-w-screen-xl mx-auto py-4">
-                <div className="overflow-hidden w-full">
-                    <div className="flex animate-marquee w-max">
-                        <span className="text-2xl font-bold px-4">
-                            Benvenuto su Phone Customizer – il tuo spazio per rendere unico il tuo smartphone.🚀
-                            Scopri il mondo di Phone Customizer: accessori su misura per te e il tuo telefono.🚀
-                        </span>
-                        <span className="text-2xl font-bold px-4">
-                            Benvenuto su Phone Customizer – il tuo spazio per rendere unico il tuo smartphone.🚀
-                            Scopri il mondo di Phone Customizer: accessori su misura per te e il tuo telefono.🚀
-                        </span>
-                    </div>
-                </div>
+        {/* Container flex responsive */}
+        <br />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-[80vw] pb-6">
+  {/* Card 1 */}
+  <div>
+    <img src={esempio} alt="foto" />
+    <ButtonToPage onClick={goToCoverPage} />
+  </div>
+  {/* Card 2 */}
+  <div>
+    <img src={esempio} alt="foto" />
+    <ButtonToPage onClick={goToFilmPage} />
+  </div>
+  {/* Card 3 */}
+  <div>
+    <img src={esempio} alt="foto" />
+    <ButtonToPage onClick={goToRingPage} />
+  </div>
+  {/* Card 4 */}
+  <div>
+    <img src={esempio} alt="foto" />
+    <ButtonToPage onClick={goToCleanPage} />
+  </div>
+</div>
 
-                <style>
-                        {`
-                            @keyframes marquee {
-                                0% { transform: translateX(0); }
-                                100% { transform: translateX(-50%); }
-                            }
-
-                            .animate-marquee {
-                                animation: marquee 27s linear infinite;
-                            }
-
-                            .animate-marquee:hover {
-                                animation-play-state: paused;
-                            }
-                        `}
-                </style>
-
-
-                {/* Container flex responsive */}
-                <div className="flex flex-col md:flex-row gap-4 w-[90vw]">
-                    <div className="flex-1">
-                        <img src={esempio} alt="foto" />
-                        <ButtonToPage onClick={goToCoverPage} />
-                    </div>
-                    <div className="flex-1">
-                        <img src={esempio} alt="foto" />
-                        <ButtonToPage onClick={goToFilmPage} />
-                    </div>
-                    <div className="flex-1">
-                        <img src={esempio} alt="foto" />
-                        <ButtonToPage onClick={goToRingPage} />
-                    </div>
-                    <div className="flex-1">
-                        <img src={esempio} alt="foto" />
-                        <ButtonToPage onClick={goToCleanPage} />
-                    </div>
-                </div>
-
-            </div>
-        </>
-    );
+      </div>
+    </>
+  );
 };
 
 export default Homepage;
+
 

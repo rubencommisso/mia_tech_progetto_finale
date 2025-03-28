@@ -10,9 +10,6 @@ import Homepage from "./pages/Homepage";
 
 
 
-
-
-
 const App = () => {
   return (
       <Routes>
@@ -24,6 +21,7 @@ const App = () => {
           <Route path="/about-us"  element={<AboutUs />} />  
           <Route path="/sustainability/:productId" element={<Sustainability />} />
           <Route path="/contact-us"  element={<ContactPage />} /> 
+          <Route path="/ring"  element={<Rings />} /> 
         </Route>
       </Routes>
   );

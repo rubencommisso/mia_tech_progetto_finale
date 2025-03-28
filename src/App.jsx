@@ -5,7 +5,8 @@ import Product from "./pages/Product/Product";
 import Layout from "./components/Layout";
 import AboutUs from './pages/AboutUs';
 import Sustainability from './pages/Sustainability';
-import ContactPage from './pages/Contact'
+import ContactPage from './pages/Contact';
+import Rings from './pages/Ring';
 
 
 
@@ -19,6 +20,7 @@ const App = () => {
           <Route path="/about-us"  element={<AboutUs />} />  
           <Route path="/sustainability/:productId" element={<Sustainability />} />
           <Route path="/contact-us"  element={<ContactPage />} /> 
+          <Route path="/ring"  element={<Rings />} /> 
         </Route>
       </Routes>
   );

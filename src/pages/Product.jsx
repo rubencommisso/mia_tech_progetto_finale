@@ -83,7 +83,7 @@ const Product = () => {
     id: Date.now(), 
     name: `${activeButton.toUpperCase()} - ${activeModel}`,
     pellicola: selectedCard?.title || "Pellicola selezionata",
-    color: selectedColor.title || "Colore cover",
+    color: selectedColor || "Colore cover",
     price: totalPrice,
     quantity: 1
   };

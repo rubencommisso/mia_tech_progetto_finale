@@ -7,6 +7,7 @@ import AboutUs from './pages/AboutUs';
 import Sustainability from './pages/Sustainability';
 import ContactPage from './pages/Contact'
 import Homepage from "./pages/Homepage";
+import Ring from "./pages/Ring";
 
 
 
@@ -21,7 +22,7 @@ const App = () => {
           <Route path="/about-us"  element={<AboutUs />} />  
           <Route path="/sustainability/:productId" element={<Sustainability />} />
           <Route path="/contact-us"  element={<ContactPage />} /> 
-          <Route path="/ring"  element={<Rings />} /> 
+          <Route path="/ring"  element={<Ring />} /> 
         </Route>
       </Routes>
   );

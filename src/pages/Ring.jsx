@@ -4,7 +4,7 @@ import AddTobagRingNero from "../components/AddTobagRingNero";
 import AddTobagRingArgento from "../components/AddTobagRingArgento";
 import AddTobagRingOro from "../components/AddTobagRingOro";
 
-const Rings = () => {
+const Ring = () => {
   const [cart, setCart] = useState([]);
   const [activeCardId, setActiveCardId] = useState(null);
 
@@ -119,4 +119,4 @@ const Rings = () => {
   );
 };
 
-export default Rings;
+export default Ring;

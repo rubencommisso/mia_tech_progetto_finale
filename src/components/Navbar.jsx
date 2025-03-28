@@ -5,9 +5,14 @@ import { useState } from "react";
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [cartClicked, setCartClicked] = useState(false); 
+  const [dropdownOpen, setDropdownOpen] = useState(false); 
 
   const handleCartClick = () => {
     setCartClicked(!cartClicked); 
+  };
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen); 
   };
 
   return (
@@ -64,12 +69,38 @@ const Navbar = () => {
               >
                 Home
               </a>
-              <a
-                href="#"
-                className="rounded-md px-3 py-2 text-sm hover:text-orange-700 font-semibold"
-              >
-                About
-              </a>
+              
+              <div className="relative">
+                <button
+                  onClick={toggleDropdown}
+                  className="rounded-md px-3 py-2 text-sm hover:text-orange-700 font-semibold"
+                >
+                  About
+                </button>
+                {dropdownOpen && (
+                  <div className="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md z-10">
+                    <a
+                      href="/about-us"
+                      className="block px-4 py-2 text-sm text-black hover:bg-orange-100"
+                    >
+                      About us
+                    </a>
+                    <a
+                      href="/sustainability"
+                      className="block px-4 py-2 text-sm text-black hover:bg-orange-100"
+                    >
+                      Sustainability
+                    </a>
+                    <a
+                      href="/contact-us"
+                      className="block px-4 py-2 text-sm text-black hover:bg-orange-100"
+                    >
+                      Contact us
+                    </a>
+                  </div>
+                )}
+              </div>
+
               <a
                 href="#"
                 className="rounded-md px-3 py-2 text-sm hover:text-orange-700 font-semibold"
@@ -77,6 +108,7 @@ const Navbar = () => {
                 Products
               </a>
             </div>
+
             <div className="flex items-center md:flex-grow md:justify-end">
               <button
                 type="button"
@@ -93,13 +125,12 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
+
       {mobileMenuOpen && (
         <div className="fixed top-0 w-[80vw] h-[100vh] md:hidden bg-white pt-2 pb-3 space-y-1 z-20 px-6 transition-all duration-1000">
           <div
             className="font-bold text-xl py-3 cursor-pointer inline-block"
-            onClick={() => {
-              setMobileMenuOpen(false);
-            }}
+            onClick={() => setMobileMenuOpen(false)}
           >
             X
           </div>
@@ -110,12 +141,37 @@ const Navbar = () => {
             >
               Home
             </a>
-            <a
-              href="#"
-              className="text-black block px-3 py-2 text-base font-medium border-b-2"
-            >
-              About
-            </a>
+            <div className="relative">
+              <button
+                onClick={toggleDropdown}
+                className="text-black block px-3 py-2 text-base font-medium border-b-2"
+              >
+                About
+              </button>
+              {dropdownOpen && (
+                <div className="absolute left-0 mt-2 w-full bg-white shadow-lg rounded-md z-10">
+                  <a
+                    href="/about-us"
+                    className="block px-4 py-2 text-sm text-black hover:bg-orange-100"
+                  >
+                    About us
+                  </a>
+                  <a
+                    href="/sustainability"
+                    className="block px-4 py-2 text-sm text-black hover:bg-orange-100"
+                  >
+                    Sustainability
+                  </a>
+                  <a
+                    href="/contact-us"
+                    className="block px-4 py-2 text-sm text-black hover:bg-orange-100"
+                  >
+                    Contact us
+                  </a>
+                </div>
+              )}
+            </div>
+
             <a
               href="#"
               className="text-black block px-3 py-2 text-base font-medium border-b-2"

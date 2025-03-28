@@ -17,6 +17,14 @@ const Product = () => {
   const [cart, setCart] = useState([]);
   const [selectedPrice, setSelectedPrice] = useState(null);
 
+  //cart logic
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+  
+
+
   const handleBrandClick = (brand) => {
     if (brand === "Apple") {
       setShowIphone(true);
@@ -72,6 +80,15 @@ const Product = () => {
     }
 
     const item = {
+    id: Date.now(), 
+    name: `${activeButton.toUpperCase()} - ${activeModel}`,
+    pellicola: selectedCard?.title || "Pellicola selezionata",
+    color: selectedColor.title || "Colore cover",
+    price: totalPrice,
+    quantity: 1
+  };
+
+   /*  const item = {
       brand: activeButton,
       model: activeModel,
       pellicola: selectedCard?.title,
@@ -79,7 +96,8 @@ const Product = () => {
       color: selectedColor,
       coverPrice: selectedPrice,
       total: totalPrice
-    };
+    }; */
+
 
     setCart((prevCart) => [...prevCart, item]);
 

@@ -1,79 +1,47 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const Cart = () => {
-  const [cart, setCart] = useState([
-    {
-      id: 1,
-      name: "Prodotto 1",
-      price: 20,
-      quantity: 1,
-      description: "Descrizione del prodotto 1, descriviamo il prodotto",
-    },
-    {
-      id: 2,
-      name: "Prodotto 2",
-      price: 15,
-      quantity: 1,
-      description: "Descrizione del prodotto 2, descriviamo il prodotto",
-    },
-    {
-      id: 3,
-      name: "Prodotto 3",
-      price: 35,
-      quantity: 1,
-      description: "Descrizione del prodotto 3, descriviamo il prodotto",
-    },
-    {
-      id: 4,
-      name: "Prodotto 4",
-      price: 55,
-      quantity: 1,
-      description: "Descrizione del prodotto 4, descriviamo il prodotto",
-    },
-    {
-      id: 5,
-      name: "Prodotto 5",
-      price: 60,
-      quantity: 1,
-      description: "Descrizione del prodotto 5, descriviamo il prodotto",
-    },
-  ])
+  const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    setCart(savedCart);
+  }, []);
 
 
 
 
   const removeFromCart = (id) => {
-    setCart(cart.filter((product) => product.id !== id))
+    const updatedCart = cart.filter((product) => product.id !== id);
+  setCart(updatedCart);
+  localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
-  const updateQuantity = (id, newQuantity) => {
-    if (newQuantity < 1) return;
-    setCart(
-      cart.map((product) =>
-        product.id === id ? { ...product, quantity: newQuantity } : product
-      )
-    )
-  }
+  const updateCartStorage = (updatedCart) => {
+    setCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+  };
 
   const increaseQuantity = (id) => {
-    setCart(
-      cart.map((product) =>
-        product.id === id
-          ? { ...product, quantity: product.quantity + 1 }
-          : product
-      )
-    )
-  }
+    const updatedCart = cart.map((product) =>
+      product.id === id ? { ...product, quantity: product.quantity + 1 } : product
+    );
+    updateCartStorage(updatedCart);
+  };
 
   const decreaseQuantity = (id) => {
-    setCart(
-      cart.map((product) =>
-        product.id === id && product.quantity > 1
-          ? { ...product, quantity: product.quantity - 1 }
-          : product
-      )
-    )
-  }
+    const updatedCart = cart.map((product) => {
+      if (product.id === id) {
+        if (product.quantity > 1) {
+          return { ...product, quantity: product.quantity - 1 };
+        } else {
+          return null;
+        }
+      }
+      return product;
+    }).filter(Boolean); 
+    updateCartStorage(updatedCart);
+  };
 
   const getTotal = () => {
     return cart.reduce(
@@ -104,7 +72,10 @@ const Cart = () => {
               <div className="ml-6 md:ml-8 flex-1 flex-col md:flex-row justify-around md-m-14 ">
                 <h3 className="text-base font-semibold mb-2">{product.name}</h3>
                 <p className="text-sm text-gray-600 mb-4 mr-4">
-                  {product.description}
+                  Pellicola selezionata: {product.pellicola}
+                </p>
+                <p className="text-sm text-gray-600 mb-4 mr-4">
+                  Colore cover: {product.color}
                 </p>
 
                 <button

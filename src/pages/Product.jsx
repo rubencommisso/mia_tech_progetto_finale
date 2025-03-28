@@ -96,7 +96,7 @@ const Product = () => {
       <div className="text-left max-w-5xl mx-auto">
         <h1 className="text-3xl font-bold">Benvenuto!</h1>
         <h2 className="text-xl mt-2">
-          In questa pagina puoi scegliere il modello, la pellicola e personalizzare il colore della cover.
+          In questa pagina puoi scegliere un set di accessori per il tuo smartphone. Il modello, la pellicola, personalizzare il colore della cover e tanto altro ancora.
         </h2>
         <h3 className="text-xl mt-4">Inizia Ora!</h3>
 

@@ -4,6 +4,7 @@ import pellicole from '../assets/pellicole.jpeg';
 import ringPhone from '../assets/ringPhone.jpeg';
 import kitPulizia from '../assets/kitPulizia.jpeg';
 
+
 const CarousellHomepage = () => {
   const images = [
     { id: 1, text: 'Immagine 1', image: coverColorate },
@@ -34,7 +35,7 @@ const CarousellHomepage = () => {
           className="absolute inset-0 w-full h-full object-cover transition-all duration-500"
         />
 
-{/*         <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-2">
+          {/* <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-2">
           {images.map((_, index) => (
             <button
               key={index}
@@ -44,7 +45,8 @@ const CarousellHomepage = () => {
               }`}
             ></button>
           ))}
-        </div> */}
+          </div> */}
+          
       </div>
     </div>
   );

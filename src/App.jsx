@@ -6,6 +6,8 @@ import Layout from "./components/Layout";
 import AboutUs from './pages/AboutUs';
 import Sustainability from './pages/Sustainability';
 import ContactPage from './pages/Contact'
+import Pellicole from "./pages/Pellicole";
+import ShowDetail from "./components/ShowDetail";
 import Homepage from "./pages/Homepage";
 import Ring from "./pages/Ring";
 

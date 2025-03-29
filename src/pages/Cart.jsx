@@ -13,8 +13,8 @@ const Cart = () => {
 
   const removeFromCart = (id) => {
     const updatedCart = cart.filter((product) => product.id !== id);
-  setCart(updatedCart);
-  localStorage.setItem("cart", JSON.stringify(updatedCart));
+    setCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
   const updateCartStorage = (updatedCart) => {
@@ -39,7 +39,7 @@ const Cart = () => {
         }
       }
       return product;
-    }).filter(Boolean); 
+    }).filter(Boolean);
     updateCartStorage(updatedCart);
   };
 
@@ -66,7 +66,11 @@ const Cart = () => {
               className="flex flex-row  md:flex-row justify-evenly pb-6 pt-2 border-b border-gray-400  md:mb-0"
             >
               <div className="w-28 h-24 mt-1   md:w-24 md:h-28   bg-gray-300 rounded-lg flex items-center justify-around text-white mb-4 md:mb-0">
-                Immagine
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="object-cover w-full h-full rounded-lg" />
+
               </div>
 
               <div className="ml-6 md:ml-8 flex-1 flex-col md:flex-row justify-around md-m-14 ">
@@ -75,8 +79,22 @@ const Cart = () => {
                   Pellicola selezionata: {product.pellicola}
                 </p>
                 <p className="text-sm text-gray-600 mb-4 mr-4">
-                  Colore cover: {product.color}
+                  prezzo pellicola: {product.filmPrice}
                 </p>
+                <div className="flex ">
+                <p className="text-sm text-gray-600 mb-4 mr-4 flex items-center gap-2">
+                  Colore cover:
+                  <span className="capitalize">{product.color}</span>
+                </p>
+                <p
+                    className="w-5 h-5 rounded-full border"
+                    style={{ backgroundColor: product.color }}
+                  ></p>
+                </div>
+                <p className="text-sm text-gray-600 mb-4 mr-4">
+                  prezzo cover: {product.priceCover}
+                </p>
+                
 
                 <button
                   onClick={() => decreaseQuantity(product.id)}

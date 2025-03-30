@@ -8,9 +8,6 @@ const Cart = () => {
     setCart(savedCart);
   }, []);
 
-
-
-
   const removeFromCart = (id) => {
     const updatedCart = cart.filter((product) => product.id !== id);
     setCart(updatedCart);
@@ -47,15 +44,15 @@ const Cart = () => {
     return cart.reduce(
       (total, product) => total + product.price * product.quantity,
       0
-    )
-  }
-
+    );
+  };
 
   return (
-    <div className="flex  m-6 flex-col md:flex-row md:mr-32  justify-around md:m-10 md:ml-32">
-      <div className="flex flex-col  mx-4">
-        <h2 className="text-2xl font-semibold mb-6  mt-6">Il tuo Carrello</h2>
-        <hr className="w-full  md:w-full mt-0 font-bold mb-4" />
+    <div className="container mx-auto px-4 py-6 flex flex-col md:flex-row gap-10">
+      {/* Lista prodotti */}
+      <div className="flex-1">
+        <h2 className="text-2xl font-semibold mb-6">Il tuo Carrello</h2>
+        <hr className="mb-4" />
 
         {cart.length === 0 ? (
           <p>Il carrello è vuoto</p>
@@ -63,111 +60,111 @@ const Cart = () => {
           cart.map((product) => (
             <div
               key={product.id}
-              className="flex flex-row  md:flex-row justify-evenly pb-6 pt-2 border-b border-gray-400  md:mb-0"
+              className="flex flex-row md:flex-row justify-between gap-y-4 md:gap-x-6 items-start w-full pb-6 pt-2 border-b border-gray-400"
             >
-              <div className="w-28 h-24 mt-1   md:w-24 md:h-28   bg-gray-300 rounded-lg flex items-center justify-around text-white mb-4 md:mb-0">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="object-cover w-full h-full rounded-lg" />
+              {/* Info prodotto */}
+              <div className="flex gap-4 flex-1 items-stretch">
+                <div className="w-28 bg-white rounded-lg flex items-center justify-center overflow-hidden">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="object-contain w-full h-full"
+                  />
+                </div>
 
+                <div className="flex flex-col justify-between min-w-0">
+                  <h3 className="text-base font-semibold mb-2 break-words">{product.name}</h3>
+
+                  <div className="text-sm text-gray-600 mb-3 flex flex-col gap-1">
+                    <div className="flex justify-between w-40">
+                      <span className="font-medium">{product.pellicola}</span>
+                      <span>€{product.filmPrice}</span>
+                    </div>
+                    <div className="flex items-center justify-between w-40 gap-2">
+                      <span className="capitalize font-medium">Cover: {product.color}</span>
+                      <div
+                        className="w-3.5 h-3.5 rounded-full border"
+                        style={{ backgroundColor: product.color }}
+                      />
+                      <span>€{product.priceCover}</span>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div className="ml-6 md:ml-8 flex-1 flex-col md:flex-row justify-around md-m-14 ">
-                <h3 className="text-base font-semibold mb-2">{product.name}</h3>
-                <p className="text-sm text-gray-600 mb-4 mr-4">
-                  Pellicola selezionata: {product.pellicola}
-                </p>
-                <p className="text-sm text-gray-600 mb-4 mr-4">
-                  prezzo pellicola: {product.filmPrice}
-                </p>
-                <div className="flex ">
-                <p className="text-sm text-gray-600 mb-4 mr-4 flex items-center gap-2">
-                  Colore cover:
-                  <span className="capitalize">{product.color}</span>
-                </p>
-                <p
-                    className="w-5 h-5 rounded-full border"
-                    style={{ backgroundColor: product.color }}
-                  ></p>
+              {/* Azioni prodotto */}
+              <div className="flex flex-col items-center gap-5 md:min-w-[150px] text-right">
+                <div className="flex">
+                  <button
+                    onClick={() => decreaseQuantity(product.id)}
+                    className="w-8 h-8 text-lg font-thin hover:bg-gray-100 hover:rounded-full flex items-center justify-center"
+                  >
+                    -
+                  </button>
+
+                  <input
+                    type="text"
+                    value={product.quantity}
+                    readOnly
+                    className="w-10 h-8 p-1 text-center bg-gray-100 border border-gray-200 rounded-lg mx-2"
+                  />
+
+                  <button
+                    onClick={() => increaseQuantity(product.id)}
+                    className="w-8 h-8 text-lg font-thin hover:bg-gray-100 hover:rounded-full flex items-center justify-center"
+                  >
+                    +
+                  </button>
                 </div>
-                <p className="text-sm text-gray-600 mb-4 mr-4">
-                  prezzo cover: {product.priceCover}
-                </p>
-                
-
-                <button
-                  onClick={() => decreaseQuantity(product.id)}
-                  className="space-x-1 rounded-lg w-12 h-12  font-thin hover:bg-gray-100  hover:rounded-full text-5xl "
-                >
-                  -
-                </button>
-
-                <input
-                  type="text"
-                  id={`quantity-${product.id}`}
-                  value={product.quantity}
-                  readOnly
-                  className="w-10 h-10 p-2 sm:w-10 md:w-10  lg:w-12 text-center bg-gray-100 border rounded-lg border-gray-200"
-                />
-
-                <button
-                  onClick={() => increaseQuantity(product.id)}
-                  className="  space-x-1  w-12 h-12 font-thin hover:bg-gray-100 hover:rounded-full text-4xl"
-                >
-                  +
-                </button>
 
                 <button
                   onClick={() => removeFromCart(product.id)}
-                  style={{ textDecoration: "underline" }}
-                  className="hover:text-red-400 font-normal p-1 mt-3 ml-2"
+                  className="hover:text-red-400 font-normal underline text-sm"
                 >
                   Rimuovi
                 </button>
 
-
-              </div>
-              <div className="mb-10 md:mt-0 md:ml-6">
-                <p className="text-lg font-medium flex flex-col ">
+                <p className="text-lg font-medium">
                   €{(product.price * product.quantity).toFixed(2)}
                 </p>
               </div>
             </div>
-
           ))
         )}
-
       </div>
 
+      {/* Riepilogo */}
+      <div className="w-full md:w-80">
+        <div className="bg-gray-50 rounded-md p-4 flex flex-col gap-5">
+          <p>
+            Subtotale: <span className="text-lg">€{getTotal().toFixed(2)}</span>
+          </p>
+          <p>
+            Spedizione:<br />
+            <span className="text-sm">Spedizione gratuita</span>
+          </p>
+          <p>
+            Imposta stimata: <span>€0.00</span>
+          </p>
+          <p className="font-bold">
+            Totale: <span className="text-lg">€{getTotal().toFixed(2)}</span>
+          </p>
 
-
-
-      <div> <div className="checkout mt-6 md:mt-8 md:pl-6 md:ml-3 md:pt-8 bg-gray-50 rounded-md p-4 md:mb-auto md:pb-10 flex flex-col gap-5">
-        <p>Subtotale: <span className="flex justify-self-end text-lg">€{getTotal().toFixed(2)}</span> </p>
-        <p>Spedizione:Spedizione gratuita con l'acquisto  di un'altro accessorio</p>
-        <p>Imposta stimata: <span className="flex justify-end"> €0.00</span> </p>
-        <p><strong>Totale: <div className="flex justify-end text-lg">€{getTotal().toFixed(2)}</div></strong></p>
-        <div className="flex justify-center">
-          <button className="bg-orange-500 rounded-3xl  px-1 py-2 w-60 md:w-52 justify-center  hover:bg-orange-400"> <strong >Continua a Checkout</strong></button>
-        </div></div>
-
-        <div className="mt-10 flex justify-center">
-          <hr className="w-full  md:w-10/12 mt-0 font-bold mb-4" />
+          <div className="flex justify-center">
+            <button className="bg-orange-500 hover:bg-orange-400 text-black font-semibold rounded-3xl px-4 py-2 w-full">
+              Continua col Checkout
+            </button>
+          </div>
         </div>
 
-        <div className="ml-10 md:mt-5">
-          <p><span role="img" aria-label="local shipping">🚚</span> Spedisce entro cinque giorni lavorativi.</p>
-          <p><span role="img" aria-label="verified user">✅</span><u>Garanzia di restituzione entro 30 giorni + garanzia limitata.</u> </p>
-          <p><span role="img" aria-label="cover">📱</span> Spedizione gratuita su ordini di cover e pellicole.</p>
-        </div>
+        <hr className="my-6" />
 
-        <div className="mt-10 flex justify-center">
-          <hr className="w-full  md:w-10/12 mt-0 font-bold mb-4" />
+        <div className="text-sm space-y-2">
+          <p>🚚 Spedisce entro cinque giorni lavorativi.</p>
+          <p>✅ <u>Garanzia di restituzione entro 30 giorni + garanzia limitata.</u></p>
+          <p>📱 Spedizione gratuita su ordini di cover e pellicole.</p>
         </div>
-
       </div>
-
     </div>
   );
 };

@@ -27,7 +27,7 @@ const ShowDetail = () => {
     }
 
     const handleBackClick = () => {
-        navigate('/pellicole')  
+        navigate(-1)  
     }
 
     if (!product) {
@@ -97,7 +97,7 @@ const ShowDetail = () => {
                 onClick={handleBackClick}
                 className="bg-orange-500 hover:bg-orange-400 text-black font-semibold rounded-xl p-2 m-6 flex justify-center items-center"
             >
-                Back to Pellicole-Page
+                BACK
             </button>
         </div>
     )

@@ -63,7 +63,7 @@ const Product = () => {
     setActiveCardId(id);
   };
 
-  const CardProduct = [
+  const filmProduct = [
     {
       id: 1,
       title: "Pellicola pvc super resistente effetto satinato",
@@ -84,9 +84,30 @@ const Product = () => {
     },
   ];
 
+  const ringProduct = [
+    {
+      id: 4,
+      title: "Ring Nero",
+      price: 308,
+      image: esempio,
+    },
+    {
+      id: 5,
+      title: "Ring Argento",
+      price: 308,
+      image: esempio,
+    },
+    {
+      id: 6,
+      title: "Ring oro",
+      price: 308,
+      image: esempio,
+    },
+  ];
+
   const handleAddToCart = () => {
     if (!activeButton || !activeModel || !activeCardId) {
-      alert("Seleziona marca, modello e pellicola.");
+      alert("Seleziona marca, modello e accessori.");
       return;
     }
 
@@ -94,7 +115,7 @@ const Product = () => {
     id: Date.now(), 
     image: selectedCard?.image || "Foto",
     name: `${activeButton.toUpperCase()} - ${activeModel}`,
-    pellicola: selectedCard?.title || "Pellicola selezionata",
+    pellicola: selectedCard?.title || "Prodotto selezionato",
     color: selectedColor || "Colore cover",
     filmPrice: cardPrice || 0,
     priceCover: coverPrice || 0,
@@ -119,7 +140,7 @@ const Product = () => {
     navigate("/cart");
   };
 
-  const selectedCard = CardProduct.find((c) => c.id === activeCardId);
+  const selectedCard = filmProduct.find((c) => c.id === activeCardId);
   /* const cardImage = selectedCard?.image || "Foto"; */
   const cardPrice = selectedCard?.price || 0;
   const coverPrice = selectedPrice || 0;
@@ -248,6 +269,10 @@ const Product = () => {
             </div>
           </div>
         )}
+        
+        <br />
+
+        <div className="font-semibold  py-3 text-lg">Pellicole:</div>
 
         {/* Cards */}
         <div
@@ -260,7 +285,7 @@ const Product = () => {
             gap-6 mt-10
           "
         >
-          {CardProduct.map((product) => (
+          {filmProduct.map((product) => (
             <Card
               key={product.id}
               id={product.id}
@@ -272,7 +297,37 @@ const Product = () => {
 
             />
           ))}
-        </div>
+
+          </div>
+
+          <hr className="border-t border-gray-300 my-6" />
+
+          <div className="font-semibold  py-3 text-lg">Ring:</div>
+
+          <div className="
+            grid
+            grid-cols-2       /* 1 colonna su schermi molto piccoli */
+            sm:grid-cols-3     /* 2 colonne >= sm (640px) */
+            md:grid-cols-3     /* 3 colonne >= md (768px) */
+            lg:grid-cols-4     /* 4 colonne >= lg (1024px) */
+            gap-6 mt-10
+          ">
+            
+
+          {ringProduct.map((product) => (
+            <Card
+            key={product.id}
+            id={product.id}
+            title={product.title}
+            price={product.price}
+            image={product.image}
+            activeCardId={activeCardId}
+            onClick={handleCardClick}
+            
+            />
+          ))}
+
+          </div>
 
         {/* Customizer Components */}
         <div className="max-w-5xl mx-auto mt-10">
@@ -297,6 +352,10 @@ const Product = () => {
 };
 
 export default Product;
+
+
+
+
 
 
 

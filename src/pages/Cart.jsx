@@ -156,7 +156,7 @@ const Cart = () => {
             </button>
           </div>
         </div>
-
+        
         <hr className="my-6" />
 
         <div className="text-sm space-y-2">

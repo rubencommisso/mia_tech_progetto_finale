@@ -4,6 +4,7 @@ import PhoneCaseCustomizerIphone from "../components/PhoneCaseCustomizerIphone";
 import PhoneCaseCustomizerSamsung from "../components/PhoneCaseCustomizerSamsung";
 import Card from "../components/card"
 import AddButton from "../components/AddButton";
+import { useNavigate } from "react-router-dom";
 
 const Product = () => {
   const [showIphone, setShowIphone] = useState(false);
@@ -16,13 +17,23 @@ const Product = () => {
   const [selectedColor, setSelectedColor] = useState(null)
   const [cart, setCart] = useState([]);
   const [selectedPrice, setSelectedPrice] = useState(null);
+  
 
   //cart logic
 
   useEffect(() => {
+    const storedCart = localStorage.getItem("cart");
+    if (storedCart) {
+      setCart(JSON.parse(storedCart));
+    }
+  }, []);
+  
+  // 2. Salva carrello ogni volta che cambia
+  useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
   
+  const navigate = useNavigate();
 
 
   const handleBrandClick = (brand) => {
@@ -105,6 +116,7 @@ const Product = () => {
     setCart((prevCart) => [...prevCart, item]);
 
     console.log("🛒 Aggiunto al carrello:", item);
+    navigate("/cart");
   };
 
   const selectedCard = CardProduct.find((c) => c.id === activeCardId);

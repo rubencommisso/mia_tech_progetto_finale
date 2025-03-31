@@ -17,6 +17,14 @@ const Product = () => {
   const [cart, setCart] = useState([]);
   const [selectedPrice, setSelectedPrice] = useState(null);
 
+  //cart logic
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+  
+
+
   const handleBrandClick = (brand) => {
     if (brand === "Apple") {
       setShowIphone(true);
@@ -72,6 +80,18 @@ const Product = () => {
     }
 
     const item = {
+    id: Date.now(), 
+    image: selectedCard?.image || "Foto",
+    name: `${activeButton.toUpperCase()} - ${activeModel}`,
+    pellicola: selectedCard?.title || "Pellicola selezionata",
+    color: selectedColor || "Colore cover",
+    filmPrice: cardPrice || 0,
+    priceCover: coverPrice || 0,
+    price: totalPrice,
+    quantity: 1
+  };
+
+   /*  const item = {
       brand: activeButton,
       model: activeModel,
       pellicola: selectedCard?.title,
@@ -79,7 +99,8 @@ const Product = () => {
       color: selectedColor,
       coverPrice: selectedPrice,
       total: totalPrice
-    };
+    }; */
+
 
     setCart((prevCart) => [...prevCart, item]);
 
@@ -87,6 +108,7 @@ const Product = () => {
   };
 
   const selectedCard = CardProduct.find((c) => c.id === activeCardId);
+  /* const cardImage = selectedCard?.image || "Foto"; */
   const cardPrice = selectedCard?.price || 0;
   const coverPrice = selectedPrice || 0;
   const totalPrice = cardPrice + coverPrice;

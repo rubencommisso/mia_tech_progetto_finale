@@ -26,9 +26,11 @@ const App = () => {
           <Route path="/sustainability/:productId" element={<Sustainability />} />
           <Route path="/contact-us"  element={<ContactPage />} /> 
           <Route path="/ring"  element={<Ring />} /> 
-          <Route path="/film" element={<Pellicole />} />
-          <Route path="/clean" element={<KitPulizia />} />
+          <Route path="/pellicole" element={<Pellicole />} />
+          <Route path="/kit-pulizia" element={<KitPulizia />} />
           <Route path="/showdetail/:productId" element={<ShowDetail />} /> 
+          <Route path="/set-accessori" element={<Product />} />
+          <Route path="/showdetail" element={<ShowDetail />} />
         </Route>
       </Routes>
   );

@@ -2,6 +2,9 @@ import { useState } from "react";
 import esempio from "../assets/esempio.jpg"; 
 import ButtonToPage from "../components/ButtonToPage"; 
 import Card from "../components/card"; 
+import ringPhone from "@assets/ringPhone.jpeg"
+import ring1 from "@assets/ring1.jpeg"
+import ring2 from "@assets/ring2.jpeg"
 
 const Ring = () => {
   const [cart, setCart] = useState([]);
@@ -18,21 +21,21 @@ const Ring = () => {
       id: 1,
       title: "Ring Nero",
       price: 15,
-      image: esempio, 
+      image: ringPhone, 
       color: "black",
     },
     {
       id: 2,
       title: "Ring Argento",
       price: 18,
-      image: esempio,
+      image: ring1,
       color: "silver",
     },
     {
       id: 3,
       title: "Ring Oro",
       price: 20,
-      image: esempio,
+      image: ring2,
       color: "gold",
     },
   ];

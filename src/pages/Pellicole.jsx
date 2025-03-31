@@ -2,6 +2,9 @@ import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import esempio from '@assets/esempio.jpg'
 import Card from '@components/card'
+import pellicola from '@assets/pellicola.jpeg'
+import pellicole from '@assets/pellicole.jpeg'
+import pellicole2 from '@assets/pellicole2.jpeg'
 
 const Pellicole = () => {
     const [activeCardId, setActiveCardId] = useState(null);
@@ -14,7 +17,7 @@ const Pellicole = () => {
             id: 1,
             title: "Pellicola pvc super resistente effetto satinato",
             price: 20,
-            image: esempio,
+            image: pellicole,
             images: [
                 { src: 'piccola-1.jpg', alt: 'imgpiccola 1' },
                 { src: 'piccola-2.jpg', alt: 'imgpiccola 2' },
@@ -27,7 +30,7 @@ const Pellicole = () => {
             id: 2,
             title: "Pellicola vetro temprato antigraffio",
             price: 30,
-            image: esempio,
+            image: pellicole2,
             images: [
                 { src: 'piccola-4.jpg', alt: 'imgpiccola 4' },
                 { src: 'piccola-5.jpg', alt: 'imgpiccola 5' },
@@ -40,7 +43,7 @@ const Pellicole = () => {
             id: 3,
             title: "Pellicola vetro temprato anti-impronte",
             price: 40,
-            image: esempio,
+            image: pellicola,
             images: [
                 { src: 'piccola-7.jpg', alt: 'imgpiccola 7' },
                 { src: 'piccola-8.jpg', alt: 'imgpiccola 8' },

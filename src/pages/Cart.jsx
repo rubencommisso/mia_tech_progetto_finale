@@ -76,10 +76,20 @@ const Cart = () => {
                   <h3 className="text-base font-semibold mb-2 break-words">{product.name}</h3>
 
                   <div className="text-sm text-gray-600 mb-3 flex flex-col gap-1">
-                    <div className="flex justify-between w-40">
-                      <span className="font-medium">{product.pellicola}</span>
+                    
+                    <div className=" flex gap-2">
+                      
+                      <span className="font-medium">{product.film}</span>
                       <span>€{product.filmPrice}</span>
-                    </div>
+                      </div>
+                      <div className=" flex gap-2">
+                      <span className="font-medium">{product.ring}</span>
+                      <span>€{product.ringPrice}</span>
+                      </div>
+                      <div className=" flex gap-2">
+                      <span className="font-medium">{product.kit}</span>
+                      <span>€{product.kitPrice}</span>
+                      </div>
                     <div className="flex items-center justify-between w-40 gap-2">
                       <span className="capitalize font-medium">Cover: {product.color}</span>
                       <div

@@ -47,6 +47,7 @@ const Cover = () => {
     }
 
     const item = {
+      id: Date.now() + Math.random(),
       name: `${activeButton.toUpperCase()} - Cover`,
       color: selectedColor || "Colore cover",
       priceCover: coverPrice,

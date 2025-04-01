@@ -23,7 +23,9 @@ const ShowDetail = () => {
 
    
     const handleAddToCart = () => {
+
         console.log(`Aggiunto al carrello: ${product.title}`)
+
     }
 
     const handleBackClick = () => {
@@ -43,7 +45,7 @@ const ShowDetail = () => {
                         <div key={index} className="mb-4">
                             <div
                                 onClick={() => changeImage(image.src)} 
-                                className={`w-24 h-24 rounded-md m-2 p-1 cursor-pointer transition-all duration-200 ${selectedImage === image.src ? 'bg-gray-400' : 'bg-gray-200'}`}
+                                className={`w-24 h-24 rounded-md  m-2 p-1 cursor-pointer transition-all duration-200 ${selectedImage === image.src ? 'bg-gray-400' : 'bg-gray-200'}`}
                             >
                                 <img
                                     src={image.src}
@@ -63,15 +65,15 @@ const ShowDetail = () => {
                         </div>
                     ) : (
                         <div
-                            className="md:h-full md:w-11/12 w-11/12 h-full md:ml-4 border md:mt-4 border-black rounded-lg flex justify-center items-center"
+                            className="md:h-[500px] md:w-[500px] w-full h-[300px] md:ml-4 md:mt-4 rounded-lg flex justify-center items-center"
                             onError={() => handleImageError("main")}
                         >
-                            <img src={mainImage} alt={mainImage} className="w-full h-auto object-contain" />
+                            <img src={mainImage} alt={mainImage} className="w-full h-full object-contain" />
                         </div>
                     )}
                 </div>
 
-                <div className="flex flex-col md:w-80 md:pl-6 w-full gap-4 md:mr-64 md:mt-4">
+                <div className="flex flex-col mr-auto md:w-80 md:pl-6 w-full gap-4 md:mr-64 md:mt-4">
                     <div className="flex justify-center items-center flex-col">
                         <h1 className="text-4xl flex font-bold mb-6">{product.title}</h1>
                         <h3 className="text-xl text-gray-700 font-medium mb-4 md:w-full">Proteggi il tuo smartphone con stile!</h3>
@@ -95,7 +97,7 @@ const ShowDetail = () => {
 
             <button
                 onClick={handleBackClick}
-                className="bg-orange-500 hover:bg-orange-400 text-black font-semibold rounded-xl p-2 m-6 flex justify-center items-center"
+                className="bg-orange-500 hover:bg-orange-400 text-black font-semibold rounded-xl p-2 m-2 flex justify-center items-center"
             >
                 BACK
             </button>

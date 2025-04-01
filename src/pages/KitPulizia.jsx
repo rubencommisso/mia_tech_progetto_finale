@@ -2,6 +2,10 @@ import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import esempio from '@assets/esempio.jpg'
 import Card from '@components/card'
+import kitPulizia from '@assets/kitPulizia.jpeg'
+import pulizia2 from '@assets/pulizia2.jpg'
+import pulizia3 from '@assets/pulizia3.jpg'
+
 
 const KitPulizia = () => {
     const [activeCardId, setActiveCardId] = useState(null);
@@ -14,11 +18,11 @@ const KitPulizia = () => {
             id: 1,
             title: "Kit di pulizia completo per smartphone",
             price: 15,
-            image: esempio,
+            image: kitPulizia,
             images: [
-                { src: 'kitpulizia-1.jpg', alt: 'kitpulizia 1' },
-                { src: 'kitpulizia-2.jpg', alt: 'kitpulizia 2' },
-                { src: 'kitpulizia-3.jpg', alt: 'kitpulizia 3' }
+                { src: kitPulizia, alt: 'kitpulizia 1' },
+                { src: pulizia2, alt: 'kitpulizia 2' },
+                { src: pulizia3, alt: 'kitpulizia 3' }
             ]
         },
         {
@@ -27,11 +31,11 @@ const KitPulizia = () => {
             id: 2,
             title: "Kit di pulizia con panno in microfibra",
             price: 10,
-            image: esempio,
+            image: pulizia2,
             images: [
-                { src: 'kitpulizia-4.jpg', alt: 'kitpulizia 4' },
-                { src: 'kitpulizia-5.jpg', alt: 'kitpulizia 5' },
-                { src: 'kitpulizia-6.jpg', alt: 'kitpulizia 6' }
+                { src: pulizia2, alt: 'kitpulizia 4' },
+                { src: kitPulizia, alt: 'kitpulizia 5' },
+                { src: pulizia3, alt: 'kitpulizia 6' }
             ]
         },
         {
@@ -40,11 +44,11 @@ const KitPulizia = () => {
             id: 3,
             title: "Spray per la pulizia del display",
             price: 12,
-            image: esempio,
+            image: pulizia3,
             images: [
-                { src: 'kitpulizia-7.jpg', alt: 'kitpulizia 7' },
-                { src: 'kitpulizia-8.jpg', alt: 'kitpulizia 8' },
-                { src: 'kitpulizia-9.jpg', alt: 'kitpulizia 9' }
+                { src: pulizia3, alt: 'kitpulizia 7' },
+                { src: pulizia2, alt: 'kitpulizia 8' },
+                { src: kitPulizia, alt: 'kitpulizia 9' }
             ]
         },
     ]
@@ -56,17 +60,19 @@ const KitPulizia = () => {
 
     const handleAddToCart = (product) => {
         console.log(`Aggiunto al carrello: ${product.title}`)
+         
+
     }
 
     return (
         <div className="bg-gray-100 p-6 md:p-2 flex justify-center items-center">
             <div className="max-w-6xl mx-auto flex flex-col justify-center">
-                <h1 className="text-5xl text-center md:mt-2 md:mb-20 font-bold">Kit Pulizia</h1>
-                <h2 className="text-3xl font-semibold text-center mt-2 md:mb-20">Scegli il kit di pulizia per il tuo dispositivo!</h2>
+                <h1 className="text-4xl text-center md:mt-2 md:mb-20 font-bold">Kit Pulizia</h1>
+                <h2 className="text-3xl font-semibold text-center mt-2 md:mb-16">Scegli il kit di pulizia per il tuo dispositivo!</h2>
 
-                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-12 m-14">
+                <div className="grid grid-cols-1 justify-items-center gap-12 m-12 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
                     {CardProduct.map((product) => (
-                        <div key={product.id} className="flex flex-col justify-center items-center w-60 h-80 p-6 md:mb-20 rounded-2xl shadow-lg">
+                        <div key={product.id} className="flex flex-col justify-center items-center sm:w-48 sm-52 md:w-60 md:h-80 p-6 md:mb-20 rounded-2xl shadow-lg">
                             <Card
                                 id={product.id}
                                 title={product.title}
@@ -84,8 +90,8 @@ const KitPulizia = () => {
                         </div>
                     ))}
                 </div>
-                <div className="mt-8">
-                    <h2 className="text-6xl text-center font-semibold mb-12">Dettagli aggiuntivi sui Kit di Pulizia per Cellulari</h2>
+                <div className="mt-2">
+                    <h2 className="text-4xl text-center font-semibold mb-12">Dettagli aggiuntivi sui Kit di Pulizia per Cellulari</h2>
                     <p className="text-gray-700 text-justify text-xl mt-10">
                         I kit di pulizia per smartphone sono pensati per mantenere il tuo dispositivo pulito e senza polvere. Utilizzare i giusti strumenti di pulizia può migliorare la durata del tuo telefono e la visibilità dello schermo.
                     </p>

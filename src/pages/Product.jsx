@@ -2,71 +2,67 @@ import esempio from "../assets/esempio.jpg";
 import { useState, useEffect } from "react";
 import PhoneCaseCustomizerIphone from "../components/PhoneCaseCustomizerIphone";
 import PhoneCaseCustomizerSamsung from "../components/PhoneCaseCustomizerSamsung";
-import Card from "../components/card"
+import Card from "../components/card";
 import AddButton from "../components/AddButton";
 import { useNavigate } from "react-router-dom";
 
 const Product = () => {
   const [showIphone, setShowIphone] = useState(false);
   const [showSamsung, setShowSamsung] = useState(false);
-  const [showCustomApple, setShowCustomApple] = useState(false);
-  const [showCustomSamsung, setShowCustomSamsung] = useState(false);
   const [activeButton, setActiveButton] = useState("apple");
   const [activeModel, setActiveModel] = useState(null);
-  const [activeCardId, setActiveCardId] = useState(null);
-  const [selectedColor, setSelectedColor] = useState(null)
-  const [cart, setCart] = useState([]);
+  const [selectedColor, setSelectedColor] = useState(null);
   const [selectedPrice, setSelectedPrice] = useState(null);
-  
+  const [cart, setCart] = useState([]);
+  const [selectedFilmId, setSelectedFilmId] = useState(null);
+  const [selectedRingId, setSelectedRingId] = useState(null);
 
-  //cart logic
+  const navigate = useNavigate();
 
+  // Caricamento iniziale del carrello
   useEffect(() => {
     const storedCart = localStorage.getItem("cart");
     if (storedCart) {
       setCart(JSON.parse(storedCart));
     }
   }, []);
-  
-  // 2. Salva carrello ogni volta che cambia
+
+  // Salvataggio carrello
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
-  
-  const navigate = useNavigate();
-
 
   const handleBrandClick = (brand) => {
     if (brand === "Apple") {
       setShowIphone(true);
       setShowSamsung(false);
-      setShowCustomApple(true);
-      setShowCustomSamsung(false);
       setActiveButton("apple");
     } else if (brand === "Samsung") {
       setShowSamsung(true);
       setShowIphone(false);
-      setShowCustomSamsung(true);
-      setShowCustomApple(false);
       setActiveButton("samsung");
     }
     setActiveModel(null);
-    setActiveCardId(null);
+    setSelectedFilmId(null);
+    setSelectedRingId(null);
   };
 
   const handleModelClick = (model) => {
     setActiveModel(model);
-    setActiveCardId(null);
   };
 
-  const handleCardClick = (id) => {
-    setActiveCardId(id);
+  const handleCardClick = (id, category) => {
+    if (category === "film") {
+      setSelectedFilmId(id);
+    } else if (category === "ring") {
+      setSelectedRingId(id);
+    }
   };
 
   const filmProduct = [
     {
       id: 1,
-      title: "Pellicola pvc super resistente effetto satinato",
+      title: "Pellicola pvc",
       price: 308,
       image: esempio,
     },
@@ -105,253 +101,158 @@ const Product = () => {
     },
   ];
 
+  const selectedFilm = filmProduct.find((c) => c.id === selectedFilmId);
+  const selectedRing = ringProduct.find((c) => c.id === selectedRingId);
+  const filmPrice = selectedFilm?.price || 0;
+  const ringPrice = selectedRing?.price || 0;
+  const coverPrice = selectedPrice || 0;
+  const totalPrice = filmPrice + ringPrice + coverPrice;
+
   const handleAddToCart = () => {
-    if (!activeButton || !activeModel || !activeCardId) {
-      alert("Seleziona marca, modello e accessori.");
+    if (!activeButton || !activeModel || (!selectedFilm && !selectedRing)) {
+      alert("Seleziona marca, modello e almeno un accessorio (pellicola o ring).");
       return;
     }
 
     const item = {
-    id: Date.now(), 
-    image: selectedCard?.image || "Foto",
-    name: `${activeButton.toUpperCase()} - ${activeModel}`,
-    pellicola: selectedCard?.title || "Prodotto selezionato",
-    color: selectedColor || "Colore cover",
-    filmPrice: cardPrice || 0,
-    priceCover: coverPrice || 0,
-    price: totalPrice,
-    quantity: 1
-  };
-
-   /*  const item = {
-      brand: activeButton,
-      model: activeModel,
-      pellicola: selectedCard?.title,
-      price: selectedCard?.price,
-      color: selectedColor,
-      coverPrice: selectedPrice,
-      total: totalPrice
-    }; */
-
+      id: Date.now(),
+      image: selectedFilm?.image || selectedRing?.image || "Foto",
+      name: `${activeButton.toUpperCase()} - ${activeModel}`,
+      film: selectedFilm?.title || "Nessuna pellicola",
+      ring: selectedRing?.title || "Nessun ring",
+      color: selectedColor || "Colore cover",
+      filmPrice,
+      ringPrice,
+      priceCover: coverPrice,
+      price: totalPrice,
+      quantity: 1,
+    };
 
     setCart((prevCart) => [...prevCart, item]);
-
     console.log("🛒 Aggiunto al carrello:", item);
     navigate("/cart");
   };
-
-  const selectedCard = filmProduct.find((c) => c.id === activeCardId);
-  /* const cardImage = selectedCard?.image || "Foto"; */
-  const cardPrice = selectedCard?.price || 0;
-  const coverPrice = selectedPrice || 0;
-  const totalPrice = cardPrice + coverPrice;
 
   return (
     <div className="bg-gray-100 min-h-screen p-4 md:p-8">
       <div className="text-left max-w-5xl mx-auto">
         <h1 className="text-3xl font-bold">Benvenuto!</h1>
         <h2 className="text-xl mt-2">
-          In questa pagina puoi scegliere un set di accessori per il tuo smartphone. Il modello, la pellicola, personalizzare il colore della cover e tanto altro ancora.
+          In questa pagina puoi scegliere un set di accessori per il tuo smartphone.
         </h2>
         <h3 className="text-xl mt-4">Inizia Ora!</h3>
 
         {/* Marca Selection */}
         <div className="mt-8">Seleziona la marca:</div>
         <div className="flex flex-col sm:flex-row rounded-lg bg-white shadow-md mt-4">
-          <span
-            className={`
-              cursor-pointer font-semibold px-10 py-3 text-lg 
-              flex-1 text-center border 
-              ${activeButton === "apple"
-                ? "bg-blue-100 border border-blue-500"
-                : "hover:bg-blue-100"
-              }
-              // Arrotondiamo solo il primo elemento a sinistra
-              rounded-t-lg sm:rounded-l-lg 
-              sm:rounded-tr-none
-            `}
-            onClick={() => handleBrandClick("Apple")}
-          >
-            Apple
-          </span>
-          <span
-            className={`
-              cursor-pointer font-semibold px-10 py-3 text-lg 
-              flex-1 text-center border 
-              ${activeButton === "samsung"
-                ? "bg-blue-100 border border-blue-500"
-                : "hover:bg-blue-100"
-              }
-              // Arrotondiamo solo l'ultimo a destra
-              rounded-b-lg sm:rounded-r-lg 
-              sm:rounded-bl-none
-            `}
-            onClick={() => handleBrandClick("Samsung")}
-          >
-            Samsung
-          </span>
+          {["apple", "samsung"].map((brand) => (
+            <span
+              key={brand}
+              className={`
+                cursor-pointer font-semibold px-10 py-3 text-lg 
+                flex-1 text-center border 
+                ${activeButton === brand
+                  ? "bg-blue-100 border border-blue-500"
+                  : "hover:bg-blue-100"
+                }
+                ${brand === "apple" ? "rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none" : "rounded-b-lg sm:rounded-r-lg sm:rounded-bl-none"}
+              `}
+              onClick={() => handleBrandClick(brand === "apple" ? "Apple" : "Samsung")}
+            >
+              {brand.charAt(0).toUpperCase() + brand.slice(1)}
+            </span>
+          ))}
         </div>
 
-        {/* iPhone Models */}
+        {/* Models */}
         {showIphone && (
-          <div className="mt-6">
-            <div className="mb-2 font-medium">Seleziona il tuo modello:</div>
-            <div className="flex flex-col sm:flex-row rounded-lg bg-white shadow-md mt-2">
-              <span
-                className={`
-                  cursor-pointer font-semibold px-10 py-3 text-lg 
-                  flex-1 text-center border border-gray
-                  ${activeModel === "iPhone 16"
-                    ? "bg-blue-100 border border-blue-500"
-                    : "hover:bg-blue-100"
-                  }
-                  rounded-t-lg sm:rounded-l-lg
-                  sm:rounded-tr-none
-                `}
-                onClick={() => handleModelClick("iPhone 16")}
-              >
-                iPhone 16
-              </span>
-              <span
-                className={`
-                  cursor-pointer font-semibold px-10 py-3 text-lg 
-                  flex-1 text-center border border-gray
-                  ${activeModel === "iPhone SE"
-                    ? "bg-blue-100 border border-blue-500"
-                    : "hover:bg-blue-100"
-                  }
-                  rounded-b-lg sm:rounded-r-lg
-                  sm:rounded-bl-none
-                `}
-                onClick={() => handleModelClick("iPhone SE")}
-              >
-                iPhone SE
-              </span>
-            </div>
-          </div>
-        )}
-
-        {/* Samsung Models */}
-        {showSamsung && (
-          <div className="mt-6">
-            <div className="mb-2 font-medium">Seleziona il tuo modello:</div>
-            <div className="flex flex-col sm:flex-row rounded-lg bg-white shadow-md mt-2">
-              <span
-                className={`
-                  cursor-pointer font-semibold px-10 py-3 text-lg
-                  flex-1 text-center border border-gray
-                  ${activeModel === "Samsung S24"
-                    ? "bg-blue-100 border border-blue-500"
-                    : "hover:bg-blue-100"
-                  }
-                  rounded-t-lg sm:rounded-l-lg
-                  sm:rounded-tr-none
-                `}
-                onClick={() => handleModelClick("Samsung S24")}
-              >
-                Samsung S24
-              </span>
-              <span
-                className={`
-                  cursor-pointer font-semibold px-10 py-3 text-lg
-                  flex-1 text-center border border-gray
-                  ${activeModel === "Samsung S23"
-                    ? "bg-blue-100 border border-blue-500"
-                    : "hover:bg-blue-100"
-                  }
-                  rounded-b-lg sm:rounded-r-lg
-                  sm:rounded-bl-none
-                `}
-                onClick={() => handleModelClick("Samsung S23")}
-              >
-                Samsung S23
-              </span>
-            </div>
-          </div>
-        )}
-        
-        <br />
-
-        <div className="font-semibold  py-3 text-lg">Pellicole:</div>
-
-        {/* Cards */}
-        <div
-          className="
-            grid
-            grid-cols-2       /* 1 colonna su schermi molto piccoli */
-            sm:grid-cols-3     /* 2 colonne >= sm (640px) */
-            md:grid-cols-3     /* 3 colonne >= md (768px) */
-            lg:grid-cols-4     /* 4 colonne >= lg (1024px) */
-            gap-6 mt-10
-          "
-        >
-          {filmProduct.map((product) => (
-            <Card
-              key={product.id}
-              id={product.id}
-              title={product.title}
-              price={product.price}
-              image={product.image}
-              activeCardId={activeCardId}
-              onClick={handleCardClick}
-
-            />
-          ))}
-
-          </div>
-
-          <hr className="border-t border-gray-300 my-6" />
-
-          <div className="font-semibold  py-3 text-lg">Ring:</div>
-
-          <div className="
-            grid
-            grid-cols-2       /* 1 colonna su schermi molto piccoli */
-            sm:grid-cols-3     /* 2 colonne >= sm (640px) */
-            md:grid-cols-3     /* 3 colonne >= md (768px) */
-            lg:grid-cols-4     /* 4 colonne >= lg (1024px) */
-            gap-6 mt-10
-          ">
-            
-
-          {ringProduct.map((product) => (
-            <Card
-            key={product.id}
-            id={product.id}
-            title={product.title}
-            price={product.price}
-            image={product.image}
-            activeCardId={activeCardId}
-            onClick={handleCardClick}
-            
-            />
-          ))}
-
-          </div>
-
-        {/* Customizer Components */}
-        <div className="max-w-5xl mx-auto mt-10">
-          {showIphone && <PhoneCaseCustomizerIphone
-            setSelectedColor={setSelectedColor}
-            setSelectedPrice={setSelectedPrice}
-          />}
-          {showSamsung && <PhoneCaseCustomizerSamsung
-            setSelectedColor={setSelectedColor}
-            setSelectedPrice={setSelectedPrice}
-          />}
-        </div>
-        <div>
-          <AddButton
-            onClick={handleAddToCart}
-            totalPrice={totalPrice}
+          <ModelSelector
+            models={["iPhone 16", "iPhone SE"]}
+            activeModel={activeModel}
+            onClick={handleModelClick}
           />
+        )}
+
+        {showSamsung && (
+          <ModelSelector
+            models={["Samsung S24", "Samsung S23"]}
+            activeModel={activeModel}
+            onClick={handleModelClick}
+          />
+        )}
+
+        {/* Pellicole */}
+        <div className="font-semibold py-3 text-lg">Pellicole:</div>
+        <CardGrid products={filmProduct} selectedId={selectedFilmId} category="film" onCardClick={handleCardClick} />
+
+        <hr className="border-t border-gray-300 my-6" />
+
+        {/* Ring */}
+        <div className="font-semibold py-3 text-lg">Ring:</div>
+        <CardGrid products={ringProduct} selectedId={selectedRingId} category="ring" onCardClick={handleCardClick} />
+
+        {/* Customizer */}
+        <div className="max-w-5xl mx-auto mt-10">
+          {showIphone && <PhoneCaseCustomizerIphone setSelectedColor={setSelectedColor} setSelectedPrice={setSelectedPrice} />}
+          {showSamsung && <PhoneCaseCustomizerSamsung setSelectedColor={setSelectedColor} setSelectedPrice={setSelectedPrice} />}
         </div>
+
+        {/* Totale */}
+        <div className="text-xl font-bold my-4">Totale: € {totalPrice.toFixed(2)}</div>
+
+        {/* Add to Cart */}
+        <AddButton onClick={handleAddToCart} totalPrice={totalPrice} />
       </div>
     </div>
   );
 };
 
+const ModelSelector = ({ models, activeModel, onClick }) => (
+  <div className="mt-6">
+    <div className="mb-2 font-medium">Seleziona il tuo modello:</div>
+    <div className="flex flex-col sm:flex-row rounded-lg bg-white shadow-md mt-2">
+      {models.map((model, index) => (
+        <span
+          key={model}
+          className={`
+            cursor-pointer font-semibold px-10 py-3 text-lg 
+            flex-1 text-center border
+            ${activeModel === model
+              ? "bg-blue-100 border-blue-500"
+              : "hover:bg-blue-100"
+            }
+            ${index === 0 ? "rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none" : "rounded-b-lg sm:rounded-r-lg sm:rounded-bl-none"}
+          `}
+          onClick={() => onClick(model)}
+        >
+          {model}
+        </span>
+      ))}
+    </div>
+  </div>
+);
+
+const CardGrid = ({ products, selectedId, category, onCardClick }) => (
+  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-10">
+    {products.map((product) => (
+      <Card
+        key={product.id}
+        id={product.id}
+        title={product.title}
+        price={product.price}
+        image={product.image}
+        activeCardId={selectedId}
+        onClick={() => onCardClick(product.id, category)}
+      />
+    ))}
+  </div>
+);
+
 export default Product;
+
+
+
+
 
 
 

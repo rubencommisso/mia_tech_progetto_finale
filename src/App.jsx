@@ -11,6 +11,7 @@ import ShowDetail from "./components/ShowDetail";
 import Homepage from "./pages/Homepage";
 import Ring from "./pages/Ring";
 import KitPulizia from "./pages/KitPulizia";
+import Cover from "./pages/Cover";
 
 
 
@@ -31,6 +32,7 @@ const App = () => {
           <Route path="/showdetail/:productId" element={<ShowDetail />} /> 
           <Route path="/set-accessori" element={<Product />} />
           <Route path="/showdetail" element={<ShowDetail />} />
+          <Route path="/cover" element={<Cover/>} />
         </Route>
       </Routes>
   );

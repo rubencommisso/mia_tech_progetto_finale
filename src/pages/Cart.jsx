@@ -86,6 +86,10 @@ const Cart = () => {
                       <span className="font-medium">{product.ring}</span>
                       <span>€{product.ringPrice}</span>
                       </div>
+                      <div className=" flex gap-2">
+                      <span className="font-medium">{product.kit}</span>
+                      <span>€{product.kitPrice}</span>
+                      </div>
                     <div className="flex items-center justify-between w-40 gap-2">
                       <span className="capitalize font-medium">Cover: {product.color}</span>
                       <div

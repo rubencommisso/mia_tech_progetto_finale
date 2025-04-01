@@ -16,7 +16,7 @@ const Product = () => {
   const [cart, setCart] = useState([]);
   const [selectedFilmId, setSelectedFilmId] = useState(null);
   const [selectedRingId, setSelectedRingId] = useState(null);
-
+  const [selectedKitId, setSelectedKitId] = useState(null);
   const navigate = useNavigate();
 
   // Caricamento iniziale del carrello
@@ -45,6 +45,7 @@ const Product = () => {
     setActiveModel(null);
     setSelectedFilmId(null);
     setSelectedRingId(null);
+    setSelectedKitId(null);
   };
 
   const handleModelClick = (model) => {
@@ -56,6 +57,8 @@ const Product = () => {
       setSelectedFilmId(id);
     } else if (category === "ring") {
       setSelectedRingId(id);
+    } else if (category === "kit") {
+      setSelectedKitId(id);
     }
   };
 
@@ -101,28 +104,53 @@ const Product = () => {
     },
   ];
 
+  const kitProduct = [
+    {
+      id: 7,
+      title: "KIt pulizia",
+      price: 308,
+      image: esempio,
+    },
+    {
+      id: 8,
+      title: "panno microfibra",
+      price: 308,
+      image: esempio,
+    },
+    {
+      id: 9,
+      title: "Spray",
+      price: 308,
+      image: esempio,
+    },
+  ];
+
   const selectedFilm = filmProduct.find((c) => c.id === selectedFilmId);
   const selectedRing = ringProduct.find((c) => c.id === selectedRingId);
+  const selectedKit = kitProduct.find((c) => c.id === selectedKitId);
   const filmPrice = selectedFilm?.price || 0;
   const ringPrice = selectedRing?.price || 0;
+  const kitPrice = selectedKit?.price || 0;
   const coverPrice = selectedPrice || 0;
-  const totalPrice = filmPrice + ringPrice + coverPrice;
+  const totalPrice = filmPrice + ringPrice + kitPrice + coverPrice;
 
   const handleAddToCart = () => {
-    if (!activeButton || !activeModel || (!selectedFilm && !selectedRing)) {
-      alert("Seleziona marca, modello e almeno un accessorio (pellicola o ring).");
+    if (!activeButton || !activeModel || (!selectedFilm && !selectedRing && !selectedKit)) {
+      alert("Seleziona marca, modello e almeno un accessorio.");
       return;
     }
 
     const item = {
       id: Date.now(),
-      image: selectedFilm?.image || selectedRing?.image || "Foto",
+      image: selectedFilm?.image || selectedRing?.image || selectedKit?.image || "Foto",
       name: `${activeButton.toUpperCase()} - ${activeModel}`,
       film: selectedFilm?.title || "Nessuna pellicola",
       ring: selectedRing?.title || "Nessun ring",
+      kit: selectedKit?.title || "Nessun kit",
       color: selectedColor || "Colore cover",
       filmPrice,
       ringPrice,
+      kitPrice,
       priceCover: coverPrice,
       price: totalPrice,
       quantity: 1,
@@ -190,6 +218,11 @@ const Product = () => {
         {/* Ring */}
         <div className="font-semibold py-3 text-lg">Ring:</div>
         <CardGrid products={ringProduct} selectedId={selectedRingId} category="ring" onCardClick={handleCardClick} />
+
+        <hr className="border-t border-gray-300 my-6" />
+
+        <div className="font-semibold py-3 text-lg">Kit:</div>
+        <CardGrid products={kitProduct} selectedId={selectedKitId} category="kit" onCardClick={handleCardClick} />
 
         {/* Customizer */}
         <div className="max-w-5xl mx-auto mt-10">

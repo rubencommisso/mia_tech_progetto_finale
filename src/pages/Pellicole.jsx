@@ -19,9 +19,9 @@ const Pellicole = () => {
             price: 20,
             image: pellicole,
             images: [
-                { src: 'piccola-1.jpg', alt: 'imgpiccola 1' },
-                { src: 'piccola-2.jpg', alt: 'imgpiccola 2' },
-                { src: 'piccola-3.jpg', alt: 'imgpiccola 3' }
+                { src: pellicola, alt: 'imgpiccola 1' },
+                { src: pellicole, alt: 'imgpiccola 2' },
+                { src: pellicole2, alt: 'imgpiccola 3' }
             ]
         },
         {
@@ -32,9 +32,9 @@ const Pellicole = () => {
             price: 30,
             image: pellicole2,
             images: [
-                { src: 'piccola-4.jpg', alt: 'imgpiccola 4' },
-                { src: 'piccola-5.jpg', alt: 'imgpiccola 5' },
-                { src: 'piccola-6.jpg', alt: 'imgpiccola 6' }
+                { src: pellicola, alt: 'imgpiccola 4' },
+                { src: pellicole, alt: 'imgpiccola 5' },
+                { src: pellicole2, alt: 'imgpiccola 6' }
             ]
         },
         {
@@ -45,9 +45,9 @@ const Pellicole = () => {
             price: 40,
             image: pellicola,
             images: [
-                { src: 'piccola-7.jpg', alt: 'imgpiccola 7' },
-                { src: 'piccola-8.jpg', alt: 'imgpiccola 8' },
-                { src: 'piccola-9.jpg', alt: 'imgpiccola 9' }
+                { src: pellicola, alt: 'imgpiccola 7' },
+                { src: pellicole, alt: 'imgpiccola 8' },
+                { src: pellicole2, alt: 'imgpiccola 9' }
             ]
         },
     ]
@@ -64,12 +64,12 @@ const Pellicole = () => {
     return (
         <div className="bg-gray-100 p-6 md:p-2 flex justify-center items-center">
             <div className="max-w-6xl mx-auto flex flex-col justify-center">
-                <h1 className="text-5xl text-center md:mt-2 md:mb-20 font-bold">Pellicole</h1>
+                <h1 className="text-4xl text-center md:mt-2 md:mb-20 font-bold">Pellicole</h1>
                 <h2 className="text-3xl font-semibold text-center mt-2 md:mb-20">Scegli la pellicola che desideri!</h2>
 
-                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-12 m-14">
+                <div className="grid grid-cols-1 justify-items-center gap-12 m-12 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                     {CardProduct.map((product) => (
-                        <div key={product.id} className="flex flex-col justify-center items-center w-60 h-80 p-6 md:mb-20 rounded-2xl shadow-lg">
+                        <div key={product.id} className="flex flex-col justify-center items-center sm:w-48 sm-52 md:w-60 md:h-80 p-6 md:mb-20 rounded-2xl shadow-lg">
                             <Card
                                 id={product.id}
                                 title={product.title}
@@ -87,8 +87,8 @@ const Pellicole = () => {
                         </div>
                     ))}
                 </div>
-                <div className="mt-8">
-                    <h2 className="text-6xl text-center font-semibold mb-12">Dettagli aggiuntivi sulle Pellicole per Cellulari</h2>
+                <div className="mt-2">
+                    <h2 className="text-4xl text-center font-semibold mb-12">Dettagli aggiuntivi sulle Pellicole per Cellulari</h2>
                     <p className="text-gray-700 text-justify text-xl mt-10">
                         Le pellicole per cellulari sono progettate per proteggere il tuo dispositivo da graffi, urti e polvere. Sono
                         realizzate con materiali di alta qualità che garantiscono una protezione completa senza compromettere la

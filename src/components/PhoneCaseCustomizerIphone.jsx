@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 
 const PhoneCaseCustomizerIphone = ({ setSelectedColor, setSelectedPrice }) => {
     const [color, setColor] = useState("#ff0000"); // Colore iniziale rosso
-    const coverPrice = 308;
     const [text, setText] = useState("");
     const [showText, setShowText] = useState("");
     const [fontFamily, setFontFamily] = useState("Arial");
+    const [textColor, setTextColor] = useState("#ffffff")
 
+    const coverPrice = 308;
     const fonts = ["Arial", "Courier New", "Georgia", "Times New Roman", "Verdana", "Comic Sans MS"];
 
     const formatPrice = (value) =>
@@ -59,8 +60,8 @@ const PhoneCaseCustomizerIphone = ({ setSelectedColor, setSelectedPrice }) => {
                     {showText && (
 
                         <p
-                            className=" text-white text-xl text-center h-[50px] w-[150px] break-words whitespace-pre-wrap"
-                            style={{ fontFamily }}
+                            className="text-xl text-center h-[50px] w-[150px] break-words "
+                            style={{ fontFamily, color: textColor }}
                         >
                             {showText}
                         </p>
@@ -68,13 +69,27 @@ const PhoneCaseCustomizerIphone = ({ setSelectedColor, setSelectedPrice }) => {
                 </div>
             </div>
 
-            {/* Selettore colore */}
-            <input
-                type="color"
-                value={color}
-                onChange={handleColorChange}
-                className="w-24 h-12 border-2 border-gray-300 rounded-md cursor-pointer"
-            />
+            {/* Selettore colore cover*/}
+            <div className="flex flex-col items-center space-y-2">
+                <label className="font-medium">Seleziona il colore della cover:</label>
+                <input
+                    type="color"
+                    value={color}
+                    onChange={handleColorChange}
+                    className="w-24 h-12 border-2 border-gray-300 rounded-md cursor-pointer"
+                />
+
+            </div>
+            {/* Selettore colore testo */}
+            <div className="flex flex-col items-center space-y-2">
+                <label className="font-medium">Seleziona il colore del testo:</label>
+                <input
+                    type="color"
+                    value={textColor}
+                    onChange={(e) => setTextColor(e.target.value)}
+                    className="w-24 h-12 border-2 border-gray-300 rounded-md cursor-pointer"
+                />
+            </div>
             {/* input di testo */}
             <div className="p-4">
                 <input

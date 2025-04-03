@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 const Product = () => {
   const [showIphone, setShowIphone] = useState(false);
   const [showSamsung, setShowSamsung] = useState(false);
-  const [activeButton, setActiveButton] = useState("apple");
+  const [activeButton, setActiveButton] = useState("");
   const [activeModel, setActiveModel] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
   const [selectedPrice, setSelectedPrice] = useState(null);

@@ -77,27 +77,27 @@ const Cart = () => {
 
                   <div className="text-sm text-gray-600 mb-3 flex flex-col gap-1">
                     
-                    <div className=" flex gap-2">
-                      
+                      {product.film && (<div className=" flex gap-2">
                       <span className="font-medium">{product.film}</span>
                       <span>€{product.filmPrice}</span>
-                      </div>
-                      <div className=" flex gap-2">
+                      </div>)}
+                        {product.ring && (<div className=" flex gap-2">
                       <span className="font-medium">{product.ring}</span>
                       <span>€{product.ringPrice}</span>
-                      </div>
-                      <div className=" flex gap-2">
+                      </div>)}
+                      {product.kit && (<div className=" flex gap-2">
                       <span className="font-medium">{product.kit}</span>
                       <span>€{product.kitPrice}</span>
-                      </div>
-                    <div className="flex items-center justify-between w-40 gap-2">
+                      </div>)}
+                      {product.color && (<div className="flex items-center justify-between w-40 gap-2">
                       <span className="capitalize font-medium">Cover: {product.color}</span>
                       <div
                         className="w-3.5 h-3.5 rounded-full border"
                         style={{ backgroundColor: product.color }}
                       />
                       <span>€{product.priceCover}</span>
-                    </div>
+                    </div>)}
+                    
                   </div>
                 </div>
               </div>

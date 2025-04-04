@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-const PhoneCaseCustomizerSamsung = ({ setSelectedColor, setSelectedPrice, setSelectedTextColorSamsung }) => {
+const PhoneCaseCustomizerSamsung = ({ 
+    setSelectedColor, 
+    setSelectedPrice, 
+    setSelectedTextColorSamsung,
+    setSelectedTextSamsung, 
+}) => {
     const [color, setColor] = useState("#ff0000");
     const [text, setText] = useState("");
     const [fontFamily, setFontFamily] = useState("Arial");
@@ -37,8 +42,11 @@ const PhoneCaseCustomizerSamsung = ({ setSelectedColor, setSelectedPrice, setSel
     };
 
     const handleInputChange = (e) => {
-        setText(e.target.value);
+        const value = e.target.value;
+        setText(value);
+        setSelectedTextSamsung(value); // ➕ Informa il parent del nuovo testo
     };
+    
 
     return (
         <div className="flex flex-col lg:flex-row justify-center items-start min-h-screen gap-8 p-8 bg-gray-100">

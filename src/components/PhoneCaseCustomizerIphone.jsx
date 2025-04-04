@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
 
-const PhoneCaseCustomizerIphone = ({ setSelectedColor, setSelectedPrice, setSelectedTextColorIphone }) => {
+const PhoneCaseCustomizerIphone = ({ 
+    setSelectedColor, 
+    setSelectedPrice, 
+    setSelectedTextColorIphone, 
+    setSelectedTextIphone, 
+}) => {
+
     const [color, setColor] = useState("#ff0000"); // Colore iniziale rosso
     const [text, setText] = useState("");
-    const [showText, setShowText] = useState("");
     const [fontFamily, setFontFamily] = useState("Arial");
     const [textColorIphone, setTextColorIphone] = useState("#ffffff")
 
@@ -34,12 +39,11 @@ const PhoneCaseCustomizerIphone = ({ setSelectedColor, setSelectedPrice, setSele
     };
 
     const handleInputChange = (e) => {
-        setText(e.target.value);
-    }; // input utente
+        const value = e.target.value;
+        setText(value);
+        setSelectedTextIphone(value); // ➕ Informa il parent del nuovo testo
+    };
 
-    const handleSubmit = () => {
-        setShowText(text);
-    }; // bottone per testo
 
     return (
         <div className="flex flex-col lg:flex-row justify-center items-start min-h-screen gap-8 p-8 bg-gray-100">
@@ -99,12 +103,6 @@ const PhoneCaseCustomizerIphone = ({ setSelectedColor, setSelectedPrice, setSele
                             text ? "border-orange-500" : "border-gray-300"
                         }`}
                     />
-                    {/* <button
-                        onClick={handleSubmit}
-                        className="w-fit px-4 py-2 bg-blue-500 text-white rounded"
-                    >
-                        Mostra
-                    </button> */}
                 </div>
     
                 {/* Selettore colore del testo */}

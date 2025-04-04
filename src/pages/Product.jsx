@@ -19,6 +19,9 @@ const Product = () => {
   const [selectedFilmId, setSelectedFilmId] = useState(null);
   const [selectedRingId, setSelectedRingId] = useState(null);
   const [selectedKitId, setSelectedKitId] = useState(null);
+  const [textIphone, setTextIphone] = useState("");
+  const [textSamsung, setTextSamsung] = useState("");
+
   const navigate = useNavigate();
 
   // Caricamento iniziale del carrello
@@ -149,9 +152,10 @@ const Product = () => {
       film: selectedFilm?.title || "Nessuna pellicola",
       ring: selectedRing?.title || "Nessun ring",
       kit: selectedKit?.title || "Nessun kit",
-      color: selectedColor || "Colore cover",
+      coverColor: selectedColor || "Colore cover",
       textColorIphone: selectedTextColorIphone || "Colore testo",
       textColorSamsung: selectedTextColorSamsung || "Colore testo",
+      text: activeButton === "apple" ? textIphone : textSamsung,
       filmPrice,
       ringPrice,
       kitPrice,
@@ -234,11 +238,13 @@ const Product = () => {
            setSelectedColor={setSelectedColor} 
            setSelectedPrice={setSelectedPrice} 
            setSelectedTextColorIphone={setSelectedTextColorIphone}
+           setSelectedTextIphone={setTextIphone}
            />}
           {showSamsung && <PhoneCaseCustomizerSamsung 
           setSelectedColor={setSelectedColor} 
           setSelectedPrice={setSelectedPrice}
           setSelectedTextColorSamsung={setSelectedTextColorSamsung} 
+          setSelectedTextSamsung={setTextSamsung}
           />}
         </div>
 

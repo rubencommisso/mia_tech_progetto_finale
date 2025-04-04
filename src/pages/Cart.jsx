@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
+  const navigate = useNavigate()
 
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -18,6 +20,8 @@ const Cart = () => {
     setCart(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
+
+  
 
   const increaseQuantity = (id) => {
     const updatedCart = cart.map((product) =>
@@ -73,7 +77,8 @@ const Cart = () => {
                 </div>
 
                 <div className="flex flex-col justify-between min-w-0">
-                  <h3 className="text-base font-semibold mb-2 break-words">{product.name}</h3>
+                  <h3 className="text-base font-semibold mb-2 break-words">{product.title || product.name}</h3>
+                  <span>€{product.price}</span>
 
                   <div className="text-sm text-gray-600 mb-3 flex flex-col gap-1">
                     
@@ -109,7 +114,7 @@ const Cart = () => {
                         className="w-3.5 h-3.5 rounded-full border"
                         style={{ backgroundColor: product.coverColor }}
                       />
-                      <span>€{product.priceCover}</span>
+                    
                     </div>)}
                     
                   </div>

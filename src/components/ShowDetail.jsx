@@ -9,6 +9,13 @@ const ShowDetail = () => {
     const [imgpiccolaErrors, setImgpiccolaErrors] = useState({})  
     const navigate = useNavigate()
 
+   useEffect(() => {
+          window.scrollTo(0, 0);
+        }, [])
+      
+      
+  
+
     
     const changeImage = (imageSrc) => {
         setMainImage(imageSrc)
@@ -26,6 +33,21 @@ const ShowDetail = () => {
 
         console.log(`Aggiunto al carrello: ${product.title}`)
 
+        const savedCart = JSON.parse(localStorage.getItem("cart")) || []
+
+        const existingProductIndex = savedCart.findIndex(item => item.id === product.id)
+    
+        if (existingProductIndex !== -1) {
+          
+            savedCart[existingProductIndex].quantity += 1
+        } else {
+           
+            savedCart.push({ ...product, quantity: 1 })
+        }
+    
+        localStorage.setItem("cart", JSON.stringify(savedCart))
+        navigate('/cart')
+
     }
 
     const handleBackClick = () => {
@@ -38,7 +60,15 @@ const ShowDetail = () => {
 
     return (
         <div className='min-h-screen bg-gray-100 pt-0 pb-0'>
+            
             <div className="p-6 flex flex-wrap gap-3 md:mb-32 bg-gray-100">
+            <button
+                onClick={handleBackClick}
+                className="bg-orange-500 hover:bg-orange-400 text-black font-bold rounded-3xl px-1 py-2 md:w-32 md:h-10 md:absolute  relative  w-30 h-10 mt-56 flex justify-center items-center  "
+            >
+                 INDIETRO
+            </button>
+           
               
                 <div className="flex flex-col gap-4 w-24 md:ml-52 md:mt-4">
                     {product.images.map((image, index) => (
@@ -50,7 +80,7 @@ const ShowDetail = () => {
                                 <img
                                     src={image.src}
                                     alt={image.alt}
-                                    className="w-24 h-24 object-contain rounded-md"
+                                    className="w-24 h-24  object-contain rounded-md"
                                 />
                             </div>
                         </div>
@@ -65,10 +95,10 @@ const ShowDetail = () => {
                         </div>
                     ) : (
                         <div
-                            className="md:h-[500px] md:w-[500px] w-full h-[300px] md:ml-4 md:mt-4 rounded-lg flex justify-center items-center"
+                            className="md:h-[500px] md:w-[500px] w-full h-[300px] md:ml-4 md:mt-6 sm:mt-6  rounded-lg flex justify-center items-center"
                             onError={() => handleImageError("main")}
                         >
-                            <img src={mainImage} alt={mainImage} className="w-full h-full object-contain" />
+                            <img src={mainImage} alt={mainImage} className="w-full h-full object-contain sm:w-full sm:h-full " />
                         </div>
                     )}
                 </div>
@@ -79,10 +109,10 @@ const ShowDetail = () => {
                         <h3 className="text-xl text-gray-700 font-medium mb-4 md:w-full">Proteggi il tuo smartphone con stile!</h3>
                         <div className="flex flex-col gap-4 w-full md:w-auto">
                             <button
-                                className="bg-orange-500 rounded-3xl px-1 py-2 w-72 md:w-54 justify-center hover:bg-orange-400 text-black font-semibold"
+                                className="bg-orange-500 rounded-3xl px-1 py-2 w-72 md:w-54 justify-center hover:bg-orange-400 text-black font-bold"
                                 onClick={handleAddToCart}
                             >
-                                Add to bag
+                                Aggiungi al carrello
                             </button>
 
                             <div className="md:mt-5 flex md:flex-col gap-4">
@@ -95,12 +125,7 @@ const ShowDetail = () => {
                 </div>
             </div>
 
-            <button
-                onClick={handleBackClick}
-                className="bg-orange-500 hover:bg-orange-400 text-black font-semibold rounded-xl p-2 m-2 flex justify-center items-center"
-            >
-                BACK
-            </button>
+           
         </div>
     )
 }

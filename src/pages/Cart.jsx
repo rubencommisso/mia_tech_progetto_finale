@@ -94,11 +94,25 @@ const Cart = () => {
                       <span className="font-medium">{product.kit}</span>
                       <span>€{product.kitPrice}</span>
                       </div>)}
-                      {product.color && (<div className="flex items-center justify-between w-40 gap-2">
-                      <span className="capitalize font-medium">Cover: {product.color} </span>
+                      {product.text && (<div className=" flex gap-2">
+                      <span className="font-medium">La tua frase: "{product.text}"</span>
+                      <span>€{product.textPrice}</span>
+                      </div>)}
+                      {product.font && (<div className=" flex gap-2">
+                      <span className="font-medium">Font: {product.font}</span>
+                      </div>)}
+                      {product.font && (<div className="flex items-center w-60 gap-2">
+                      <span className="capitalize font-medium">Colore testo: {product.textColor}</span>
                       <div
                         className="w-3.5 h-3.5 rounded-full border"
-                        style={{ backgroundColor:product.color }}
+                        style={{ backgroundColor: product.textColor }}
+                      />
+                      </div>)}
+                      {product.coverColor && (<div className="flex items-center  w-60 gap-2">
+                      <span className="capitalize font-medium">Colore Cover: {product.coverColor}</span>
+                      <div
+                        className="w-3.5 h-3.5 rounded-full border"
+                        style={{ backgroundColor: product.coverColor }}
                       />
                     
                     </div>)}

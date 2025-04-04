@@ -4,8 +4,10 @@ const PhoneCaseCustomizerSamsung = ({
     setSelectedColor, 
     setSelectedPrice, 
     setSelectedTextColorSamsung,
-    setSelectedTextSamsung, 
+    setSelectedTextSamsung,
+    setSelectedFontSamsung, // ➕ AGGIUNTA 
 }) => {
+
     const [color, setColor] = useState("#ff0000");
     const [text, setText] = useState("");
     const [fontFamily, setFontFamily] = useState("Arial");
@@ -46,6 +48,13 @@ const PhoneCaseCustomizerSamsung = ({
         setText(value);
         setSelectedTextSamsung(value); // ➕ Informa il parent del nuovo testo
     };
+
+    const handleFontChange = (e) => {
+        const newFont = e.target.value;
+        setFontFamily(newFont);
+        setSelectedFontSamsung(newFont);
+      };
+      
     
 
     return (
@@ -122,7 +131,7 @@ const PhoneCaseCustomizerSamsung = ({
                     <label className="font-medium">Font:</label>
                     <select
                         value={fontFamily}
-                        onChange={(e) => setFontFamily(e.target.value)}
+                        onChange={handleFontChange}
                         className="bg-gray-200 transition-all duration-300 hover:bg-gray-100 border hover:border-orange-500 p-2 rounded"
                     >
                         {fonts.map((font) => (

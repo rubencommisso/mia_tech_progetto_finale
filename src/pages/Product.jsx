@@ -21,6 +21,9 @@ const Product = () => {
   const [selectedKitId, setSelectedKitId] = useState(null);
   const [textIphone, setTextIphone] = useState("");
   const [textSamsung, setTextSamsung] = useState("");
+  const [fontIphone, setFontIphone] = useState("");
+  const [fontSamsung, setFontSamsung] = useState("");
+
 
   const navigate = useNavigate();
 
@@ -156,6 +159,7 @@ const Product = () => {
       textColorIphone: selectedTextColorIphone || "Colore testo",
       textColorSamsung: selectedTextColorSamsung || "Colore testo",
       text: activeButton === "apple" ? textIphone : textSamsung,
+      font: activeButton === "apple" ? fontIphone : fontSamsung, 
       filmPrice,
       ringPrice,
       kitPrice,
@@ -239,12 +243,15 @@ const Product = () => {
            setSelectedPrice={setSelectedPrice} 
            setSelectedTextColorIphone={setSelectedTextColorIphone}
            setSelectedTextIphone={setTextIphone}
+           setSelectedFontIphone={setFontIphone}
+
            />}
           {showSamsung && <PhoneCaseCustomizerSamsung 
           setSelectedColor={setSelectedColor} 
           setSelectedPrice={setSelectedPrice}
           setSelectedTextColorSamsung={setSelectedTextColorSamsung} 
           setSelectedTextSamsung={setTextSamsung}
+          setSelectedFontSamsung={setFontSamsung}
           />}
         </div>
 

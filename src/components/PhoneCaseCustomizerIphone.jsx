@@ -5,6 +5,7 @@ const PhoneCaseCustomizerIphone = ({
     setSelectedPrice, 
     setSelectedTextColorIphone, 
     setSelectedTextIphone, 
+    setSelectedFontIphone,
 }) => {
 
     const [color, setColor] = useState("#ff0000"); // Colore iniziale rosso
@@ -43,6 +44,12 @@ const PhoneCaseCustomizerIphone = ({
         setText(value);
         setSelectedTextIphone(value); // ➕ Informa il parent del nuovo testo
     };
+
+    const handleFontChange = (e) => {
+        const newFont = e.target.value;
+        setFontFamily(newFont);
+        setSelectedFontIphone(newFont); // ➕ passa il font al parent
+      };
 
 
     return (
@@ -121,7 +128,7 @@ const PhoneCaseCustomizerIphone = ({
                     <label className="font-medium">Font:</label>
                     <select
                         value={fontFamily}
-                        onChange={(e) => setFontFamily(e.target.value)}
+                        onChange={handleFontChange}
                         className="bg-gray-200 transition-all duration-300 hover:bg-gray-100 border hover:border-orange-500 p-2 rounded"
                     >
                         {fonts.map((font) => (

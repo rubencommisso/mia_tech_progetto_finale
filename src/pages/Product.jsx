@@ -12,6 +12,8 @@ const Product = () => {
   const [activeButton, setActiveButton] = useState("");
   const [activeModel, setActiveModel] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
+  const [selectedTextColorIphone, setSelectedTextColorIphone] = useState(null);
+  const [selectedTextColorSamsung, setSelectedTextColorSamsung] = useState(null);
   const [selectedPrice, setSelectedPrice] = useState(null);
   const [cart, setCart] = useState([]);
   const [selectedFilmId, setSelectedFilmId] = useState(null);
@@ -148,6 +150,8 @@ const Product = () => {
       ring: selectedRing?.title || "Nessun ring",
       kit: selectedKit?.title || "Nessun kit",
       color: selectedColor || "Colore cover",
+      textColorIphone: selectedTextColorIphone || "Colore testo",
+      textColorSamsung: selectedTextColorSamsung || "Colore testo",
       filmPrice,
       ringPrice,
       kitPrice,
@@ -158,7 +162,7 @@ const Product = () => {
 
     setCart((prevCart) => [...prevCart, item]);
     console.log("🛒 Aggiunto al carrello:", item);
-    navigate("/cart");
+    /* navigate("/cart"); */
   };
 
   return (
@@ -226,8 +230,16 @@ const Product = () => {
 
         {/* Customizer */}
         <div className="max-w-5xl mx-auto mt-10">
-          {showIphone && <PhoneCaseCustomizerIphone setSelectedColor={setSelectedColor} setSelectedPrice={setSelectedPrice} />}
-          {showSamsung && <PhoneCaseCustomizerSamsung setSelectedColor={setSelectedColor} setSelectedPrice={setSelectedPrice} />}
+          {showIphone && <PhoneCaseCustomizerIphone
+           setSelectedColor={setSelectedColor} 
+           setSelectedPrice={setSelectedPrice} 
+           setSelectedTextColorIphone={setSelectedTextColorIphone}
+           />}
+          {showSamsung && <PhoneCaseCustomizerSamsung 
+          setSelectedColor={setSelectedColor} 
+          setSelectedPrice={setSelectedPrice}
+          setSelectedTextColorSamsung={setSelectedTextColorSamsung} 
+          />}
         </div>
 
         {/* Totale */}

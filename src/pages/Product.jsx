@@ -170,7 +170,7 @@ const Product = () => {
 
     setCart((prevCart) => [...prevCart, item]);
     console.log("🛒 Aggiunto al carrello:", item);
-    /* navigate("/cart"); */
+    navigate("/cart");
   };
 
   return (

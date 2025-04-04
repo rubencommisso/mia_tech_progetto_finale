@@ -26,7 +26,8 @@ const PhoneCaseCustomizerIphone = ({
         setSelectedColor(color);
         setSelectedPrice(coverPrice);
         setSelectedTextColorIphone(textColorIphone);
-    }, [color, coverPrice, setSelectedColor, setSelectedTextColorIphone, setSelectedPrice]);
+        setSelectedFontIphone(fontFamily);
+    }, [color, coverPrice, setSelectedColor, setSelectedTextColorIphone, setSelectedPrice,fontFamily, setSelectedFontIphone]);
 
     const handleColorChange = (e) => {
         const newColor = e.target.value;

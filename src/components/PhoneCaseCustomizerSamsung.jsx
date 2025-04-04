@@ -29,7 +29,8 @@ const PhoneCaseCustomizerSamsung = ({
         setSelectedColor(color);
         setSelectedPrice(coverPrice);
         setSelectedTextColorSamsung(textColorSamsung);
-    }, [color, coverPrice, setSelectedColor, setSelectedTextColorSamsung, setSelectedPrice]);
+        setSelectedFontSamsung(fontFamily);
+    }, [color, coverPrice, fontFamily, setSelectedFontSamsung, setSelectedColor, setSelectedTextColorSamsung, setSelectedPrice]);
 
     const handleColorChange = (e) => {
         const newColor = e.target.value;

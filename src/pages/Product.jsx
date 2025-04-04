@@ -140,7 +140,8 @@ const Product = () => {
   const ringPrice = selectedRing?.price || 0;
   const kitPrice = selectedKit?.price || 0;
   const coverPrice = selectedPrice || 0;
-  const totalPrice = filmPrice + ringPrice + kitPrice + coverPrice;
+  const textPrice = 20 || 0;
+  const totalPrice = filmPrice + ringPrice + kitPrice + textPrice + coverPrice;
 
   const handleAddToCart = () => {
     if (!activeButton || !activeModel || (!selectedFilm && !selectedRing && !selectedKit)) {
@@ -156,13 +157,13 @@ const Product = () => {
       ring: selectedRing?.title || "Nessun ring",
       kit: selectedKit?.title || "Nessun kit",
       coverColor: selectedColor || "Colore cover",
-      textColorIphone: selectedTextColorIphone || "Colore testo",
-      textColorSamsung: selectedTextColorSamsung || "Colore testo",
+      textColor: activeButton === "apple" ? selectedTextColorIphone : selectedTextColorSamsung || "Colore testo",
       text: activeButton === "apple" ? textIphone : textSamsung,
       font: activeButton === "apple" ? fontIphone : fontSamsung, 
       filmPrice,
       ringPrice,
       kitPrice,
+      textPrice,
       priceCover: coverPrice,
       price: totalPrice,
       quantity: 1,

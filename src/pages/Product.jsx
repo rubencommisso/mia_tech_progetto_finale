@@ -12,11 +12,19 @@ const Product = () => {
   const [activeButton, setActiveButton] = useState("");
   const [activeModel, setActiveModel] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
+  const [selectedTextColorIphone, setSelectedTextColorIphone] = useState(null);
+  const [selectedTextColorSamsung, setSelectedTextColorSamsung] = useState(null);
   const [selectedPrice, setSelectedPrice] = useState(null);
   const [cart, setCart] = useState([]);
   const [selectedFilmId, setSelectedFilmId] = useState(null);
   const [selectedRingId, setSelectedRingId] = useState(null);
   const [selectedKitId, setSelectedKitId] = useState(null);
+  const [textIphone, setTextIphone] = useState("");
+  const [textSamsung, setTextSamsung] = useState("");
+  const [fontIphone, setFontIphone] = useState("");
+  const [fontSamsung, setFontSamsung] = useState("");
+
+
   const navigate = useNavigate();
 
   // Caricamento iniziale del carrello
@@ -132,7 +140,8 @@ const Product = () => {
   const ringPrice = selectedRing?.price || 0;
   const kitPrice = selectedKit?.price || 0;
   const coverPrice = selectedPrice || 0;
-  const totalPrice = filmPrice + ringPrice + kitPrice + coverPrice;
+  const textPrice = 20 || 0;
+  const totalPrice = filmPrice + ringPrice + kitPrice + textPrice + coverPrice;
 
   const handleAddToCart = () => {
     if (!activeButton || !activeModel || (!selectedFilm && !selectedRing && !selectedKit)) {
@@ -147,10 +156,14 @@ const Product = () => {
       film: selectedFilm?.title || "Nessuna pellicola",
       ring: selectedRing?.title || "Nessun ring",
       kit: selectedKit?.title || "Nessun kit",
-      color: selectedColor || "Colore cover",
+      coverColor: selectedColor || "Colore cover",
+      textColor: activeButton === "apple" ? selectedTextColorIphone : selectedTextColorSamsung || "Colore testo",
+      text: activeButton === "apple" ? textIphone : textSamsung,
+      font: activeButton === "apple" ? fontIphone : fontSamsung, 
       filmPrice,
       ringPrice,
       kitPrice,
+      textPrice,
       priceCover: coverPrice,
       price: totalPrice,
       quantity: 1,
@@ -226,8 +239,21 @@ const Product = () => {
 
         {/* Customizer */}
         <div className="max-w-5xl mx-auto mt-10">
-          {showIphone && <PhoneCaseCustomizerIphone setSelectedColor={setSelectedColor} setSelectedPrice={setSelectedPrice} />}
-          {showSamsung && <PhoneCaseCustomizerSamsung setSelectedColor={setSelectedColor} setSelectedPrice={setSelectedPrice} />}
+          {showIphone && <PhoneCaseCustomizerIphone
+           setSelectedColor={setSelectedColor} 
+           setSelectedPrice={setSelectedPrice} 
+           setSelectedTextColorIphone={setSelectedTextColorIphone}
+           setSelectedTextIphone={setTextIphone}
+           setSelectedFontIphone={setFontIphone}
+
+           />}
+          {showSamsung && <PhoneCaseCustomizerSamsung 
+          setSelectedColor={setSelectedColor} 
+          setSelectedPrice={setSelectedPrice}
+          setSelectedTextColorSamsung={setSelectedTextColorSamsung} 
+          setSelectedTextSamsung={setTextSamsung}
+          setSelectedFontSamsung={setFontSamsung}
+          />}
         </div>
 
         {/* Totale */}

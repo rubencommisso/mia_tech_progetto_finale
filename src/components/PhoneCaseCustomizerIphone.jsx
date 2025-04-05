@@ -13,7 +13,7 @@ const PhoneCaseCustomizerIphone = ({
     const [fontFamily, setFontFamily] = useState("Arial");
     const [textColorIphone, setTextColorIphone] = useState("#ffffff")
 
-    const coverPrice = 308;
+    const coverPrice = 20;
     const fonts = ["Arial", "Verdana", "Tahoma", "Trebuchet MS", "Georgia", "Times New Roman", "Courier New", "Comic Sans MS"];
 
     const formatPrice = (value) =>

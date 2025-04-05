@@ -7,10 +7,19 @@ import { useNavigate } from "react-router-dom";
 const Cover = () => {
   const [activeButton, setActiveButton] = useState("apple");
   const [showApple, setShowApple] = useState(false);
+  const [showIphone, setShowIphone] = useState(false);
   const [showSamsung, setShowSamsung] = useState(false);
+  const [activeModel, setActiveModel] = useState(null);
   const [cart, setCart] = useState([]);
   const [selectedPrice, setSelectedPrice] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
+  const [selectedTextColorIphone, setSelectedTextColorIphone] = useState(null);
+  const [selectedTextColorSamsung, setSelectedTextColorSamsung] = useState(null);
+  const [textIphone, setTextIphone] = useState("");
+  const [textSamsung, setTextSamsung] = useState("");
+  const [fontIphone, setFontIphone] = useState("");
+  const [fontSamsung, setFontSamsung] = useState("");
+
 
   const navigate = useNavigate();
 
@@ -27,30 +36,40 @@ const Cover = () => {
 
   const handleBrandClick = (brand) => {
     if (brand === "Apple") {
-      setShowApple(true);
+      setShowIphone(true);
       setShowSamsung(false);
       setActiveButton("apple");
     } else if (brand === "Samsung") {
       setShowSamsung(true);
-      setShowApple(false);
+      setShowIphone(false);
       setActiveButton("samsung");
     }
+    setActiveModel(null);
   };
 
+  const handleModelClick = (model) => {
+    setActiveModel(model);
+  };
+
+  const textPrice = 20 || 0;
   const coverPrice = selectedPrice || 0;
-  const totalPrice = coverPrice;
+  const totalPrice = textPrice + coverPrice;
 
   const handleAddToCart = () => {
-    if (!activeButton) {
-      alert("Seleziona un colore");
+    if (!activeButton || !activeModel) {
+      alert("Seleziona marca e modello.");
       return;
     }
 
     const item = {
       id: Date.now() + Math.random(),
-      name: `${activeButton.toUpperCase()} - Cover`,
-      color: selectedColor || "Colore cover",
+      name: `${activeButton.toUpperCase()} - ${activeModel}`,
+      coverColor: selectedColor || "Colore cover",
       priceCover: coverPrice,
+      textColor: activeButton === "apple" ? selectedTextColorIphone : selectedTextColorSamsung || "Colore testo",
+      text: activeButton === "apple" ? textIphone : textSamsung,
+      font: activeButton === "apple" ? fontIphone : fontSamsung, 
+      textPrice,
       price: totalPrice,
       quantity: 1,
     };
@@ -84,18 +103,41 @@ const Cover = () => {
         ))}
       </div>
 
+       {/* Models */}
+       {showIphone && (
+          <ModelSelector
+            models={["iPhone 16", "iPhone SE"]}
+            activeModel={activeModel}
+            onClick={handleModelClick}
+          />
+        )}
+
+        {showSamsung && (
+          <ModelSelector
+            models={["Samsung S24", "Samsung S23"]}
+            activeModel={activeModel}
+            onClick={handleModelClick}
+          />
+        )}
+
       {/* Customizer */}
       <div className="max-w-5xl mx-auto mt-10 px-2 sm:px-4">
-        {showApple && (
+        {showIphone && (
           <PhoneCaseCustomizerIphone
             setSelectedColor={setSelectedColor}
             setSelectedPrice={setSelectedPrice}
+            setSelectedTextColorIphone={setSelectedTextColorIphone}
+            setSelectedTextIphone={setTextIphone}
+            setSelectedFontIphone={setFontIphone}
           />
         )}
         {showSamsung && (
           <PhoneCaseCustomizerSamsung
             setSelectedColor={setSelectedColor}
             setSelectedPrice={setSelectedPrice}
+            setSelectedTextColorSamsung={setSelectedTextColorSamsung} 
+            setSelectedTextSamsung={setTextSamsung}
+            setSelectedFontSamsung={setFontSamsung}
           />
         )}
       </div>
@@ -112,5 +154,30 @@ const Cover = () => {
     </div>
   );
 };
+
+const ModelSelector = ({ models, activeModel, onClick }) => (
+  <div className="mt-6">
+    <div className="mb-2 font-medium">Seleziona il tuo modello:</div>
+    <div className="flex flex-col sm:flex-row rounded-lg bg-white shadow-md mt-2">
+      {models.map((model, index) => (
+        <span
+          key={model}
+          className={`
+            cursor-pointer font-semibold px-10 py-3 text-lg 
+            flex-1 text-center border
+            ${activeModel === model
+              ? "bg-blue-100 border-blue-500"
+              : "hover:bg-blue-100"
+            }
+            ${index === 0 ? "rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none" : "rounded-b-lg sm:rounded-r-lg sm:rounded-bl-none"}
+          `}
+          onClick={() => onClick(model)}
+        >
+          {model}
+        </span>
+      ))}
+    </div>
+  </div>
+);
 
 export default Cover;

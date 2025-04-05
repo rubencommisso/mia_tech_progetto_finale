@@ -113,7 +113,8 @@ const Cart = () => {
                       <div
                         className="w-3.5 h-3.5 rounded-full border"
                         style={{ backgroundColor: product.coverColor }}
-                      />
+                        />
+                        <span>€{product.priceCover}</span>
                     
                     </div>)}
                     

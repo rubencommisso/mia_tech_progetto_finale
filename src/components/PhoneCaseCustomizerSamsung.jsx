@@ -62,6 +62,7 @@ const PhoneCaseCustomizerSamsung = ({
         <div className="flex flex-col lg:flex-row justify-center items-start min-h-screen gap-8 p-8 bg-gray-100">
             {/* LEFT SIDE: Cover */}
             <div className="flex justify-center w-full lg:w-1/2 pt-16">
+            <div id="customizer-preview" className="">
                 <div className="relative w-40 h-80 rounded-2xl shadow-xl transition-all duration-300" style={{ backgroundColor: color }}>
                     {/* Fotocamere Samsung */}
                     <div className="absolute top-4 left-4 flex flex-col space-y-2">
@@ -84,6 +85,7 @@ const PhoneCaseCustomizerSamsung = ({
                         )}
                     </div>
                 </div>
+            </div>
             </div>
 
             {/* RIGHT SIDE: Controls */}
@@ -149,6 +151,7 @@ const PhoneCaseCustomizerSamsung = ({
                 </div>
             </div>
         </div>
+        
     );
 };
 

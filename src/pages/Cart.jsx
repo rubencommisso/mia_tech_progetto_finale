@@ -50,6 +50,7 @@ const Cart = () => {
       0
     );
   };
+  
 
   return (
     <div className="container mx-auto px-4 py-6 flex flex-col md:flex-row gap-10">
@@ -68,17 +69,28 @@ const Cart = () => {
             >
               {/* Info prodotto */}
               <div className="flex gap-4 flex-1 items-stretch">
-                <div className="w-28 bg-white rounded-lg flex items-center justify-center overflow-hidden">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="object-contain w-full h-full"
-                  />
-                </div>
+                {/* immagine prodotto */}
+                {product.image &&
+                (<div className="w-40 h-45">
+                  <img src={product.image}  className="object-contain w-full h-full"/>
+                  </div>)}
+                {/* immagine Cover del Set accessori */}
+                {product.imageCover &&
+                (<div className="pt-2">
+                 <img src={product.imageCover} alt="" className="w-32 h-32 object-contain rounded-lg" />
+                </div>)}
+                {/* Imaggine cover della pagina Cover */}
+                {product.imageCoverOnly &&
+                (<div className="pt-2">
+                 <img src={product.imageCoverOnly} alt="" className="w-32 h-32 object-contain rounded-lg" />
+                </div>)}
+                
 
                 <div className="flex flex-col justify-between min-w-0">
+                {product.imageCover && (<h3 className="text-base font-semibold mb-2 break-words">Set Accessori</h3>)}
+                {product.imageCoverOnly && (<h3 className="text-base font-semibold mb-2 break-words">Cover</h3>)}
                   <h3 className="text-base font-semibold mb-2 break-words">{product.title || product.name}</h3>
-                  <span>€{product.price}</span>
+                  {product.image &&(<span>prezzo x1: €{product.price}</span>)}
 
                   <div className="text-sm text-gray-600 mb-3 flex flex-col gap-1">
                     

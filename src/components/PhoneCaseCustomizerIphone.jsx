@@ -57,6 +57,7 @@ const PhoneCaseCustomizerIphone = ({
         <div className="flex flex-col lg:flex-row justify-center items-start min-h-screen gap-8 p-8 bg-gray-100">
             {/* LEFT SIDE: Cover */}
             <div className="flex justify-center w-full lg:w-1/2 pt-16">
+            <div id="customizer-preview" className="">
                 <div className="relative w-40 h-80 rounded-3xl shadow-xl transition-all duration-300" style={{ backgroundColor: color }}>
                     {/* Camera cutouts */}
                     <div className="absolute top-4 left-4 w-12 h-12 bg-black rounded-full flex items-center justify-center">
@@ -81,6 +82,7 @@ const PhoneCaseCustomizerIphone = ({
                         )}
                     </div>
                 </div>
+            </div>
             </div>
     
             {/* RIGHT SIDE: All controls */}
@@ -141,6 +143,7 @@ const PhoneCaseCustomizerIphone = ({
                 </div>
             </div>
         </div>
+        
     );
     
 };

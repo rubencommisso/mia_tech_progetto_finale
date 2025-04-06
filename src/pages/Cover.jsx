@@ -3,6 +3,7 @@ import PhoneCaseCustomizerIphone from "../components/PhoneCaseCustomizerIphone";
 import PhoneCaseCustomizerSamsung from "../components/PhoneCaseCustomizerSamsung";
 import AddButton from "../components/AddButton";
 import { useNavigate } from "react-router-dom";
+import html2canvas from "html2canvas";
 
 const Cover = () => {
   const [activeButton, setActiveButton] = useState("apple");
@@ -55,10 +56,16 @@ const Cover = () => {
   const coverPrice = selectedPrice || 0;
   const totalPrice = textPrice + coverPrice;
 
-  const handleAddToCart = () => {
+  const handleAddToCart = async  () => {
     if (!activeButton || !activeModel) {
       alert("Seleziona marca e modello.");
       return;
+    }
+
+    const renderImage = await captureRender(); // 👈 Ottieni il render
+
+    if(!renderImage){
+      alert(error)
     }
 
     const item = {
@@ -72,11 +79,19 @@ const Cover = () => {
       textPrice,
       price: totalPrice,
       quantity: 1,
+      imageCoverOnly: renderImage, // 👈 Salva l’immagine nel carrello
     };
 
     setCart((prevCart) => [...prevCart, item]);
     console.log("🛒 Aggiunto al carrello:", item);
     navigate("/cart");
+  };
+
+  const captureRender = async () => {
+    const element = document.getElementById("customizer-preview");
+    if (!element) return null;
+    const canvas = await html2canvas(element);
+    return canvas.toDataURL("image/png");
   };
 
   return (

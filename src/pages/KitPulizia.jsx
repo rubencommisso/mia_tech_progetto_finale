@@ -5,8 +5,6 @@ import Card from '@components/card'
 import kitPulizia from '@assets/kitPulizia.jpeg'
 import pulizia2 from '@assets/pulizia2.jpg'
 import pulizia3 from '@assets/pulizia3.jpg'
-import ButtonToPage from '@components/ButtonToPage'
-
 
 
 const KitPulizia = () => {
@@ -130,17 +128,12 @@ const KitPulizia = () => {
                                 activeCardId={activeCardId}
                                 onClick={() => handleCardClick(product.id)}
                             />
-                            <ButtonToPage
-                                onClick={() => handleAddToCart(product)} 
-                                label="Aggiungi al carrello"
-                                className="bg-orange-500 hover:bg-orange-400 text-black font-bold w-full py-3 rounded-3xl transition-all"
-                            />
-                           {/*  <button
-                                className="mt-1 bg-orange-500 hover:bg-orange-400 text-black py-2 px-1 rounded-3xl w-[160px] min-w-[80px]"
+                            <button
+                                className="mt-1 bg-orange-500 hover:bg-orange-400 text-black py-2 px-1 rounded-3xl w-[170px] min-w-[80px]"
                                 onClick={() => handleAddToCart(product)}
                             >
                                 Aggiungi al carrello
-                            </button> */}
+                            </button>
                         </div>
                     ))}
                 </div>

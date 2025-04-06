@@ -135,12 +135,6 @@ const KitPulizia = () => {
                                 label="Aggiungi al carrello"
                                 className="bg-orange-500 hover:bg-orange-400 text-black font-bold w-full py-3 rounded-3xl transition-all"
                             />
-                           {/*  <button
-                                className="mt-1 bg-orange-500 hover:bg-orange-400 text-black py-2 px-1 rounded-3xl w-[160px] min-w-[80px]"
-                                onClick={() => handleAddToCart(product)}
-                            >
-                                Aggiungi al carrello
-                            </button> */}
                         </div>
                     ))}
                 </div>

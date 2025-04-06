@@ -54,7 +54,7 @@ const ShowDetail = () => {
         
             <button
                 onClick={handleBackClick}
-                className="bg-orange-500 hover:bg-orange-400 text-black font-bold rounded-3xl px-2 py-2 mr-12 ml-6 md:w-32 md:h-10 md:absolute relative mt-16  md:bottom-64 md:left-16 "
+                className="bg-orange-500 hover:bg-orange-400 text-black font-bold rounded-3xl px-2 py-2 mr-12 ml-6 md:w-32 md:h-10 md:absolute relative mt-9  md:bottom-48 md:left-16 "
             >
                 INDIETRO
             </button>

@@ -5,8 +5,6 @@ import Card from '@components/card'
 import kitPulizia from '@assets/kitPulizia.jpeg'
 import pulizia2 from '@assets/pulizia2.jpg'
 import pulizia3 from '@assets/pulizia3.jpg'
-import ButtonToPage from '@components/ButtonToPage'
-
 
 
 const KitPulizia = () => {

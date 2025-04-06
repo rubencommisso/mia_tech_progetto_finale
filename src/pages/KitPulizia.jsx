@@ -125,7 +125,7 @@ const KitPulizia = () => {
                 <ButtonToPage
                   onClick={() => handleAddToCart(product)}
                   label="Aggiungi al carrello"
-                  className="bg-orange-500 hover:bg-orange-400 text-black font-bold w-40 h-15 rounded-3xl transition-all"
+                  className="bg-orange-500 h-8 hover:bg-orange-400 text-black font-bold w-40 h-15 rounded-3xl transition-all"
                 />
               </Card>
             </div>

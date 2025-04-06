@@ -5,6 +5,7 @@ import PhoneCaseCustomizerSamsung from "../components/PhoneCaseCustomizerSamsung
 import Card from "../components/card";
 import AddButton from "../components/AddButton";
 import { useNavigate } from "react-router-dom";
+import html2canvas from "html2canvas";
 
 const Product = () => {
   const [showIphone, setShowIphone] = useState(false);
@@ -143,15 +144,21 @@ const Product = () => {
   const textPrice = 20 || 0;
   const totalPrice = filmPrice + ringPrice + kitPrice + textPrice + coverPrice;
 
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
     if (!activeButton || !activeModel || (!selectedFilm && !selectedRing && !selectedKit)) {
       alert("Seleziona marca, modello e almeno un accessorio.");
       return;
     }
 
+    const renderImage = await captureRender(); // 👈 Ottieni il render
+
+    if(!renderImage) {
+      alert(error)
+    }
+
     const item = {
       id: Date.now(),
-      image: selectedFilm?.image || selectedRing?.image || selectedKit?.image || "Foto",
+     /*  image: selectedFilm?.image || selectedRing?.image || selectedKit?.image || "Foto", */
       name: `${activeButton.toUpperCase()} - ${activeModel}`,
       film: selectedFilm?.title || "Nessuna pellicola",
       ring: selectedRing?.title || "Nessun ring",
@@ -167,11 +174,19 @@ const Product = () => {
       priceCover: coverPrice,
       price: totalPrice,
       quantity: 1,
+      imageCover: renderImage, // 👈 Salva l’immagine nel carrello
     };
 
     setCart((prevCart) => [...prevCart, item]);
     console.log("🛒 Aggiunto al carrello:", item);
     navigate("/cart");
+  };
+
+  const captureRender = async () => {
+    const element = document.getElementById("customizer-preview");
+    if (!element) return null;
+    const canvas = await html2canvas(element);
+    return canvas.toDataURL("image/png");
   };
 
   return (

@@ -16,41 +16,26 @@ const KitPulizia = () => {
     {
       src: 'kitpulizia-1.jpg',
       alt: 'kitpulizia 1',
-      id: 4,
+      id: 1,
       title: "Kit di pulizia completo per smartphone",
       price: 15,
       image: kitPulizia,
-      images: [
-        { src: kitPulizia, alt: 'kitpulizia 1' },
-        { src: pulizia2, alt: 'kitpulizia 2' },
-        { src: pulizia3, alt: 'kitpulizia 3' }
-      ]
     },
     {
       src: 'kitpulizia-4.jpg',
       alt: 'kitpulizia 2',
-      id: 5,
+      id: 2,
       title: "Kit di pulizia con panno in microfibra",
       price: 10,
       image: pulizia2,
-      images: [
-        { src: pulizia2, alt: 'kitpulizia 4' },
-        { src: kitPulizia, alt: 'kitpulizia 5' },
-        { src: pulizia3, alt: 'kitpulizia 6' }
-      ]
     },
     {
       src: 'kitpulizia-7.jpg',
       alt: 'kitpulizia 3',
-      id: 6,
+      id: 3,
       title: "Spray per la pulizia del display",
       price: 12,
       image: pulizia3,
-      images: [
-        { src: pulizia3, alt: 'kitpulizia 7' },
-        { src: pulizia2, alt: 'kitpulizia 8' },
-        { src: kitPulizia, alt: 'kitpulizia 9' }
-      ]
     },
   ]
 
@@ -134,18 +119,39 @@ const KitPulizia = () => {
         
         {/* Altri dettagli sui prodotti */}
         <div>
-          <h2 className="text-3xl text-start font-semibold mb-2">
-            Dettagli aggiuntivi sui Kit di Pulizia per Cellulari
-          </h2>
-          <p className="text-gray-700 text-justify text-xl mt-4">
-            I kit di pulizia per smartphone sono pensati per mantenere il tuo dispositivo pulito ...
-          </p>
-          {/* ... e così via */}
+        <h2 className="text-3xl text-start font-semibold mb-2">Dettagli aggiuntivi sui Kit di Pulizia per Cellulari</h2>
+                    <p className="text-gray-700 text-justify text-xl mt-4">
+                        I kit di pulizia per smartphone sono pensati per mantenere il tuo dispositivo pulito e senza polvere. Utilizzare i giusti strumenti di pulizia può migliorare la durata del tuo telefono e la visibilità dello schermo.
+                    </p>
+
+                    <h3 className="text-2xl font-bold mb-2 mt-6">Vantaggi principali dei Kit di Pulizia:</h3>
+                    <ul className="list-disc pl-6 text-gray-600">
+                        <li>Rimuove polvere, impronte e macchie dallo schermo senza danneggiarlo.</li>
+                        <li>Il panno in microfibra è delicato e non graffia la superficie del dispositivo.</li>
+                        <li>Comodo e facile da usare: porta il kit sempre con te!</li>
+                        <li>Prolungano la vita del tuo dispositivo, mantenendolo come nuovo.</li>
+                    </ul>
+
+                    <h3 className="text-2xl font-extrabold mt-12 mb-2">Come utilizzare il Kit di Pulizia:</h3>
+                    <p className="text-gray-900 font-black">
+                        Utilizza il panno in microfibra per pulire delicatamente lo schermo e la scocca del dispositivo. Se necessario, spruzza una piccola quantità di spray direttamente sul panno (non sul dispositivo!) e rimuovi macchie e polvere.
+                    </p>
+
+                    <h3 className="text-3xl font-bold text-start mt-12 mb-10">Come scegliere il kit giusto per il tuo smartphone:</h3>
+                    <p className="text-gray-700 text-lg">
+                        Se desideri un kit completo per la pulizia quotidiana, un kit che include sia il panno che lo spray è la scelta migliore. Se hai bisogno di un'opzione più leggera, un semplice panno in microfibra potrebbe essere sufficiente.
+                    </p>
+
+                    <h3 className="text-3xl font-semibold mt-10 mb-2">Manutenzione e cura del Kit di Pulizia:</h3>
+                    <p className="text-gray-700 pb-6 text-2xl">
+                        Per mantenere il kit in buone condizioni, lavare il panno in microfibra con acqua tiepida e senza detersivo, evitando l'uso di ammorbidenti. Inoltre, conserva lo spray in un luogo fresco e asciutto per evitare che si danneggi.
+                    </p>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  )
+    )
 }
+
 
 
 export default KitPulizia

@@ -121,7 +121,7 @@ const KitPulizia = () => {
 
                 <div className="grid grid-cols-1 max-w-3xl  justify-items-start mt-4  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 ">
                     {CardProduct.map((product) => (
-                        <div key={product.id} className="flex flex-col justify-center items-start p-4  sm:w-48 sm-52 md:w-60 md:h-80 md:p-0 md:mb-6 ">
+                        <div key={product.id} className="flex flex-col justify-center item-center p-4  sm:w-48 sm-52 md:w-60 md:h-80 md:p-0 md:mb-6 ">
                             <Card
                                 id={product.id}
                                 title={product.title}
@@ -129,12 +129,13 @@ const KitPulizia = () => {
                                 image={product.image}
                                 activeCardId={activeCardId}
                                 onClick={() => handleCardClick(product.id)}
-                            />
-                            <ButtonToPage
-                                onClick={() => handleAddToCart(product)} 
-                                label="Aggiungi al carrello"
-                                className="bg-orange-500 hover:bg-orange-400 text-black font-bold w-full py-3 rounded-3xl transition-all"
-                            />
+                            >
+                                <ButtonToPage
+                                    onClick={() => handleAddToCart(product)}
+                                    label="Aggiungi al carrello"
+                                    className="bg-orange-500 hover:bg-orange-400 text-black font-bold px-4 py-2 rounded-full text-sm whitespace-nowrap"
+                                />
+                            </Card>
                         </div>
                     ))}
                 </div>

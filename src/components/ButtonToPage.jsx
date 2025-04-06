@@ -1,11 +1,18 @@
 
     
 const ButtonToPage = ({onClick, label = "Scopri di più", className}) => {
+    const handleClick = (e) => {
+        e.stopPropagation() // impedisce che il click "salga" alla card
+        if (typeof onClick === 'function') {
+            onClick()
+          }
+      }
+      
     return (
         <div className="mt-6 flex gap-4 justify-center items-center ">
-            <div className=" w-2/3  mx-auto">
+            <div className="mx-auto">
             <button
-                onClick={onClick}
+                onClick={handleClick}
                 className={`${className}`}
       // oppure se hai classi di default:
       // className={`bg-orange-500 text-white py-2 px-4 rounded ${className}`}

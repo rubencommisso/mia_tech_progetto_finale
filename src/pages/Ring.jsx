@@ -19,18 +19,33 @@ const Ring = () => {
       title: "Ring Nero",
       price: 15,
       image: ringPhone,
+      images: [
+        { src: ringPhone, alt: 'Ring Nero 1' },
+        { src: ring1, alt: 'Ring Nero 2' },
+        { src: ring2, alt: 'Ring Nero 3' }
+      ]
     },
     {
       id:8,
       title: "Ring Argento",
       price: 18,
       image: ring1,
+      images: [
+        { src: ringPhone, alt: 'Ring Argento 1' },
+        { src: ring1, alt: 'Ring Argento 2' },
+        { src: ring2, alt: 'Ring Argento 3' }
+      ]
     },
     {
       id:9,
       title: "Ring Oro",
       price: 20,
       image: ring2,
+      images: [
+        { src: ringPhone, alt: 'Ring Oro 1' },
+        { src: ring1, alt: 'Ring Oro 2' },
+        { src: ring2, alt: 'Ring Oro 3' }
+      ]
     },
   ]
 

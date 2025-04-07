@@ -21,6 +21,11 @@ const Pellicole = () => {
       title: "Pellicola pvc super resistente effetto satinato",
       price: 20,
       image: pellicole,
+      images: [
+        { src: pellicola, alt: 'imgpiccola 1' },
+        { src: pellicole, alt: 'imgpiccola 2' },
+        { src: pellicole2, alt: 'imgpiccola 3' }
+      ]
     },
     {
       src: 'piccola-2.jpg',
@@ -29,6 +34,11 @@ const Pellicole = () => {
       title: "Pellicola vetro temprato antigraffio",
       price: 30,
       image: pellicole2,
+      images: [
+        { src: pellicola, alt: 'imgpiccola 4' },
+        { src: pellicola, alt: 'imgpiccola 5' },
+        { src: pellicole2, alt: 'imgpiccola 6' }
+      ]
     },
     {
       src: 'piccola-2.jpg',
@@ -37,6 +47,11 @@ const Pellicole = () => {
       title: "Pellicola vetro temprato anti-impronte",
       price: 40,
       image: pellicola,
+      images: [
+        { src: pellicola, alt: 'imgpiccola 7' },
+        { src: pellicole, alt: 'imgpiccola 8' },
+        { src: pellicole2, alt: 'imgpiccola 9' }
+      ]
     },
   ]
 

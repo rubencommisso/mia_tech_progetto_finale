@@ -20,6 +20,11 @@ const KitPulizia = () => {
       title: "Kit di pulizia completo per smartphone",
       price: 15,
       image: kitPulizia,
+      images: [
+        { src: kitPulizia, alt: 'kitpulizia 1' },
+        { src: pulizia2, alt: 'kitpulizia 2' },
+        { src: pulizia3, alt: 'kitpulizia 3' }
+      ]
     },
     {
       src: 'kitpulizia-4.jpg',
@@ -28,6 +33,11 @@ const KitPulizia = () => {
       title: "Kit di pulizia con panno in microfibra",
       price: 10,
       image: pulizia2,
+      images: [
+        { src: pulizia2, alt: 'kitpulizia 4' },
+        { src: kitPulizia, alt: 'kitpulizia 5' },
+        { src: pulizia3, alt: 'kitpulizia 6' }
+      ]
     },
     {
       src: 'kitpulizia-7.jpg',
@@ -36,6 +46,11 @@ const KitPulizia = () => {
       title: "Spray per la pulizia del display",
       price: 12,
       image: pulizia3,
+      images: [
+        { src: pulizia3, alt: 'kitpulizia 7' },
+        { src: pulizia2, alt: 'kitpulizia 8' },
+        { src: kitPulizia, alt: 'kitpulizia 9' }
+      ]
     },
   ]
 

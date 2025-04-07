@@ -109,15 +109,13 @@ const Pellicole = () => {
   return (
     <div className="bg-gray-100 p-10 md:p-6 flex justify-start items-start">
       <div className="max-w-5xl mx-auto flex flex-col justify-center">
-        {/* Titolo principale come in KitPulizia */}
         <h1 className="text-3xl text-start md:mt-2 md:mb-2 font-bold">Pellicole</h1>
         <h2 className="text-2xl font-normal text-start mt-2 md:mb-2">
           Scegli la pellicola che desideri!
         </h2>
-
-        {/* Griglia dei prodotti simile a KitPulizia */}
+        
         <div className="grid grid-cols-1 max-w-3xl justify-items-start mt-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
-          {CardProduct.map(product => (
+          {CardProduct.map((product) => (
             <div
               key={product.id}
               className="flex flex-col justify-center item-center p-4 sm:w-48 sm-52 md:w-60 md:h-80 md:p-0 md:mb-6"
@@ -130,7 +128,6 @@ const Pellicole = () => {
                 activeCardId={activeCardId}
                 onClick={() => handleCardClick(product.id)}
               >
-                {/* Usa il tuo ButtonToPage per coerenza con KitPulizia */}
                 <ButtonToPage
                   onClick={() => handleAddToCart(product)}
                   label="Aggiungi al carrello"
@@ -141,16 +138,13 @@ const Pellicole = () => {
           ))}
         </div>
 
-        {/* Sezione descrittiva */}
         <div>
-          <h2 className="text-4xl text-center font-semibold mb-12">
-            Dettagli aggiuntivi sulle Pellicole per Cellulari
-          </h2>
-          <p className="text-gray-700 text-justify text-xl mt-10">
+          <h2 className="text-3xl text-start font-semibold mb-2">Dettagli aggiuntivi sulle Pellicole per Cellulari</h2>
+          <p className="text-gray-700 text-justify text-xl mt-4">
             Le pellicole per cellulari sono progettate per proteggere il tuo dispositivo da graffi, urti e polvere...
           </p>
 
-          <h3 className="text-3xl font-bold mb-2 mt-20">Vantaggi principali:</h3>
+          <h3 className="text-2xl font-bold mb-2 mt-6">Vantaggi principali delle Pellicole:</h3>
           <ul className="list-disc pl-6 text-gray-600">
             <li>Protezione contro graffi e danni alla superficie dello schermo.</li>
             <li>Facile applicazione senza bolle d'aria.</li>
@@ -158,23 +152,19 @@ const Pellicole = () => {
             <li>Compatibile con la maggior parte dei modelli di smartphone.</li>
           </ul>
 
-          <h3 className="text-2xl font-extrabold mt-12 mb-2">
-            Tipologie di pellicole disponibili:
-          </h3>
+          <h3 className="text-2xl font-extrabold mt-12 mb-2">Tipologie di pellicole disponibili:</h3>
           <p className="text-gray-900 font-black">
             Esistono diverse tipologie di pellicole, come quelle in vetro temperato o in plastica...
           </p>
 
-          <h3 className="text-4xl font-bold text-center mt-12 mb-10">
+          <h3 className="text-3xl font-bold text-start mt-12 mb-10">
             Come scegliere la pellicola giusta per il tuo smartphone:
           </h3>
           <p className="text-gray-700 text-lg">
             Quando scegli una pellicola per il tuo smartphone, è importante considerare il tipo di utilizzo...
           </p>
 
-          <h3 className="text-3xl font-semibold mt-10 mb-2">
-            Manutenzione e cura della pellicola:
-          </h3>
+          <h3 className="text-3xl font-semibold mt-10 mb-2">Manutenzione e cura della pellicola:</h3>
           <p className="text-gray-700 pb-6 text-2xl">
             Per mantenere la pellicola in buone condizioni, è consigliabile pulirla regolarmente con un panno morbido...
           </p>
@@ -182,6 +172,7 @@ const Pellicole = () => {
       </div>
     </div>
   )
+
 }
 
 export default Pellicole

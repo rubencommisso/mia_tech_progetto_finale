@@ -1,42 +1,104 @@
 import React, { useState } from 'react';
 
+const paroleProibite = [
+  'brutta',
+  'stupido',
+  'idiota',
+  'parolaccia',
+  'cretino',
+  'cavolo',
+  'mannaggia',
+  'offesa1',
+  'offesa2',
+  'cacca',
+  'scemo',
+  'babbeo',
+  'stronzo',
+  'imbecille',
+  'pirla',
+  'fesso',
+  'vaffa',
+  'scema',
+]
+
+
 const ContactPage = () => {
   const [formData, setFormData] = useState({
     nome: '',
     email: '',
     telefono: '',
     messaggio: '',
-  });
+  })
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    // Solo numeri nel campo telefono
+    if (name === 'telefono' && /[^0-9+ ]/.test(value)) {
+      return;
+    }
+
     setFormData({
       ...formData,
       [name]: value,
-    });
-  };
+    })
+  }
+
+  const contieneParoleProibite = (messaggio) => {
+    const lowerMsg = messaggio.toLowerCase();
+    return paroleProibite.some((parola) => lowerMsg.includes(parola))
+  }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const storedMessages = JSON.parse(localStorage.getItem('messages')) || [];
+    e.preventDefault()
+  
+    const { nome, telefono, messaggio } = formData;
+  
+    // Controllo nome valido (solo lettere e spazi)
+    const nomeValido = /^[a-zA-ZàèéìòùÀÈÉÌÒÙ\s']{2,}$/.test(nome);
+    if (!nomeValido) {
+      alert('Inserisci un nome valido (solo lettere e almeno 2 caratteri).')
+      return
+    }
+  
+    // Controllo se il nome contiene parole proibite
+    if (contieneParoleProibite(nome)) {
+      alert('Il nome inserito contiene parole non appropriate.');
+      return
+    }
+  
+    // Controllo telefono
+    const telefonoValido = /^\+?\d{7,15}$/.test(telefono)
+    if (!telefonoValido) {
+      alert('Inserisci un numero di telefono valido.')
+      return
+    }
+  
+    // Controllo messaggio
+    if (contieneParoleProibite(messaggio)) {
+      alert('Il messaggio contiene parole non appropriate. Per favore, riscrivilo.')
+      return
+    }
+  
+    // Tutto ok: salva il messaggio
+    const storedMessages = JSON.parse(localStorage.getItem('messages')) || []
     storedMessages.push(formData);
-
-    localStorage.setItem('messages', JSON.stringify(storedMessages));
-
+    localStorage.setItem('messages', JSON.stringify(storedMessages))
+  
     setFormData({
       nome: '',
       email: '',
       telefono: '',
       messaggio: '',
-    });
-
-    alert('Il tuo messaggio è stato inviato con successo!');
-  };
+    })
+  
+    alert('Il tuo messaggio è stato inviato con successo!')
+  }
+  
 
   return (
     <div className="max-w-7xl mx-auto p-6">
-      <h1 className="text-3xl font-bold text-center mb-12 text-orange-600">Contattaci</h1>
+      <h1 className="text-3xl font-bold text-center mb-12 text-orange-500">Contattaci</h1>
 
       <div className="flex flex-col md:flex-row gap-8">
         <div className="w-full md:w-1/2 space-y-4">
@@ -115,7 +177,7 @@ const ContactPage = () => {
 
             <button
               type="submit"
-              className="w-full bg-orange-500 text-white py-2 rounded-md hover:bg-orange-600 transition duration-300"
+              className="w-full bg-orange-500 text-white py-2 rounded-full hover:bg-orange-400 transition duration-300"
             >
               Invia
             </button>
@@ -123,7 +185,8 @@ const ContactPage = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ContactPage;
+export default ContactPage
+

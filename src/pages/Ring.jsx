@@ -26,7 +26,7 @@ const Ring = () => {
       ]
     },
     {
-      id:8,
+      id: 8,
       title: "Ring Argento",
       price: 18,
       image: ring1,
@@ -37,7 +37,7 @@ const Ring = () => {
       ]
     },
     {
-      id:9,
+      id: 9,
       title: "Ring Oro",
       price: 20,
       image: ring2,
@@ -117,7 +117,7 @@ const Ring = () => {
           {CardProduct.map((product) => (
             <div
               key={product.id}
-              className="flex flex-col justify-center items-center p-4 sm:w-48 sm-52 md:w-60 md:h-80 md:p-0 md:mb-6"
+              className="flex flex-col justify-center item-center p-4 sm:w-48 sm-52 md:w-60 md:h-80 md:p-0 md:mb-6"
             >
               <Card
                 id={product.id}
@@ -127,7 +127,6 @@ const Ring = () => {
                 activeCardId={activeCardId}
                 onClick={() => handleCardClick(product.id)}
               >
-                {/* Stesso pulsante personalizzato usato in KitPulizia/Pellicole */}
                 <ButtonToPage
                   onClick={() => handleAddToCart(product)}
                   label="Aggiungi al carrello"
@@ -138,17 +137,14 @@ const Ring = () => {
           ))}
         </div>
 
-        {/* Sezione descrittiva e vantaggi */}
-        <div className="mt-2">
-          <h2 className="text-4xl text-center font-semibold mb-12">
-            Dettagli sui Ring - Perché sceglierli?
-          </h2>
-          <p className="text-gray-700 text-justify text-xl mt-10">
-            I nostri ring sono progettati per offrire una presa sicura e comoda sul tuo dispositivo...
-            {/* ... e così via */}
+        {/* Dettagli Ring */}
+        <div>
+          <h2 className="text-2xl text-start font-semibold mb-2 mt-2">Dettagli sui Ring - Perché sceglierli?</h2>
+          <p className="text-gray-700 text-justify text-xl mt-2">
+            I nostri ring sono progettati per offrire una presa sicura e comoda sul tuo dispositivo, migliorando la funzionalità e lo stile. Offrono una protezione aggiuntiva e una maneggevolezza superiore per ogni tipo di telefono.
           </p>
 
-          <h3 className="text-3xl font-bold mb-2 mt-20">Vantaggi principali:</h3>
+          <h3 className="text-2xl font-bold mb-2 mt-6">Vantaggi principali:</h3>
           <ul className="list-disc pl-6 text-gray-600">
             <li>Protezione robusta per il tuo dispositivo.</li>
             <li>Design elegante e raffinato adatto a ogni occasione.</li>
@@ -157,36 +153,26 @@ const Ring = () => {
           </ul>
 
           <h3 className="text-2xl font-extrabold mt-12 mb-2">Tipologie di ring disponibili:</h3>
-          <p className="text-gray-900 font-black">
-            I nostri ring sono disponibili in tre varianti:
-          </p>
           <ul className="list-disc pl-6 text-gray-600">
-            <li>
-              <strong>Ring Nero:</strong> Perfetto per chi cerca un look elegante e sobrio.
-            </li>
-            <li>
-              <strong>Ring Argento:</strong> Un tocco di raffinatezza per il tuo telefono.
-            </li>
-            <li>
-              <strong>Ring Oro:</strong> Il massimo del lusso per chi vuole distinguersi.
-            </li>
+            <li><strong>Ring Nero:</strong> Perfetto per chi cerca un look elegante e sobrio.</li>
+            <li><strong>Ring Argento:</strong> Un tocco di raffinatezza per il tuo telefono.</li>
+            <li><strong>Ring Oro:</strong> Il massimo del lusso per chi vuole distinguersi.</li>
           </ul>
 
-          <h3 className="text-4xl font-bold text-center mt-12 mb-10">
-            Come scegliere il ring giusto per il tuo telefono:
-          </h3>
+          <h3 className="text-2xl font-bold text-start mt-12 mb-10">Come scegliere il ring giusto per il tuo telefono</h3>
           <p className="text-gray-700 text-lg">
-            Quando scegli un ring per il tuo telefono, considera il tuo stile personale...
+            Considera il tuo stile personale e le tue abitudini d'uso. Scegli un ring che combini funzionalità, estetica e compatibilità con il tuo dispositivo.
           </p>
 
-          <h3 className="text-3xl font-semibold mt-10 mb-2">Manutenzione e cura del ring:</h3>
+          <h3 className="text-2xl font-semibold mt-10 mb-2">Manutenzione e cura del ring:</h3>
           <p className="text-gray-700 pb-6 text-2xl">
-            Per mantenere il tuo ring in perfette condizioni, ti consigliamo di pulirlo regolarmente...
+            Per mantenere il tuo ring in perfette condizioni, puliscilo regolarmente con un panno morbido e asciutto. Evita il contatto con sostanze chimiche aggressive.
           </p>
         </div>
       </div>
     </div>
   )
+
 }
 
 export default Ring

@@ -15,26 +15,7 @@ const AboutUs = () => {
     AOS.init();
   }, []);
   
-  const recentProducts = [
-    {
-      name: 'Cover Eco-Friendly',
-      description: 'Realizzata con materiali biodegradabili e plastica riciclata.',
-      image: 'link-to-image-1.jpg', 
-      link: '/sustainability#product-1',  
-    },
-    {
-      name: 'Pellicola Protettiva',
-      description: 'Protezione durevole, realizzata con plastica riciclata.',
-      image: 'link-to-image-2.jpg', 
-      link: '/sustainability#product-2', 
-    },
-    {
-      name: 'Cover in Bambù',
-      description: 'Cover leggera e resistente, fatta di bambù naturale e sostenibile.',
-      image: 'link-to-image-3.jpg', 
-      link: '/sustainability#product-3', 
-    },
-  ];
+  
   
   return (
     <div className="about-us-container bg-white text-gray-800">
@@ -110,7 +91,7 @@ const AboutUs = () => {
     </p>
     </div>
     
-    <div className="mt-24">
+{/*     <div className="mt-24">
     <h2
     className="text-3xl font-bold text-center text-gray-800 mb-8"
     data-aos="fade-up"
@@ -146,7 +127,7 @@ const AboutUs = () => {
       </div>
     ))}
     </div>
-    </div>
+    </div> */}
     </div>
     </div>
   );

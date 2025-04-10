@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import html2canvas from "html2canvas";
 
 const Cover = () => {
-  const [activeButton, setActiveButton] = useState("apple");
+  const [activeButton, setActiveButton] = useState(null);
   const [showIphone, setShowIphone] = useState(false);
   const [showSamsung, setShowSamsung] = useState(false);
   const [activeModel, setActiveModel] = useState(null);

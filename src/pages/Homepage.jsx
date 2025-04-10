@@ -51,7 +51,7 @@ const Homepage = () => {
                     <ButtonToPage
                         onClick={goTopreSetpage}
                         label="Scegli il tuo set"
-                        className="bg-orange-500 hover:bg-orange-400 text-black font-bold w-full py-3 rounded-3xl transition-all"
+                        className="mt-4 mb-4 bg-orange-500 hover:bg-orange-400 text-black font-bold w-full py-3 rounded-3xl transition-all"
                     />
 
                     <style>
@@ -82,7 +82,7 @@ const Homepage = () => {
                             <ButtonToPage
                                 onClick={goToCoverPage}
                                 label="Vai alle cover"
-                                className="bg-orange-500 hover:bg-orange-400 text-black font-bold w-full py-3 rounded-3xl transition-all"
+                                className="mt-4 bg-orange-500 hover:bg-orange-400 text-black font-bold w-full py-3 rounded-3xl transition-all"
                             />
                         </div>
 
@@ -96,7 +96,7 @@ const Homepage = () => {
                             <ButtonToPage
                                 onClick={goToFilmPage}
                                 label="Vai alle pellicole"
-                                className="bg-orange-500 hover:bg-orange-400 text-black font-bold w-full py-3 rounded-3xl transition-all"
+                                className="mt-4 bg-orange-500 hover:bg-orange-400 text-black font-bold w-full py-3 rounded-3xl transition-all"
                             />
                         </div>
 
@@ -110,7 +110,7 @@ const Homepage = () => {
                             <ButtonToPage
                                 onClick={goToRingPage}
                                 label="Vai ai ring"
-                                className="bg-orange-500 hover:bg-orange-400 text-black font-bold w-full py-3 rounded-3xl transition-all"
+                                className="mt-4 bg-orange-500 hover:bg-orange-400 text-black font-bold w-full py-3 rounded-3xl transition-all"
                             />
                         </div>
 
@@ -124,7 +124,7 @@ const Homepage = () => {
                             <ButtonToPage
                                 onClick={goToCleanPage}
                                 label="Vai al kit pulizia"
-                                className="bg-orange-500 hover:bg-orange-400 text-black font-bold w-full py-3 rounded-3xl transition-all"
+                                className="mt-4 bg-orange-500 hover:bg-orange-400 text-black font-bold w-full py-3 rounded-3xl transition-all"
                             />
                         </div>
                     </div>

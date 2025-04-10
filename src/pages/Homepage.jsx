@@ -15,10 +15,16 @@ const Homepage = () => {
 
     const goTopreSetpage = () => {
         navigate("/product");
+        setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 100);
     };
 
     const goToCoverPage = () => {
         navigate("/cover");
+        setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 100);
     };
     const goToFilmPage = () => {
         navigate("/pellicole");

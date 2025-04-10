@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import esempio from '@assets/esempio.jpg';
+import spryDef from "../assets/spryDef.png";
+import pannoDef from "../assets/pannoDef.png";
 import Card from '@components/card';
 import kitPulizia from '@assets/kitPulizia.jpeg';
 import pulizia2 from '@assets/pulizia2.jpg';
@@ -22,21 +24,21 @@ const KitPulizia = () => {
       image: kitPulizia,
       images: [
         { src: kitPulizia, alt: 'kitpulizia 1' },
-        { src: pulizia2, alt: 'kitpulizia 2' },
-        { src: pulizia3, alt: 'kitpulizia 3' }
+        { src: pannoDef, alt: 'kitpulizia 2' },
+        { src: spryDef, alt: 'kitpulizia 3' }
       ]
     },
     {
       src: 'kitpulizia-4.jpg',
       alt: 'kitpulizia 2',
       id: 2,
-      title: "Kit di pulizia con panno in microfibra",
+      title: "Panno in microfibra",
       price: 10,
-      image: pulizia2,
+      image: pannoDef,
       images: [
-        { src: pulizia2, alt: 'kitpulizia 4' },
+        { src:pannoDef, alt: 'kitpulizia 4' },
         { src: kitPulizia, alt: 'kitpulizia 5' },
-        { src: pulizia3, alt: 'kitpulizia 6' }
+        { src: spryDef, alt: 'kitpulizia 6' }
       ]
     },
     {
@@ -45,10 +47,10 @@ const KitPulizia = () => {
       id: 3,
       title: "Spray per la pulizia del display",
       price: 12,
-      image: pulizia3,
+      image: spryDef,
       images: [
-        { src: pulizia3, alt: 'kitpulizia 7' },
-        { src: pulizia2, alt: 'kitpulizia 8' },
+        { src: spryDef, alt: 'kitpulizia 7' },
+        { src: pannoDef, alt: 'kitpulizia 8' },
         { src: kitPulizia, alt: 'kitpulizia 9' }
       ]
     },

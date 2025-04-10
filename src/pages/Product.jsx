@@ -16,19 +16,24 @@ const Product = () => {
   const [selectedTextColorIphone, setSelectedTextColorIphone] = useState(null);
   const [selectedTextColorSamsung, setSelectedTextColorSamsung] = useState(null);
   const [selectedPrice, setSelectedPrice] = useState(null);
+
+  // Stato del carrello
   const [cart, setCart] = useState([]);
+
+  // ID degli accessori selezionati
   const [selectedFilmId, setSelectedFilmId] = useState(null);
   const [selectedRingId, setSelectedRingId] = useState(null);
   const [selectedKitId, setSelectedKitId] = useState(null);
+
+  // Personalizzazione testo
   const [textIphone, setTextIphone] = useState("");
   const [textSamsung, setTextSamsung] = useState("");
   const [fontIphone, setFontIphone] = useState("");
   const [fontSamsung, setFontSamsung] = useState("");
 
-
   const navigate = useNavigate();
 
-  // Caricamento iniziale del carrello
+  // 1) Caricamento iniziale del carrello
   useEffect(() => {
     const storedCart = localStorage.getItem("cart");
     if (storedCart) {
@@ -36,11 +41,47 @@ const Product = () => {
     }
   }, []);
 
-  // Salvataggio carrello
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
+  // 2) Funzione per aggiornare il carrello + dispatch evento
+  const updateCart = (updatedCart) => {
+    setCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    // Dispatch evento per la Navbar
+    window.dispatchEvent(new CustomEvent("cartUpdated"));
+  };
 
+  // Dati di esempio per i prodotti
+  const filmProduct = [
+    { id: 1, title: "Pellicola pvc", price: 308, image: esempio },
+    { id: 2, title: "Pellicola vetro temprato", price: 308, image: esempio },
+    { id: 3, title: "Pellicola vetro temprato", price: 308, image: esempio },
+  ];
+
+  const ringProduct = [
+    { id: 4, title: "Ring Nero", price: 308, image: esempio },
+    { id: 5, title: "Ring Argento", price: 308, image: esempio },
+    { id: 6, title: "Ring oro", price: 308, image: esempio },
+  ];
+
+  const kitProduct = [
+    { id: 7, title: "KIt pulizia", price: 308, image: esempio },
+    { id: 8, title: "panno microfibra", price: 308, image: esempio },
+    { id: 9, title: "Spray", price: 308, image: esempio },
+  ];
+
+  // Trova i prodotti selezionati
+  const selectedFilm = filmProduct.find((c) => c.id === selectedFilmId);
+  const selectedRing = ringProduct.find((c) => c.id === selectedRingId);
+  const selectedKit = kitProduct.find((c) => c.id === selectedKitId);
+
+  // Calcolo del prezzo
+  const filmPrice = selectedFilm?.price || 0;
+  const ringPrice = selectedRing?.price || 0;
+  const kitPrice = selectedKit?.price || 0;
+  const coverPrice = selectedPrice || 0;
+  const textPrice = 20; // fisso
+  const totalPrice = filmPrice + ringPrice + kitPrice + textPrice + coverPrice;
+
+  // Handlers per selezioni
   const handleBrandClick = (brand) => {
     if (brand === "Apple") {
       setShowIphone(true);
@@ -71,102 +112,42 @@ const Product = () => {
     }
   };
 
-  const filmProduct = [
-    {
-      id: 1,
-      title: "Pellicola pvc",
-      price: 308,
-      image: esempio,
-    },
-    {
-      id: 2,
-      title: "Pellicola vetro temprato",
-      price: 308,
-      image: esempio,
-    },
-    {
-      id: 3,
-      title: "Pellicola vetro temprato",
-      price: 308,
-      image: esempio,
-    },
-  ];
+  // Cattura l'immagine del customizer
+  const captureRender = async () => {
+    const element = document.getElementById("customizer-preview");
+    if (!element) return null;
+    const canvas = await html2canvas(element);
+    return canvas.toDataURL("image/png");
+  };
 
-  const ringProduct = [
-    {
-      id: 4,
-      title: "Ring Nero",
-      price: 308,
-      image: esempio,
-    },
-    {
-      id: 5,
-      title: "Ring Argento",
-      price: 308,
-      image: esempio,
-    },
-    {
-      id: 6,
-      title: "Ring oro",
-      price: 308,
-      image: esempio,
-    },
-  ];
-
-  const kitProduct = [
-    {
-      id: 7,
-      title: "KIt pulizia",
-      price: 308,
-      image: esempio,
-    },
-    {
-      id: 8,
-      title: "panno microfibra",
-      price: 308,
-      image: esempio,
-    },
-    {
-      id: 9,
-      title: "Spray",
-      price: 308,
-      image: esempio,
-    },
-  ];
-
-  const selectedFilm = filmProduct.find((c) => c.id === selectedFilmId);
-  const selectedRing = ringProduct.find((c) => c.id === selectedRingId);
-  const selectedKit = kitProduct.find((c) => c.id === selectedKitId);
-  const filmPrice = selectedFilm?.price || 0;
-  const ringPrice = selectedRing?.price || 0;
-  const kitPrice = selectedKit?.price || 0;
-  const coverPrice = selectedPrice || 0;
-  const textPrice = 20 || 0;
-  const totalPrice = filmPrice + ringPrice + kitPrice + textPrice + coverPrice;
-
+  // Aggiunta al carrello
   const handleAddToCart = async () => {
+    // Controlla che siano stati selezionati brand, modello e ALMENO un accessorio
     if (!activeButton || !activeModel || (!selectedFilm && !selectedRing && !selectedKit)) {
       alert("Seleziona marca, modello e almeno un accessorio.");
       return;
     }
 
-    const renderImage = await captureRender(); // 👈 Ottieni il render
-
-    if(!renderImage) {
-      alert(error)
+    const renderImage = await captureRender();
+    if (!renderImage) {
+      alert("Errore nel rendering dell'immagine");
+      return;
     }
 
+    // Crea l'oggetto da salvare nel carrello
     const item = {
-      id: Date.now(),
-     /*  image: selectedFilm?.image || selectedRing?.image || selectedKit?.image || "Foto", */
+      id: Date.now(), // ID unico
       name: `${activeButton.toUpperCase()} - ${activeModel}`,
       film: selectedFilm?.title || "Nessuna pellicola",
       ring: selectedRing?.title || "Nessun ring",
       kit: selectedKit?.title || "Nessun kit",
       coverColor: selectedColor || "Colore cover",
-      textColor: activeButton === "apple" ? selectedTextColorIphone : selectedTextColorSamsung || "Colore testo",
+      textColor:
+        activeButton === "apple"
+          ? selectedTextColorIphone
+          : selectedTextColorSamsung || "Colore testo",
       text: activeButton === "apple" ? textIphone : textSamsung,
-      font: activeButton === "apple" ? fontIphone : fontSamsung, 
+      font: activeButton === "apple" ? fontIphone : fontSamsung,
       filmPrice,
       ringPrice,
       kitPrice,
@@ -174,19 +155,15 @@ const Product = () => {
       priceCover: coverPrice,
       price: totalPrice,
       quantity: 1,
-      imageCover: renderImage, // 👈 Salva l’immagine nel carrello
+      imageCover: renderImage,
     };
 
-    setCart((prevCart) => [...prevCart, item]);
-    console.log("🛒 Aggiunto al carrello:", item);
-    navigate("/cart");
-  };
+    // Aggiorna il carrello
+    const newCart = [...cart, item];
+    updateCart(newCart);
 
-  const captureRender = async () => {
-    const element = document.getElementById("customizer-preview");
-    if (!element) return null;
-    const canvas = await html2canvas(element);
-    return canvas.toDataURL("image/png");
+    // Vai alla pagina cart
+    navigate("/cart");
   };
 
   return (
@@ -211,9 +188,13 @@ const Product = () => {
                   ? "bg-blue-100 border border-blue-500"
                   : "hover:bg-blue-100"
                 }
-                ${brand === "apple" ? "rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none" : "rounded-b-lg sm:rounded-r-lg sm:rounded-bl-none"}
+                ${brand === "apple"
+                  ? "rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none"
+                  : "rounded-b-lg sm:rounded-r-lg sm:rounded-bl-none"}
               `}
-              onClick={() => handleBrandClick(brand === "apple" ? "Apple" : "Samsung")}
+              onClick={() =>
+                handleBrandClick(brand === "apple" ? "Apple" : "Samsung")
+              }
             >
               {brand.charAt(0).toUpperCase() + brand.slice(1)}
             </span>
@@ -228,7 +209,6 @@ const Product = () => {
             onClick={handleModelClick}
           />
         )}
-
         {showSamsung && (
           <ModelSelector
             models={["Samsung S24", "Samsung S23"]}
@@ -239,40 +219,61 @@ const Product = () => {
 
         {/* Pellicole */}
         <div className="font-semibold py-3 text-lg">Pellicole:</div>
-        <CardGrid products={filmProduct} selectedId={selectedFilmId} category="film" onCardClick={handleCardClick} />
+        <CardGrid
+          products={filmProduct}
+          selectedId={selectedFilmId}
+          category="film"
+          onCardClick={handleCardClick}
+        />
 
         <hr className="border-t border-gray-300 my-6" />
 
         {/* Ring */}
         <div className="font-semibold py-3 text-lg">Ring:</div>
-        <CardGrid products={ringProduct} selectedId={selectedRingId} category="ring" onCardClick={handleCardClick} />
+        <CardGrid
+          products={ringProduct}
+          selectedId={selectedRingId}
+          category="ring"
+          onCardClick={handleCardClick}
+        />
 
         <hr className="border-t border-gray-300 my-6" />
 
+        {/* Kit */}
         <div className="font-semibold py-3 text-lg">Kit:</div>
-        <CardGrid products={kitProduct} selectedId={selectedKitId} category="kit" onCardClick={handleCardClick} />
+        <CardGrid
+          products={kitProduct}
+          selectedId={selectedKitId}
+          category="kit"
+          onCardClick={handleCardClick}
+        />
 
         {/* Customizer */}
         <div className="max-w-5xl mx-auto mt-10">
-          {showIphone && <PhoneCaseCustomizerIphone
-           setSelectedColor={setSelectedColor} 
-           setSelectedPrice={setSelectedPrice} 
-           setSelectedTextColorIphone={setSelectedTextColorIphone}
-           setSelectedTextIphone={setTextIphone}
-           setSelectedFontIphone={setFontIphone}
-
-           />}
-          {showSamsung && <PhoneCaseCustomizerSamsung 
-          setSelectedColor={setSelectedColor} 
-          setSelectedPrice={setSelectedPrice}
-          setSelectedTextColorSamsung={setSelectedTextColorSamsung} 
-          setSelectedTextSamsung={setTextSamsung}
-          setSelectedFontSamsung={setFontSamsung}
-          />}
+          {showIphone && (
+            <PhoneCaseCustomizerIphone
+              setSelectedColor={setSelectedColor}
+              setSelectedPrice={setSelectedPrice}
+              setSelectedTextColorIphone={setSelectedTextColorIphone}
+              setSelectedTextIphone={setTextIphone}
+              setSelectedFontIphone={setFontIphone}
+            />
+          )}
+          {showSamsung && (
+            <PhoneCaseCustomizerSamsung
+              setSelectedColor={setSelectedColor}
+              setSelectedPrice={setSelectedPrice}
+              setSelectedTextColorSamsung={setSelectedTextColorSamsung}
+              setSelectedTextSamsung={setTextSamsung}
+              setSelectedFontSamsung={setFontSamsung}
+            />
+          )}
         </div>
 
         {/* Totale */}
-        <div className="text-xl font-bold my-4">Totale: € {totalPrice.toFixed(2)}</div>
+        <div className="text-xl font-bold my-4">
+          Totale: € {totalPrice.toFixed(2)}
+        </div>
 
         {/* Add to Cart */}
         <AddButton onClick={handleAddToCart} totalPrice={totalPrice} />
@@ -280,6 +281,10 @@ const Product = () => {
     </div>
   );
 };
+
+export default Product;
+
+// Componenti secondari (ModelSelector e CardGrid)
 
 const ModelSelector = ({ models, activeModel, onClick }) => (
   <div className="mt-6">
@@ -291,11 +296,16 @@ const ModelSelector = ({ models, activeModel, onClick }) => (
           className={`
             cursor-pointer font-semibold px-10 py-3 text-lg 
             flex-1 text-center border
-            ${activeModel === model
-              ? "bg-blue-100 border-blue-500"
-              : "hover:bg-blue-100"
+            ${
+              activeModel === model
+                ? "bg-blue-100 border-blue-500"
+                : "hover:bg-blue-100"
             }
-            ${index === 0 ? "rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none" : "rounded-b-lg sm:rounded-r-lg sm:rounded-bl-none"}
+            ${
+              index === 0
+                ? "rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none"
+                : "rounded-b-lg sm:rounded-r-lg sm:rounded-bl-none"
+            }
           `}
           onClick={() => onClick(model)}
         >
@@ -321,8 +331,6 @@ const CardGrid = ({ products, selectedId, category, onCardClick }) => (
     ))}
   </div>
 );
-
-export default Product;
 
 
 

@@ -21,13 +21,13 @@ const Homepage = () => {
         navigate("/cover");
     };
     const goToFilmPage = () => {
-        navigate("/film");
+        navigate("/pellicole");
     };
     const goToRingPage = () => {
         navigate("/ring");
     };
     const goToCleanPage = () => {
-        navigate("/clean");
+        navigate("/kit-pulizia");
     };
 
     return (

@@ -2,6 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'; 
 import Carousell from '../components/Carousell';
 
+import kitPulizia from "../assets/kitPulizia.jpeg";
+import pellicolaVetroDef from "../assets/pellicolaVetroDef.png";
+import cover3 from '../assets/cover3.jpeg';
+
+// Altri import di immagini che al momento non usi
+import pannoDef from "../assets/pannoDef.png";
+import pellicolaPryDef from "../assets/pellicolaPryDef.png";
+import pellicolaPvcDef from "../assets/pellicolaPvcDef.png";
+import ringBlackDef from "../assets/ringBlackDef.png";
+import ringOroDef from "../assets/ringOroDef.png";
+import ringSilverDef from "../assets/ringSilverDef.png";
+import spryDef from "../assets/spryDef.png";
+
 const Sustainability = () => {
   const { productId } = useParams(); 
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -10,26 +23,45 @@ const Sustainability = () => {
     {
       id: 1,
       name: 'Cover Eco-Friendly',
-      description: 'Realizzata con materiali biodegradabili e plastica riciclata al 100%',
-      image: 'immagine 1', 
-      plasticSaved: 50,
+      description: 'Realizzata con materiali riciclato e sostenibile.',
+      images: [kitPulizia, pellicolaPvcDef, ringBlackDef], // ARRAY immagini
+      plasticSaved: 70,
     },
     {
       id: 2,
       name: 'Pellicola Protettiva',
-      description: 'Protezione durevole, realizzata con plastica riciclata.',
-      image: 'immagine 2', 
+      description: 'Protezione durevole, realizzata con pvc e vetro riciclato.',
+      images: [pellicolaVetroDef, pannoDef, spryDef],
       plasticSaved: 70,
     },
     {
       id: 3,
-      name: 'Cover in Bambù',
-      description: 'Cover leggera e resistente, fatta di bambù naturale e sostenibile.',
-      image: 'immagine 3', 
+      name: 'Kit-Pulizia',
+      description: 'Utilizziamo prodotti non chimici per la pulizia, e contenitori in plastica riciclata',
+      images: [cover3, ringOroDef, ringSilverDef],
       plasticSaved: 60,
     },
   ];
+  
 
+  // Creo una funzione che restituisce l'array di oggetti in cui "text" è un <img>.
+  // Carousell mostra "text" in un <p>, quindi qui passiamo un elemento React (l’immagine).
+  // "bgColor" serve perché Carousell usa .bgColor come sfondo.
+  const getCarousellData = (product) => [
+    {
+      id: product.id,
+      text: (
+        <img
+          src={product.image}
+          alt={product.name}
+          style={{ maxWidth: '100%', maxHeight: '100%' }}
+        />
+      ),
+      bgColor: 'bg-gray-200',
+    },
+  ];
+
+  // Effetto per caricare il prodotto selezionato se c'è un productId
   useEffect(() => {
     if (productId) {
       const product = products.find(p => p.id === parseInt(productId));
@@ -37,6 +69,7 @@ const Sustainability = () => {
     }
   }, [productId]);
 
+  // Se c’è un productId ma non troviamo un prodotto corrispondente, errore
   if (productId && !selectedProduct) {
     return (
       <div className="text-center p-8">
@@ -53,12 +86,14 @@ const Sustainability = () => {
         <div className="flex flex-col items-center text-right">
           <h2 className="text-3xl font-semibold text-green-600">Prodotti Eco-Friendly per il Tuo Smartphone</h2>
           <p className="text-xl text-gray-600 mt-10">
-            Ogni nostro prodotto è pensato per ridurre l’impatto ambientale, realizzato con materiali riciclati e biodegradabili per un mondo più verde.
+            Ogni nostro prodotto è pensato per ridurre l’impatto ambientale,
+            realizzato con materiali riciclati e biodegradabili per un mondo più verde.
           </p>
         </div>
       </header>
 
       {selectedProduct ? (
+        // Se ho un prodotto selezionato
         <section className="mb-16">
           <h2 className="text-2xl font-semibold text-green-600 text-center mb-20 mt-28">
             {selectedProduct.name}
@@ -68,21 +103,27 @@ const Sustainability = () => {
               <div className="flex flex-col md:flex-row gap-6">
                 <div className="md:w-1/3 flex flex-col justify-center text-center md:text-left">
                   <h3 className="text-2xl font-bold text-green-600">{selectedProduct.name}</h3>
-                  <p className="text-lg text-gray-700 mt-4">{selectedProduct.description}</p>
+                  <p className="text-lg text-gray-700 mt-4">
+                    {selectedProduct.description}
+                  </p>
                   <span className="block font-bold text-green-900 text-8xl mt-20 text-center">
                     {selectedProduct.plasticSaved}%{' '}
-                    <p className="text-lg text-gray-500 mt-2">Risparmio di plastica</p>
+                    <p className="text-lg text-gray-500 mt-2">
+                      Risparmio di plastica
+                    </p>
                   </span>
                 </div>
 
+                {/* Passo a Carousell un array con un solo oggetto, in cui text contiene l'immagine */}
                 <div className="md:w-2/3">
-                  <Carousell images={[selectedProduct.image]} />
+                  <Carousell images={selectedProduct.images} />
                 </div>
               </div>
             </div>
           </div>
         </section>
       ) : (
+        // Altrimenti mostro la lista di tutti i prodotti
         <section className="mb-16">
           <h2 className="text-2xl font-semibold text-green-600 text-center mb-20 mt-28">
             Scopri i Nostri Prodotti Eco-Friendly
@@ -92,8 +133,12 @@ const Sustainability = () => {
               <div key={product.id} className="bg-white p-6 rounded-lg">
                 <div className="flex flex-col md:flex-row gap-6">
                   <div className="md:w-1/3 flex flex-col justify-center text-center md:text-left">
-                    <h3 className="text-2xl font-bold text-green-600">{product.name}</h3>
-                    <p className="text-lg text-gray-700 mt-4">{product.description}</p>
+                    <h3 className="text-2xl font-bold text-green-600">
+                      {product.name}
+                    </h3>
+                    <p className="text-lg text-gray-700 mt-4">
+                      {product.description}
+                    </p>
                     <span className="block font-bold text-green-900 text-8xl mt-20 text-center">
                       {product.plasticSaved}%{' '}
                       <p className="text-lg text-gray-500 mt-2">Risparmio di plastica</p>
@@ -101,7 +146,7 @@ const Sustainability = () => {
                   </div>
 
                   <div className="md:w-2/3">
-                    <Carousell images={[product.image]} />
+                    <Carousell Carousell images={product.images}/>
                   </div>
                 </div>
               </div>
@@ -113,7 +158,8 @@ const Sustainability = () => {
       <section className="text-center mb-12">
         <h2 className="text-3xl font-semibold text-green-600">I Materiali Eco-Friendly</h2>
         <p className="text-lg text-gray-600 mt-4">
-          Le nostre pellicole e cover sono realizzate con materiali riciclati, biodegradabili e certificati. Proteggiamo il tuo smartphone e il nostro pianeta con ogni acquisto.
+          Le nostre pellicole e cover sono realizzate con materiali riciclati, biodegradabili e certificati.
+          Proteggiamo il tuo smartphone e il nostro pianeta con ogni acquisto.
         </p>
       </section>
 
@@ -122,9 +168,6 @@ const Sustainability = () => {
         <p className="text-lg text-gray-700 mt-4">
           Unisciti a noi nella missione di ridurre la plastica e promuovere un futuro più sostenibile.
         </p>
-        <button className="mt-6 px-3 py-1 bg-green-600 text-white text-lg rounded-lg hover:bg-green-500 focus:outline-none">
-          Acquista Ora
-        </button>
       </section>
     </div>
   );

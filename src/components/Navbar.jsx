@@ -4,9 +4,9 @@ import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const aboutLinks = [
-  { to: "/about-us", label: "About us" },
-  { to: "/sustainability", label: "Sustainability" },
-  { to: "/contact-us", label: "Contact us" },
+  { to: "/about-us", label: "Chi siamo" },
+  { to: "/sustainability", label: "Sostenibilità" },
+  { to: "/contact-us", label: "Contattaci" },
 ];
 
 const productLinks = [
@@ -117,7 +117,12 @@ const Navbar = () => {
         <div
           ref={mobileMenuMaskRef}
           className="w-screen h-screen fixed top-0 left-0 z-10 bg-black opacity-50"
-          onClick={closeMobileMenu}
+          onClick={() => {
+            closeMobileMenu();
+            setTimeout(() => {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }, 100);
+          }}
         />
       )}
 
@@ -205,7 +210,7 @@ const Navbar = () => {
                   data-dropdown="about"
                   className="rounded-md px-3 py-2 text-sm hover:text-orange-700 font-semibold"
                 >
-                  About
+                  Chi siamo
                 </button>
                 <div
                   ref={aboutDropdownRef}
@@ -223,7 +228,12 @@ const Navbar = () => {
                         key={link.to}
                         to={link.to}
                         className="block px-4 py-2 text-sm text-black hover:bg-orange-100"
-                        onClick={closeMobileMenu}
+                        onClick={() => {
+                          closeMobileMenu();
+                          setTimeout(() => {
+                            window.scrollTo({ top: 0, behavior: "smooth" });
+                          }, 100) // leggero ritardo per assicurarsi che la nuova pagina sia montata
+                        }}
                       >
                         {link.label}
                       </Link>
@@ -243,7 +253,7 @@ const Navbar = () => {
                   data-dropdown="products"
                   className="rounded-md px-3 py-2 text-sm hover:text-orange-700 font-semibold"
                 >
-                  Products
+                  Prodotti
                 </button>
                 <div
                   ref={productsDropdownRef}
@@ -261,7 +271,12 @@ const Navbar = () => {
                         key={link.to}
                         to={link.to}
                         className="block px-4 py-2 text-sm text-black hover:bg-orange-100"
-                        onClick={closeMobileMenu}
+                        onClick={() => {
+                          closeMobileMenu();
+                          setTimeout(() => {
+                            window.scrollTo({ top: 0, behavior: "smooth" });
+                          }, 100) // leggero ritardo per assicurarsi che la nuova pagina sia montata
+                        }}
                       >
                         {link.label}
                       </Link>
@@ -313,7 +328,12 @@ const Navbar = () => {
         >
           <div
             className="font-bold text-xl py-3 cursor-pointer inline-block"
-            onClick={closeMobileMenu}
+            onClick={() => {
+              closeMobileMenu();
+              setTimeout(() => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }, 100);
+            }}
           >
             X
           </div>
@@ -321,7 +341,10 @@ const Navbar = () => {
             <Link
               to="/"
               className="text-black block px-3 py-2 text-base font-medium border-b-2"
-              onClick={closeMobileMenu}
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+                closeMobileMenu();
+              }}
             >
               Home
             </Link>
@@ -334,7 +357,7 @@ const Navbar = () => {
                 }
                 className="text-black block px-3 py-2 text-base font-medium border-b-2"
               >
-                About
+                Chi siamo
               </button>
               <div
                 className={`transition-all duration-300 ease-in-out transform ${
@@ -348,7 +371,10 @@ const Navbar = () => {
                     key={link.to}
                     to={link.to}
                     className="block px-4 py-2 text-sm text-black hover:bg-orange-100"
-                    onClick={closeMobileMenu}
+                    onClick={() => {
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                      closeMobileMenu();
+                    }}
                   >
                     {link.label}
                   </Link>
@@ -364,7 +390,7 @@ const Navbar = () => {
                 }
                 className="text-black block px-3 py-2 text-base font-medium border-b-2"
               >
-                Products
+                Prodotti
               </button>
               <div
                 className={`transition-all duration-300 ease-in-out transform ${
@@ -378,7 +404,10 @@ const Navbar = () => {
                     key={link.to}
                     to={link.to}
                     className="block px-4 py-2 text-sm text-black hover:bg-orange-100"
-                    onClick={closeMobileMenu}
+                    onClick={() => {
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                      closeMobileMenu();
+                    }}
                   >
                     {link.label}
                   </Link>

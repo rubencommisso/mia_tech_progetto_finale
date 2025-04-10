@@ -7,7 +7,6 @@ import html2canvas from "html2canvas";
 
 const Cover = () => {
   const [activeButton, setActiveButton] = useState("apple");
-  const [showApple, setShowApple] = useState(false);
   const [showIphone, setShowIphone] = useState(false);
   const [showSamsung, setShowSamsung] = useState(false);
   const [activeModel, setActiveModel] = useState(null);
@@ -21,7 +20,6 @@ const Cover = () => {
   const [fontIphone, setFontIphone] = useState("");
   const [fontSamsung, setFontSamsung] = useState("");
 
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,9 +29,12 @@ const Cover = () => {
     }
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
+  // Funzione per aggiornare il carrello e dispatchare l'evento "cartUpdated"
+  const updateCart = (updatedCart) => {
+    setCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    window.dispatchEvent(new CustomEvent("cartUpdated"));
+  };
 
   const handleBrandClick = (brand) => {
     if (brand === "Apple") {
@@ -52,20 +53,21 @@ const Cover = () => {
     setActiveModel(model);
   };
 
-  const textPrice = 20 || 0;
+  const textPrice = 20; // Prezzo fisso
   const coverPrice = selectedPrice || 0;
   const totalPrice = textPrice + coverPrice;
 
-  const handleAddToCart = async  () => {
+  const handleAddToCart = async () => {
     if (!activeButton || !activeModel) {
       alert("Seleziona marca e modello.");
       return;
     }
 
-    const renderImage = await captureRender(); // 👈 Ottieni il render
+    const renderImage = await captureRender(); // Ottieni il render
 
-    if(!renderImage){
-      alert(error)
+    if (!renderImage) {
+      alert("Errore nel rendering dell'immagine");
+      return;
     }
 
     const item = {
@@ -73,16 +75,21 @@ const Cover = () => {
       name: `${activeButton.toUpperCase()} - ${activeModel}`,
       coverColor: selectedColor || "Colore cover",
       priceCover: coverPrice,
-      textColor: activeButton === "apple" ? selectedTextColorIphone : selectedTextColorSamsung || "Colore testo",
+      textColor:
+        activeButton === "apple"
+          ? selectedTextColorIphone
+          : selectedTextColorSamsung || "Colore testo",
       text: activeButton === "apple" ? textIphone : textSamsung,
-      font: activeButton === "apple" ? fontIphone : fontSamsung, 
+      font: activeButton === "apple" ? fontIphone : fontSamsung,
       textPrice,
       price: totalPrice,
       quantity: 1,
-      imageCoverOnly: renderImage, // 👈 Salva l’immagine nel carrello
+      imageCoverOnly: renderImage, // Salva l’immagine nel carrello
     };
 
-    setCart((prevCart) => [...prevCart, item]);
+    // Aggiorna il carrello e dispatch l'evento per aggiornare la Navbar
+    updateCart([...cart, item]);
+
     console.log("🛒 Aggiunto al carrello:", item);
     navigate("/cart");
   };
@@ -111,29 +118,30 @@ const Cover = () => {
                 : "hover:bg-blue-100"}
               ${brand === "apple" ? "rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none" : "rounded-b-lg sm:rounded-r-lg sm:rounded-bl-none"}
             `}
-            onClick={() => handleBrandClick(brand === "apple" ? "Apple" : "Samsung")}
+            onClick={() =>
+              handleBrandClick(brand === "apple" ? "Apple" : "Samsung")
+            }
           >
             {brand.charAt(0).toUpperCase() + brand.slice(1)}
           </span>
         ))}
       </div>
 
-       {/* Models */}
-       {showIphone && (
-          <ModelSelector
-            models={["iPhone 16", "iPhone SE"]}
-            activeModel={activeModel}
-            onClick={handleModelClick}
-          />
-        )}
-
-        {showSamsung && (
-          <ModelSelector
-            models={["Samsung S24", "Samsung S23"]}
-            activeModel={activeModel}
-            onClick={handleModelClick}
-          />
-        )}
+      {/* Models */}
+      {showIphone && (
+        <ModelSelector
+          models={["iPhone 16", "iPhone SE"]}
+          activeModel={activeModel}
+          onClick={handleModelClick}
+        />
+      )}
+      {showSamsung && (
+        <ModelSelector
+          models={["Samsung S24", "Samsung S23"]}
+          activeModel={activeModel}
+          onClick={handleModelClick}
+        />
+      )}
 
       {/* Customizer */}
       <div className="max-w-5xl mx-auto mt-10 px-2 sm:px-4">
@@ -150,7 +158,7 @@ const Cover = () => {
           <PhoneCaseCustomizerSamsung
             setSelectedColor={setSelectedColor}
             setSelectedPrice={setSelectedPrice}
-            setSelectedTextColorSamsung={setSelectedTextColorSamsung} 
+            setSelectedTextColorSamsung={setSelectedTextColorSamsung}
             setSelectedTextSamsung={setTextSamsung}
             setSelectedFontSamsung={setFontSamsung}
           />
@@ -180,10 +188,7 @@ const ModelSelector = ({ models, activeModel, onClick }) => (
           className={`
             cursor-pointer font-semibold px-10 py-3 text-lg 
             flex-1 text-center border
-            ${activeModel === model
-              ? "bg-blue-100 border-blue-500"
-              : "hover:bg-blue-100"
-            }
+            ${activeModel === model ? "bg-blue-100 border-blue-500" : "hover:bg-blue-100"}
             ${index === 0 ? "rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none" : "rounded-b-lg sm:rounded-r-lg sm:rounded-bl-none"}
           `}
           onClick={() => onClick(model)}
@@ -196,3 +201,4 @@ const ModelSelector = ({ models, activeModel, onClick }) => (
 );
 
 export default Cover;
+

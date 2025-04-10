@@ -12,13 +12,14 @@ const Cart = () => {
 
   const removeFromCart = (id) => {
     const updatedCart = cart.filter((product) => product.id !== id);
-    setCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    updateCartStorage(updatedCart); // Invece di fare setCart e localStorage manualmente
   };
 
   const updateCartStorage = (updatedCart) => {
     setCart(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
+    // Scatena l'evento per informare la Navbar dell'aggiornamento
+    window.dispatchEvent(new CustomEvent("cartUpdated"));
   };
 
   

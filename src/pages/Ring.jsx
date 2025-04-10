@@ -1,28 +1,26 @@
-import React, { useState, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
-import ringPhone from "@assets/ringPhone.jpeg"
-import ring1 from "@assets/ring1.jpeg"
-import ring2 from "@assets/ring2.jpeg"
-
-// Importa il tuo componente ButtonToPage
-import ButtonToPage from "@components/ButtonToPage"
-import Card from "../components/card"
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import ringPhone from "@assets/ringPhone.jpeg";
+import ring1 from "@assets/ring1.jpeg";
+import ring2 from "@assets/ring2.jpeg";
+import ButtonToPage from "@components/ButtonToPage";
+import Card from "../components/card";
 
 const Ring = () => {
-  const [activeCardId, setActiveCardId] = useState(null)
-  const navigate = useNavigate()
-  const [cart, setCart] = useState([])
+  const [activeCardId, setActiveCardId] = useState(null);
+  const navigate = useNavigate();
+  const [cart, setCart] = useState([]);
 
   const CardProduct = [
     {
-      id: 7, // oppure mantieni l'id: 1, 2, 3 se preferisci
+      id: 7,
       title: "Ring Nero",
       price: 15,
       image: ringPhone,
       images: [
-        { src: ringPhone, alt: 'Ring Nero 1' },
-        { src: ring1, alt: 'Ring Nero 2' },
-        { src: ring2, alt: 'Ring Nero 3' }
+        { src: ringPhone, alt: "Ring Nero 1" },
+        { src: ring1, alt: "Ring Nero 2" },
+        { src: ring2, alt: "Ring Nero 3" }
       ]
     },
     {
@@ -31,9 +29,9 @@ const Ring = () => {
       price: 18,
       image: ring1,
       images: [
-        { src: ringPhone, alt: 'Ring Argento 1' },
-        { src: ring1, alt: 'Ring Argento 2' },
-        { src: ring2, alt: 'Ring Argento 3' }
+        { src: ringPhone, alt: "Ring Argento 1" },
+        { src: ring1, alt: "Ring Argento 2" },
+        { src: ring2, alt: "Ring Argento 3" }
       ]
     },
     {
@@ -42,68 +40,75 @@ const Ring = () => {
       price: 20,
       image: ring2,
       images: [
-        { src: ringPhone, alt: 'Ring Oro 1' },
-        { src: ring1, alt: 'Ring Oro 2' },
-        { src: ring2, alt: 'Ring Oro 3' }
+        { src: ringPhone, alt: "Ring Oro 1" },
+        { src: ring1, alt: "Ring Oro 2" },
+        { src: ring2, alt: "Ring Oro 3" }
       ]
     },
-  ]
+  ];
 
-  // Scorri in alto non appena la pagina viene caricata
+  // Effetto per scrollare in alto al montaggio
   useEffect(() => {
     setTimeout(() => {
-      window.scrollTo(0, 0)
-    }, 0)
-  }, [])
+      window.scrollTo(0, 0);
+    }, 0);
+  }, []);
 
-  // Recupera eventuale carrello dallo storage
+  // Caricamento del carrello dal localStorage al montaggio del componente
   useEffect(() => {
-    const storedCart = localStorage.getItem("cart")
+    const storedCart = localStorage.getItem("cart");
     if (storedCart) {
-      setCart(JSON.parse(storedCart))
+      setCart(JSON.parse(storedCart));
     }
-  }, [])
+  }, []);
 
-  // Salva il carrello ogni volta che cambia
+  // Salvataggio del carrello nello storage ogni volta che cambia lo state
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart))
-  }, [cart])
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
+  // Funzione per aggiornare il carrello: aggiorna lo state, il localStorage e dispatcha l'evento "cartUpdated"
+  const updateCart = (updatedCart) => {
+    setCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    window.dispatchEvent(new CustomEvent("cartUpdated"));
+  };
 
   const handleCardClick = (id) => {
-    setActiveCardId(id)
-    // Naviga alla pagina di dettaglio con lo "state" del prodotto
+    setActiveCardId(id);
     navigate(`/showdetail`, {
-      state: { product: CardProduct.find((product) => product.id === id) },
-    })
-  }
+      state: { product: CardProduct.find((product) => product.id === id) }
+    });
+  };
 
   const handleAddToCart = (product) => {
-    console.log(`Aggiunto al carrello: ${product.title}`)
+    console.log(`Aggiunto al carrello: ${product.title}`);
 
-    const savedCart = JSON.parse(localStorage.getItem("cart")) || []
+    // Leggiamo il carrello già esistente dal localStorage (oppure usiamo lo state)
+    const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    // Verifica che il prezzo sia valido
     if (isNaN(product.price) || product.price <= 0) {
-      console.error("Prezzo non valido per il prodotto", product)
-      return
+      console.error("Prezzo non valido per il prodotto", product);
+      return;
     }
 
-    // Controllo se il prodotto esiste già nel carrello
-    const existingProductIndex = savedCart.findIndex((item) => item.id === product.id)
+    // Verifica se il prodotto esiste già nel carrello
+    const existingProductIndex = savedCart.findIndex((item) => item.id === product.id);
 
     if (existingProductIndex !== -1) {
-      // Se già esiste, incremento la quantità
-      savedCart[existingProductIndex].quantity += 1
+      // Se esiste, incrementa la quantità
+      savedCart[existingProductIndex].quantity += 1;
     } else {
-      // Altrimenti lo aggiungo con quantità iniziale = 1
-      savedCart.push({ ...product, quantity: 1 })
+      // Altrimenti, aggiungi il prodotto con quantità iniziale 1
+      savedCart.push({ ...product, quantity: 1 });
     }
 
-    // Salvo nel localStorage
-    localStorage.setItem("cart", JSON.stringify(savedCart))
-    // Navigo al carrello
-    navigate("/cart")
-  }
+    // Aggiorna il carrello usando la funzione updateCart
+    updateCart(savedCart);
+
+    // Naviga alla pagina del carrello
+    navigate("/cart");
+  };
 
   return (
     <div className="bg-gray-100 p-10 md:p-6 flex justify-start items-start">
@@ -117,7 +122,7 @@ const Ring = () => {
           {CardProduct.map((product) => (
             <div
               key={product.id}
-              className="flex flex-col justify-center item-center p-4 sm:w-48 sm-52 md:w-60 md:h-80 md:p-0 md:mb-6"
+              className="flex flex-col justify-center items-center p-4 sm:w-48 md:w-60 md:h-80 md:p-0 md:mb-6"
             >
               <Card
                 id={product.id}
@@ -130,14 +135,14 @@ const Ring = () => {
                 <ButtonToPage
                   onClick={() => handleAddToCart(product)}
                   label="Aggiungi al carrello"
-                  className="bg-orange-500 h-8 hover:bg-orange-400 text-black font-bold w-40 h-15 rounded-3xl transition-all"
+                  className="bg-orange-500 h-8 hover:bg-orange-400 text-black font-bold w-40 rounded-3xl transition-all"
                 />
               </Card>
             </div>
           ))}
         </div>
 
-        {/* Dettagli Ring */}
+        {/* Sezione dettagli aggiuntivi */}
         <div>
           <h2 className="text-2xl text-start font-semibold mb-2 mt-2">Dettagli sui Ring - Perché sceglierli?</h2>
           <p className="text-gray-700 text-justify text-xl mt-2">
@@ -171,8 +176,7 @@ const Ring = () => {
         </div>
       </div>
     </div>
-  )
+  );
+};
 
-}
-
-export default Ring
+export default Ring;

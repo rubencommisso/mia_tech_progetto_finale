@@ -22,7 +22,7 @@ const Pellicole = () => {
       alt: 'imgpiccola 1',
       id: 4,
       title: "Pellicola pvc",
-      price: 20,
+      price: 10,
       image: pellicolaPvcDef,
       images: [
         { src: pellicolaPvcDef, alt: 'imgpiccola 1' },
@@ -35,7 +35,7 @@ const Pellicole = () => {
       alt: 'imgpiccola 1',
       id: 5,
       title: "Pellicola vetro temprato",
-      price: 30,
+      price: 15,
       image: pellicolaVetroDef,
       images: [
         { src: pellicolaVetroDef, alt: 'imgpiccola 4' },
@@ -48,7 +48,7 @@ const Pellicole = () => {
       alt: 'imgpiccola 2',
       id: 6,
       title: "Pellicola privacy",
-      price: 40,
+      price: 20,
       image: pellicolaPryDef,
       images: [
         { src: pellicolaPryDef, alt: 'imgpiccola 7' },

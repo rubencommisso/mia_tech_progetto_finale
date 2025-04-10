@@ -60,21 +60,21 @@ const Product = () => {
 
   // Dati di esempio per i prodotti
   const filmProduct = [
-    { id: 1, title: "Pellicola pvc", price: 308, image: pellicolaPvcDef },
-    { id: 2, title: "Pellicola vetro temprato", price: 308, image: pellicolaVetroDef },
-    { id: 3, title: "Pellicola privacy", price: 308, image: pellicolaPryDef },
+    { id: 1, title: "Pellicola pvc", price: 10, image: pellicolaPvcDef },
+    { id: 2, title: "Pellicola vetro temprato", price: 15, image: pellicolaVetroDef },
+    { id: 3, title: "Pellicola privacy", price: 20, image: pellicolaPryDef },
   ];
 
   const ringProduct = [
-    { id: 4, title: "Ring Nero", price: 308, image: ringBlackDef},
-    { id: 5, title: "Ring Argento", price: 308, image: ringOroDef },
-    { id: 6, title: "Ring oro", price: 308, image: ringSilverDef },
+    { id: 4, title: "Ring Nero", price: 10, image: ringBlackDef},
+    { id: 5, title: "Ring Argento", price: 10, image: ringOroDef },
+    { id: 6, title: "Ring oro", price: 10, image: ringSilverDef },
   ];
 
   const kitProduct = [
-    { id: 7, title: "KIt pulizia", price: 308, image: kitPulizia },
-    { id: 8, title: "panno microfibra", price: 308, image: pannoDef },
-    { id: 9, title: "Spray", price: 308, image: spryDef },
+    { id: 7, title: "KIt pulizia", price: 15, image: kitPulizia },
+    { id: 8, title: "panno microfibra", price: 5, image: pannoDef },
+    { id: 9, title: "Spray", price: 10, image: spryDef },
   ];
 
   // Trova i prodotti selezionati

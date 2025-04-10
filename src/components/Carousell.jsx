@@ -1,31 +1,23 @@
 import React, { useState } from 'react';
 
-const Carousell = () => {
-  const images = [
-    { id: 1, text: 'Immagine 1', bgColor: 'bg-gray-200' },
-    { id: 2, text: 'Immagine 2', bgColor: 'bg-gray-300' },
-    { id: 3, text: 'Immagine 3', bgColor: 'bg-gray-400' },
-    { id: 4, text: 'Immagine 4', bgColor: 'bg-gray-500' },
-  ]
-
-  const [currentIndex, setCurrentIndex] = useState(0)
+const Carousell = ({ images }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextImage = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length)
-  }
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+  };
 
   const prevImage = () => {
-    setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + images.length) % images.length
-    )
-  }
+    setCurrentIndex((prevIndex) =>
+      (prevIndex - 1 + images.length) % images.length
+    );
+  };
 
   return (
     <div className="flex justify-center items-center mt-8">
       <div
-        className={`relative w-[40vw] h-[50vh] flex justify-center items-center rounded-lg overflow-hidden transition-all duration-500 ${images[currentIndex].bgColor}`}
+        className={`relative w-[40vw] h-[50vh] flex justify-center items-center rounded-lg overflow-hidden transition-all duration-500 bg-gray-200`}
       >
-    
         <button
           onClick={prevImage}
           className="absolute left-4 text-black bg-white p-2 rounded-full"
@@ -33,9 +25,11 @@ const Carousell = () => {
           &lt;
         </button>
 
-        <div className="text-black text-xl font-semibold text-center">
-          <p>{images[currentIndex].text}</p>
-        </div>
+        <img
+          src={images[currentIndex]}
+          alt={`Immagine ${currentIndex + 1}`}
+          className="w-full h-full object-cover"
+        />
 
         <button
           onClick={nextImage}
@@ -55,8 +49,9 @@ const Carousell = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Carousell
+export default Carousell;
+
 

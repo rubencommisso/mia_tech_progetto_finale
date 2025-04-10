@@ -3,6 +3,10 @@ import { useNavigate } from "react-router-dom";
 import ringPhone from "@assets/ringPhone.jpeg";
 import ring1 from "@assets/ring1.jpeg";
 import ring2 from "@assets/ring2.jpeg";
+import ringBlackDef from "../assets/ringBlackDef.png";
+import ringOroDef from "../assets/ringOroDef.png";
+import ringOroDef2 from "../assets/ringOroDef2.png";
+import ringSilverDef from "../assets/ringSilverDef.png";
 import ButtonToPage from "@components/ButtonToPage";
 import Card from "../components/card";
 
@@ -16,33 +20,33 @@ const Ring = () => {
       id: 7,
       title: "Ring Nero",
       price: 15,
-      image: ringPhone,
+      image: ringBlackDef,
       images: [
-        { src: ringPhone, alt: "Ring Nero 1" },
+        { src: ringBlackDef, alt: "Ring Nero 1" },
         { src: ring1, alt: "Ring Nero 2" },
-        { src: ring2, alt: "Ring Nero 3" }
+        { src: ringPhone, alt: "Ring Nero 3" }
       ]
     },
     {
       id: 8,
       title: "Ring Argento",
       price: 18,
-      image: ring1,
+      image: ringSilverDef,
       images: [
-        { src: ringPhone, alt: "Ring Argento 1" },
-        { src: ring1, alt: "Ring Argento 2" },
-        { src: ring2, alt: "Ring Argento 3" }
+        { src: ringSilverDef, alt: "Ring Argento 1" },
+        { src: ring2, alt: "Ring Argento 2" },
+        { src:ringPhone, alt: "Ring Argento 3" }
       ]
     },
     {
       id: 9,
       title: "Ring Oro",
       price: 20,
-      image: ring2,
+      image: ringOroDef,
       images: [
-        { src: ringPhone, alt: "Ring Oro 1" },
-        { src: ring1, alt: "Ring Oro 2" },
-        { src: ring2, alt: "Ring Oro 3" }
+        { src: ringOroDef, alt: "Ring Oro 1" },
+        { src: ringOroDef2, alt: "Ring Oro 2" },
+        { src: ringPhone, alt: "Ring Oro 3" }
       ]
     },
   ];

@@ -122,7 +122,7 @@ const Cart = () => {
                       />
                       </div>)}
                       {product.coverColor && (<div className="flex items-center  w-60 gap-2">
-                      <span className="capitalize font-medium">Colore Cover: {product.coverColor}</span>
+                      <span className="capitalize font-medium">Cover: {product.coverColor}</span>
                       <div
                         className="w-3.5 h-3.5 rounded-full border"
                         style={{ backgroundColor: product.coverColor }}

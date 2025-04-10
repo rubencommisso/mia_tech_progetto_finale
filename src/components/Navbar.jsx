@@ -1,5 +1,7 @@
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import Logo5 from "../assets/Logo5.png";
+import cover3 from "../assets/cover3.jpeg";
+import coverColorate from "../assets/coverColorate.jpeg";
 import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -35,6 +37,7 @@ const Navbar = () => {
 
   // Funzioni per il dropdown (hover e click) e per la gestione del menu mobile
   const handleMouseEnterDropdown = (dropdownName) => {
+    // Mostra il dropdown solo su schermi >= 768px
     if (window.innerWidth >= 768) {
       setActiveDropdown(dropdownName);
     }
@@ -47,7 +50,7 @@ const Navbar = () => {
   };
 
   const toggleDropdown = (dropdownName) => {
-    if (window.innerWidth < 768) return;
+    if (window.innerWidth < 768) return; // Evita toggle da mobile
     setActiveDropdown((prev) => (prev === dropdownName ? null : dropdownName));
   };
 
@@ -56,6 +59,7 @@ const Navbar = () => {
     setActiveDropdown(null);
   };
 
+  // Chiude i dropdown se clicchiamo fuori (solo in desktop)
   const handleClickOutside = (event) => {
     if (window.innerWidth < 768) return;
     const isClickInsideAbout =
@@ -72,7 +76,7 @@ const Navbar = () => {
   // Funzione per aggiornare il conteggio leggendo il localStorage
   const updateCartCount = () => {
     const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
-    // Se gli articoli hanno un campo "quantity" (es. per articoli multipli nello stesso oggetto)
+    // Se ogni articolo nel carrello ha un campo "quantity", somma le quantità
     const count = storedCart.reduce(
       (total, item) => total + (item.quantity || 1),
       0
@@ -83,18 +87,20 @@ const Navbar = () => {
   // useEffect per aggiornare il conteggio quando la navbar monta
   useEffect(() => {
     updateCartCount();
-    // Aggiungiamo un listener per l'evento custom "cartUpdated"
+    // Aggiunge un listener per un eventuale evento custom "cartUpdated"
     window.addEventListener("cartUpdated", updateCartCount);
     return () => {
       window.removeEventListener("cartUpdated", updateCartCount);
     };
   }, []);
 
+  // Aggiunge listener per click fuori dai dropdown (desktop)
   useEffect(() => {
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
+  // Resetta i dropdown se la finestra viene ridimensionata a <768
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
@@ -105,14 +111,14 @@ const Navbar = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Funzione che gestisce il click sull'icona del carrello: naviga alla pagina /cart
+  // Funzione che gestisce il click sull'icona del carrello
   const handleCartClick = () => {
     navigate("/cart");
   };
 
   return (
     <>
-      {/* Overlay per il menu mobile */}
+      {/* Overlay scuro dietro al menu mobile aperto */}
       {mobileMenuOpen && (
         <div
           ref={mobileMenuMaskRef}
@@ -126,12 +132,13 @@ const Navbar = () => {
         />
       )}
 
-      {/* Navbar */}
+      {/* NAVBAR principale */}
       <nav className="border-b sticky top-0 bg-white w-full z-[5]">
         <div className="relative flex items-center px-2 sm:px-6 md:px-6 h-16">
-          {/* Header Mobile */}
+          {/* HEADER MOBILE (visibile solo su <768px) */}
           <div className="md:hidden flex w-full items-center justify-between">
             <div className="flex items-center">
+              {/* Bottone apertura menu mobile */}
               <button
                 type="button"
                 className="mr-2 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
@@ -154,6 +161,8 @@ const Navbar = () => {
                   />
                 </svg>
               </button>
+
+              {/* Logo */}
               <Link to="/">
                 <img
                   src={Logo5}
@@ -162,6 +171,7 @@ const Navbar = () => {
                 />
               </Link>
             </div>
+
             {/* Icona Carrello Mobile */}
             <div className="flex items-center">
               <button
@@ -179,10 +189,11 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Vista Desktop */}
+          {/* VISTA DESKTOP (>=768px) */}
           <div className="hidden md:flex w-full items-center justify-between">
-            {/* Sezione sinistra: Logo e link di navigazione */}
+            {/* Sezione sinistra: logo e navigazione */}
             <div className="flex items-center space-x-6">
+              {/* Logo */}
               <div id="logo" className="mr-6">
                 <Link to="/">
                   <img
@@ -192,6 +203,8 @@ const Navbar = () => {
                   />
                 </Link>
               </div>
+
+              {/* Link Home */}
               <Link
                 to="/"
                 className="rounded-md px-3 py-2 text-sm hover:text-orange-700 font-semibold"
@@ -204,7 +217,7 @@ const Navbar = () => {
                 Home
               </Link>
 
-              {/* Dropdown About */}
+              {/* DROPDOWN ABOUT */}
               <div
                 className="relative"
                 onMouseEnter={() => handleMouseEnterDropdown("about")}
@@ -227,27 +240,38 @@ const Navbar = () => {
                       : "opacity-0 scale-95 invisible"
                   } hidden md:block`}
                 >
-                  <div className="px-6 py-4">
-                    {aboutLinks.map((link) => (
-                      <Link
-                        key={link.to}
-                        to={link.to}
-                        className="block px-4 py-2 text-sm text-black hover:bg-orange-100"
-                        onClick={() => {
-                          closeMobileMenu();
-                          setTimeout(() => {
-                            window.scrollTo({ top: 0, behavior: "smooth" });
-                          }, 100) // leggero ritardo per assicurarsi che la nuova pagina sia montata
-                        }}
-                      >
-                        {link.label}
-                      </Link>
-                    ))}
+                  <div className="flex">
+                    {/* Colonna sinistra: Immagine */}
+                    <div className="w-1/4 p-4">
+                      <img
+                        src={coverColorate}
+                        alt="Chi siamo"
+                        className="object-cover w-full h-full"
+                      />
+                    </div>
+                    {/* Colonna destra: Link */}
+                    <div className="w-3/4 px-6 py-4">
+                      {aboutLinks.map((link) => (
+                        <Link
+                          key={link.to}
+                          to={link.to}
+                          className="block px-4 py-2 text-sm text-black hover:bg-orange-100"
+                          onClick={() => {
+                            closeMobileMenu();
+                            setTimeout(() => {
+                              window.scrollTo({ top: 0, behavior: "smooth" });
+                            }, 100);
+                          }}
+                        >
+                          {link.label}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
 
-              {/* Dropdown Products */}
+              {/* DROPDOWN PRODUCTS */}
               <div
                 className="relative"
                 onMouseEnter={() => handleMouseEnterDropdown("products")}
@@ -270,28 +294,39 @@ const Navbar = () => {
                       : "opacity-0 scale-95 invisible"
                   } hidden md:block`}
                 >
-                  <div className="px-6 py-4">
-                    {productLinks.map((link) => (
-                      <Link
-                        key={link.to}
-                        to={link.to}
-                        className="block px-4 py-2 text-sm text-black hover:bg-orange-100"
-                        onClick={() => {
-                          closeMobileMenu();
-                          setTimeout(() => {
-                            window.scrollTo({ top: 0, behavior: "smooth" });
-                          }, 100) // leggero ritardo per assicurarsi che la nuova pagina sia montata
-                        }}
-                      >
-                        {link.label}
-                      </Link>
-                    ))}
+                  <div className="flex">
+                    {/* Colonna sinistra: Immagine */}
+                    <div className="w-1/4 p-4">
+                      <img
+                        src={cover3}
+                        alt="Prodotti"
+                        className="object-cover w-full h-full"
+                      />
+                    </div>
+                    {/* Colonna destra: Link */}
+                    <div className="w-3/4 px-6 py-4">
+                      {productLinks.map((link) => (
+                        <Link
+                          key={link.to}
+                          to={link.to}
+                          className="block px-4 py-2 text-sm text-black hover:bg-orange-100"
+                          onClick={() => {
+                            closeMobileMenu();
+                            setTimeout(() => {
+                              window.scrollTo({ top: 0, behavior: "smooth" });
+                            }, 100);
+                          }}
+                        >
+                          {link.label}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Sezione destra: Icona del Carrello */}
+            {/* Sezione destra: carrello */}
             <div className="flex items-center">
               <button
                 type="button"
@@ -305,32 +340,23 @@ const Navbar = () => {
                   } hover:text-orange-700`}
                 />
                 {cartCount > 0 && (
-              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                {cartCount}
-              </span>
-            )}
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                    {cartCount}
+                  </span>
+                )}
               </button>
             </div>
           </div>
         </div>
-
-        {/* Menu Mobile */}
-        {mobileMenuOpen && (
-          <div
-            ref={mobileMenuRef}
-            className="fixed top-0 left-0 w-full h-full md:hidden bg-white z-[60] pt-2 pb-3 px-6 transition-all duration-500"
-          >
-            {/* ... codice per il menu mobile */}
-          </div>
-        )}
       </nav>
 
-      {/* Mobile Menu Alternativo */}
+      {/* MOBILE MENU ALTERNATIVO (visibile solo quando mobileMenuOpen è true) */}
       {mobileMenuOpen && (
         <div
           ref={mobileMenuRef}
           className="fixed top-0 left-0 w-full h-full md:hidden bg-white z-[60] pt-2 pb-3 px-6 transition-all duration-500"
         >
+          {/* Pulsante per chiudere il menu */}
           <div
             className="font-bold text-xl py-3 cursor-pointer inline-block"
             onClick={() => {
@@ -343,6 +369,7 @@ const Navbar = () => {
             X
           </div>
           <div className="flex flex-col h-4/6 justify-around">
+            {/* Link Home Mobile */}
             <Link
               to="/"
               className="text-black block px-3 py-2 text-base font-medium border-b-2"
@@ -369,7 +396,7 @@ const Navbar = () => {
                   activeDropdown === "about"
                     ? "opacity-100 max-h-[500px]"
                     : "opacity-0 max-h-0 overflow-hidden"
-                } md:hidden`}
+                }`}
               >
                 {aboutLinks.map((link) => (
                   <Link
@@ -402,7 +429,7 @@ const Navbar = () => {
                   activeDropdown === "products"
                     ? "opacity-100 max-h-[500px]"
                     : "opacity-0 max-h-0 overflow-hidden"
-                } md:hidden`}
+                }`}
               >
                 {productLinks.map((link) => (
                   <Link
@@ -427,4 +454,6 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
 

@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import esempio from '@assets/esempio.jpg';
+import pellicolaPryDef from "../assets/pellicolaPryDef.png";
+import pellicolaPvcDef from "../assets/pellicolaPvcDef.png";
+import pellicolaVetroDef from "../assets/pellicolaVetroDef.png";
 import Card from '@components/card';
 import pellicola from '@assets/pellicola.jpeg';
 import pellicole from '@assets/pellicole.jpeg';
@@ -18,11 +21,11 @@ const Pellicole = () => {
       src: 'piccola-1.jpg',
       alt: 'imgpiccola 1',
       id: 4,
-      title: "Pellicola pvc super resistente effetto satinato",
-      price: 20,
-      image: pellicole,
+      title: "Pellicola pvc",
+      price: 10,
+      image: pellicolaPvcDef,
       images: [
-        { src: pellicola, alt: 'imgpiccola 1' },
+        { src: pellicolaPvcDef, alt: 'imgpiccola 1' },
         { src: pellicole, alt: 'imgpiccola 2' },
         { src: pellicole2, alt: 'imgpiccola 3' }
       ]
@@ -31,12 +34,12 @@ const Pellicole = () => {
       src: 'piccola-2.jpg',
       alt: 'imgpiccola 1',
       id: 5,
-      title: "Pellicola vetro temprato antigraffio",
-      price: 30,
-      image: pellicole2,
+      title: "Pellicola vetro temprato",
+      price: 15,
+      image: pellicolaVetroDef,
       images: [
-        { src: pellicola, alt: 'imgpiccola 4' },
-        { src: pellicola, alt: 'imgpiccola 5' },
+        { src: pellicolaVetroDef, alt: 'imgpiccola 4' },
+        { src: pellicole, alt: 'imgpiccola 5' },
         { src: pellicole2, alt: 'imgpiccola 6' }
       ]
     },
@@ -44,11 +47,11 @@ const Pellicole = () => {
       src: 'piccola-2.jpg',
       alt: 'imgpiccola 2',
       id: 6,
-      title: "Pellicola vetro temprato anti-impronte",
-      price: 40,
-      image: pellicola,
+      title: "Pellicola privacy",
+      price: 20,
+      image: pellicolaPryDef,
       images: [
-        { src: pellicola, alt: 'imgpiccola 7' },
+        { src: pellicolaPryDef, alt: 'imgpiccola 7' },
         { src: pellicole, alt: 'imgpiccola 8' },
         { src: pellicole2, alt: 'imgpiccola 9' }
       ]

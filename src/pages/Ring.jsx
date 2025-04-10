@@ -113,16 +113,16 @@ const Ring = () => {
   return (
     <div className="bg-gray-100 p-10 md:p-6 flex justify-start items-start">
       <div className="max-w-5xl mx-auto flex flex-col justify-center">
-        <h1 className="text-3xl text-start md:mt-2 md:mb-2 font-bold">Ring</h1>
-        <h2 className="text-2xl font-normal text-start mt-2 md:mb-2">
+        <h1 className="text-3xl text-start md:mt-2 md:mb-0 font-bold">Ring</h1>
+        <h2 className="text-2xl font-normal text-start mt-2 md:mb-0">
           Scegli il ring che fa per te!
         </h2>
 
-        <div className="grid grid-cols-1 max-w-3xl justify-items-start mt-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+        <div className="grid grid-cols-1 max-w-3xl justify-items-start mt-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
           {CardProduct.map((product) => (
             <div
               key={product.id}
-              className="flex flex-col justify-center items-center p-4 sm:w-48 md:w-60 md:h-80 md:p-0 md:mb-6"
+              className="flex flex-col justify-center items-start md:items-start sm:items-start  p-4 sm:w-48 md:w-60 md:h-80 md:p-0 md:mb-2"
             >
               <Card
                 id={product.id}
@@ -144,7 +144,7 @@ const Ring = () => {
 
         {/* Sezione dettagli aggiuntivi */}
         <div>
-          <h2 className="text-2xl text-start font-semibold mb-2 mt-2">Dettagli sui Ring - Perché sceglierli?</h2>
+          <h2 className="text-3xl text-start font-semibold mb-2 mt-2">Dettagli sui Ring - Perché sceglierli?</h2>
           <p className="text-gray-700 text-justify text-xl mt-2">
             I nostri ring sono progettati per offrire una presa sicura e comoda sul tuo dispositivo, migliorando la funzionalità e lo stile. Offrono una protezione aggiuntiva e una maneggevolezza superiore per ogni tipo di telefono.
           </p>

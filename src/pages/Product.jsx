@@ -86,8 +86,11 @@ const Product = () => {
   const filmPrice = selectedFilm?.price || 0;
   const ringPrice = selectedRing?.price || 0;
   const kitPrice = selectedKit?.price || 0;
-  const coverPrice = selectedPrice || 0;
-  const textPrice = 20; // fisso
+  const coverPrice = /* selectedPrice  */activeButton ? 20 : 0 || 0;
+  const textPrice = (activeButton === "apple" && textIphone.trim() !== "") || 
+                  (activeButton === "samsung" && textSamsung.trim() !== "")
+                  ? 5
+                  : 0;
   const totalPrice = filmPrice + ringPrice + kitPrice + textPrice + coverPrice;
 
   // Handlers per selezioni

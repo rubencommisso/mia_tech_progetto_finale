@@ -53,8 +53,11 @@ const Cover = () => {
     setActiveModel(model);
   };
 
-  const textPrice = 20; // Prezzo fisso
-  const coverPrice = selectedPrice || 0;
+  const textPrice = (activeButton === "apple" && textIphone.trim() !== "") || 
+                  (activeButton === "samsung" && textSamsung.trim() !== "")
+                  ? 5
+                  : 0;
+  const coverPrice = 20 || 0;
   const totalPrice = textPrice + coverPrice;
 
   const handleAddToCart = async () => {

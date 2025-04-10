@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const PhoneCaseCustomizerIphone = ({ 
     setSelectedColor, 
-    setSelectedPrice, 
+    /* setSelectedPrice,  */
     setSelectedTextColorIphone, 
     setSelectedTextIphone, 
     setSelectedFontIphone,
@@ -24,10 +24,10 @@ const PhoneCaseCustomizerIphone = ({
 
     useEffect(() => {
         setSelectedColor(color);
-        setSelectedPrice(coverPrice);
+        /* setSelectedPrice(coverPrice); */
         setSelectedTextColorIphone(textColorIphone);
         setSelectedFontIphone(fontFamily);
-    }, [color, coverPrice, setSelectedColor, setSelectedTextColorIphone, setSelectedPrice,fontFamily, setSelectedFontIphone]);
+    }, [color, coverPrice, setSelectedColor, setSelectedTextColorIphone, /* setSelectedPrice, */fontFamily, setSelectedFontIphone]);
 
     const handleColorChange = (e) => {
         const newColor = e.target.value;
@@ -87,7 +87,7 @@ const PhoneCaseCustomizerIphone = ({
     
             {/* RIGHT SIDE: All controls */}
             <div className="flex flex-col space-y-6 w-full lg:w-1/2">
-                <h1 className="text-2xl font-bold">Personalizza la tua cover</h1>
+                <h1 className="text-2xl font-bold">Personalizza la tua cover 20€</h1>
     
                 {/* Selettore colore cover */}
                 <div className="flex flex-col items-start space-y-2">
@@ -102,7 +102,7 @@ const PhoneCaseCustomizerIphone = ({
     
                 {/* Input di testo + bottone */}
                 <div className="flex flex-col space-y-2">
-                <label className="font-medium">Inserisci la tua frase:</label>
+                <label className="font-medium">Inserisci la tua frase: 5€</label>
                     <input
                         type="text"
                         placeholder="Scrivi qualcosa..."

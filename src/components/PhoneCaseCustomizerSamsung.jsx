@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const PhoneCaseCustomizerSamsung = ({ 
     setSelectedColor, 
-    setSelectedPrice, 
+   /*  setSelectedPrice,  */
     setSelectedTextColorSamsung,
     setSelectedTextSamsung,
     setSelectedFontSamsung, // ➕ AGGIUNTA 
@@ -13,7 +13,7 @@ const PhoneCaseCustomizerSamsung = ({
     const [fontFamily, setFontFamily] = useState("Arial");
     const [textColorSamsung, setTextColorSamsung] = useState("#ffffff");
 
-    const coverPrice = 308;
+    const coverPrice = 20;
     const fonts = [
         "Arial", "Verdana", "Tahoma", "Trebuchet MS",
         "Georgia", "Times New Roman", "Courier New", "Comic Sans MS"
@@ -27,10 +27,10 @@ const PhoneCaseCustomizerSamsung = ({
 
     useEffect(() => {
         setSelectedColor(color);
-        setSelectedPrice(coverPrice);
+        /* setSelectedPrice(coverPrice); */
         setSelectedTextColorSamsung(textColorSamsung);
         setSelectedFontSamsung(fontFamily);
-    }, [color, coverPrice, fontFamily, setSelectedFontSamsung, setSelectedColor, setSelectedTextColorSamsung, setSelectedPrice]);
+    }, [color, coverPrice, fontFamily, setSelectedFontSamsung, setSelectedColor, setSelectedTextColorSamsung, /* setSelectedPrice */]);
 
     const handleColorChange = (e) => {
         const newColor = e.target.value;
@@ -90,7 +90,7 @@ const PhoneCaseCustomizerSamsung = ({
 
             {/* RIGHT SIDE: Controls */}
             <div className="flex flex-col space-y-6 w-full lg:w-1/2">
-                <h1 className="text-2xl font-bold">Personalizza la tua cover</h1>
+                <h1 className="text-2xl font-bold">Personalizza la tua cover 20€</h1>
 
                 {/* Colore cover */}
                 <div className="flex flex-col items-start space-y-2">
@@ -105,7 +105,7 @@ const PhoneCaseCustomizerSamsung = ({
 
                 {/* Input testo */}
                 <div className="flex flex-col space-y-2">
-                    <label className="font-medium">Inserisci la tua frase:</label>
+                    <label className="font-medium">Inserisci la tua frase: 5€</label>
                     <input
                         type="text"
                         placeholder="Scrivi qualcosa..."

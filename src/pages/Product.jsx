@@ -116,7 +116,10 @@ const Product = () => {
   const captureRender = async () => {
     const element = document.getElementById("customizer-preview");
     if (!element) return null;
-    const canvas = await html2canvas(element);
+    const canvas = await html2canvas(element, {
+      scale: 10, // Puoi aggiustare lo scale se necessario per la risoluzione
+      backgroundColor: null, // Imposta lo sfondo trasparente se richiesto
+    });
     return canvas.toDataURL("image/png");
   };
 

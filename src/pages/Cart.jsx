@@ -195,7 +195,7 @@ const Cart = () => {
 
           <div className="flex justify-center">
             <button className="bg-orange-500 hover:bg-orange-400 text-black font-semibold rounded-3xl px-4 py-2 w-full">
-              Continua col Checkout
+              Vai al pagamento
             </button>
           </div>
         </div>

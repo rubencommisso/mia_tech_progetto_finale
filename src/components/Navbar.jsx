@@ -133,8 +133,8 @@ const Navbar = () => {
       )}
 
       {/* NAVBAR principale */}
-      <nav className="border-b sticky top-0 bg-white w-full z-[5]">
-        <div className="relative flex items-center px-2 sm:px-6 md:px-6 h-16">
+      <nav className="border-b sticky top-0 bg-white w-full z-[5] h-16">
+        <div className="relative flex items-center px-2 sm:px-6 md:px-6 h-full">
           {/* HEADER MOBILE (visibile solo su <768px) */}
           <div className="md:hidden flex w-full items-center justify-between">
             <div className="flex items-center">
@@ -190,9 +190,9 @@ const Navbar = () => {
           </div>
 
           {/* VISTA DESKTOP (>=768px) */}
-          <div className="hidden md:flex w-full items-center justify-between">
+          <div className="hidden md:flex w-full items-center justify-between h-full">
             {/* Sezione sinistra: logo e navigazione */}
-            <div className="flex items-center space-x-6">
+            <div className="flex items-center h-full space-x-6">
               {/* Logo */}
               <div id="logo" className="mr-6">
                 <Link to="/">
@@ -203,11 +203,12 @@ const Navbar = () => {
                   />
                 </Link>
               </div>
-
+                  <div className="relative h-full">
               {/* Link Home */}
+              <button className="rounded-md px-3 py-5 text-sm hover:text-orange-700 font-semibold">
               <Link
                 to="/"
-                className="rounded-md px-3 py-2 text-sm hover:text-orange-700 font-semibold"
+                className=""
                 onClick={() => {
                   setTimeout(() => {
                     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -216,17 +217,18 @@ const Navbar = () => {
               >
                 Home
               </Link>
-
+              </button>
+              </div>
               {/* DROPDOWN ABOUT */}
               <div
-                className="relative"
+                className="relative h-full"
                 onMouseEnter={() => handleMouseEnterDropdown("about")}
                 onMouseLeave={handleMouseLeaveDropdown}
               >
                 <button
                   onClick={() => toggleDropdown("about")}
                   data-dropdown="about"
-                  className="rounded-md px-3 py-2 text-sm hover:text-orange-700 font-semibold"
+                  className="rounded-md px-3 py-5 text-sm hover:text-orange-700 font-semibold"
                 >
                   Chi siamo
                 </button>
@@ -273,14 +275,14 @@ const Navbar = () => {
 
               {/* DROPDOWN PRODUCTS */}
               <div
-                className="relative"
+                className="relative h-full"
                 onMouseEnter={() => handleMouseEnterDropdown("products")}
                 onMouseLeave={handleMouseLeaveDropdown}
               >
                 <button
                   onClick={() => toggleDropdown("products")}
                   data-dropdown="products"
-                  className="rounded-md px-3 py-2 text-sm hover:text-orange-700 font-semibold"
+                  className="rounded-md px-3 py-5 text-sm hover:text-orange-700 font-semibold"
                 >
                   Prodotti
                 </button>
@@ -454,6 +456,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-
-

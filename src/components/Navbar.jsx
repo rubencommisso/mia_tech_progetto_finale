@@ -260,7 +260,7 @@ const Navbar = () => {
                             closeMobileMenu();
                             setTimeout(() => {
                               window.scrollTo({ top: 0, behavior: "smooth" });
-                            }, 100);
+                            }, 700);
                           }}
                         >
                           {link.label}
@@ -314,7 +314,7 @@ const Navbar = () => {
                             closeMobileMenu();
                             setTimeout(() => {
                               window.scrollTo({ top: 0, behavior: "smooth" });
-                            }, 100);
+                            }, 700);
                           }}
                         >
                           {link.label}

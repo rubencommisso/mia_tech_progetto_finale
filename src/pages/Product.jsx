@@ -67,8 +67,8 @@ const Product = () => {
 
   const ringProduct = [
     { id: 4, title: "Ring Nero", price: 10, image: ringBlackDef},
-    { id: 5, title: "Ring Argento", price: 10, image: ringOroDef },
-    { id: 6, title: "Ring oro", price: 10, image: ringSilverDef },
+    { id: 6, title: "Ring oro", price: 10, image: ringOroDef},
+    { id: 5, title: "Ring Argento", price: 10, image: ringSilverDef},
   ];
 
   const kitProduct = [

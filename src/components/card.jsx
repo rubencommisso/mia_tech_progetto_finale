@@ -37,7 +37,7 @@ const Card = ({ id, title, price, image, activeCardId, onClick, children }) => {
 
         {/* Prezzo */}
         <div className="mt-2">
-          <h2 className="text-base font-bold text-blue-800">
+          <h2 className="text-base font-bold text-orange-600">
             {formatPrice(price)}
           </h2>
         </div>

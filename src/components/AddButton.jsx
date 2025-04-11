@@ -13,7 +13,7 @@ const AddButton = ({onClick, totalPrice}) => {
                 onClick={onClick}
                 className="bg-orange-500 hover:bg-orange-400 text-black font-bold w-full py-3 rounded-3xl transition-all"
             >
-                Add to bag
+                Aggiungi al carrello
             </button>
             </div>
         </div>
